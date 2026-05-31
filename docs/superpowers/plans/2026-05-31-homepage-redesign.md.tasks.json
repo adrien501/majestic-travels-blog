@@ -1,0 +1,33 @@
+{
+  "planPath": "docs/superpowers/plans/2026-05-31-homepage-redesign.md",
+  "tasks": [
+    {
+      "id": 0,
+      "subject": "Task 0: Update card template in build-blog.js",
+      "status": "pending",
+      "description": "**Goal:** Replace cardHtml() output with a clean linked card: image, category+readtime, title, excerpt.\n\n**Files:**\n- Modify: `scripts/build-blog.js` (lines 173-198)\n\n**Acceptance Criteria:**\n- [ ] cardHtml() returns an `<a>` element wrapping the whole card\n- [ ] data-category and data-search attributes preserved\n- [ ] Card contains: image, .story-meta, .story-title, .story-excerpt\n- [ ] npm run build:blog runs without errors\n\n**Verify:** `npm run build:blog` → `Built 6 posts.`\n\n```json:metadata\n{\"files\": [\"scripts/build-blog.js\"], \"verifyCommand\": \"npm run build:blog\", \"acceptanceCriteria\": [\"cardHtml returns <a> wrapper\", \"data-category and data-search preserved\", \"build runs without errors\"]}\n```"
+    },
+    {
+      "id": 1,
+      "subject": "Task 1: Add new homepage CSS to the style block",
+      "status": "pending",
+      "blockedBy": [0],
+      "description": "**Goal:** Override body background, add --ocean tokens, add all new section CSS.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (append before </style>)\n\n**Acceptance Criteria:**\n- [ ] --ocean and --ocean-dark added to :root\n- [ ] body background is plain var(--paper)\n- [ ] body::before hidden\n- [ ] All new section classes present\n\n**Verify:** Open majestic-travels-blog.html in browser — plain paper background, no dot grid.\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open majestic-travels-blog.html in browser\", \"acceptanceCriteria\": [\"--ocean token added\", \"body background plain paper\", \"body::before hidden\"]}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Replace homepage body HTML",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Replace all old body content with new nav + hero + posts + footer + script.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (entire body content)\n\n**Acceptance Criteria:**\n- [ ] Body has .site-nav, .site-hero, .posts-section, .site-footer, script\n- [ ] story-grid anchor strings intact for build script\n- [ ] npm run prepare:publish passes\n- [ ] Search and filter JS works\n\n**Verify:** `npm run prepare:publish` → Built 6 posts, Blog check passed.\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"npm run prepare:publish\", \"acceptanceCriteria\": [\"story-grid anchor intact\", \"prepare:publish passes\", \"search and filter work in browser\"]}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: Push and verify live site",
+      "status": "pending",
+      "blockedBy": [2],
+      "description": "**Goal:** Push to GitHub, confirm Cloudflare deploys, verify live site.\n\n**Files:** None (git only)\n\n**Acceptance Criteria:**\n- [ ] git push succeeds\n- [ ] Cloudflare Pages build succeeds\n- [ ] majestic-travels.com shows new homepage\n\n**Verify:** Visit https://majestic-travels.com\n\n```json:metadata\n{\"files\": [], \"verifyCommand\": \"visit https://majestic-travels.com\", \"acceptanceCriteria\": [\"Cloudflare build succeeds\", \"live site shows teal hero and post grid\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-05-31T17:00:00Z"
+}
