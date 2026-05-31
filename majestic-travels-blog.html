@@ -2258,207 +2258,47 @@
     }
   </style>
 </head>
-<body id="top">
-  <a class="skip-link" href="#main">Skip to stories</a>
+<body>
+  <a class="skip-link" href="#stories">Skip to stories</a>
 
-  <header class="topbar">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="Majestic Travels home">
-        <img class="brand-logo" src="public/site/brand-logo.png" alt="" aria-hidden="true">
-        <span>Majestic Travels</span>
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="nav-logo">
+        <span class="nav-brand-name">Majestic Travels</span>
       </a>
-      <ul class="nav-links" aria-label="Sections">
+      <ul class="nav-menu" role="list">
         <li><a href="#stories">Stories</a></li>
-        <li><a href="#destinations">Destinations</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="rss.xml">RSS</a></li>
       </ul>
-      <div class="nav-actions">
-        <a class="icon-button" href="#story-search" aria-label="Search stories">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-        </a>
-        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
-    </nav>
-    <div class="mobile-panel wrap" id="mobilePanel">
-      <a href="#stories">Stories</a>
-      <a href="#destinations">Destinations</a>
-      <a href="#about">About</a>
-      <a href="#newsletter">Newsletter</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="site-hero">
+    <div class="hero-inner">
+      <img src="public/logo_cleanedup_centered_transparant-01.png" alt="" class="hero-logomark" aria-hidden="true">
+      <img src="public/plain_name_crop.png" alt="Majestic Travels" class="hero-wordmark">
+      <p class="hero-tagline">Solo travel. Real places. No filters.</p>
+      <a href="#stories" class="hero-cta">Read the stories ↓</a>
     </div>
   </header>
 
-  <main id="main">
-    <section class="masthead wrap" aria-label="Featured story">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="kicker">Editorial travel journal</span>
-          <h1>Travel writing for the part of you that needs air.</h1>
-          <p>Majestic Travels is no longer a shop. It is a field journal for solo trips, slow mornings, city overwhelm, surf lessons, and the small moments that make a place stay with you.</p>
-          <div class="hero-actions">
-            <a class="button" href="#stories">Start reading</a>
-            <a class="button secondary" href="#newsletter">Get new posts</a>
-          </div>
-          <p class="hero-note">New posts are organized by mood, place, and practical use, so readers can find both the story and the plan.</p>
-        </div>
-
-        <div class="hero-ledger" aria-label="Current journal entries">
-          <div class="ledger-item">
-            <strong>Latest essay</strong>
-            <span>Fuerteventura after burnout</span>
-            <small>Surf, silence, and the first wave that stayed.</small>
-          </div>
-          <div class="ledger-item">
-            <strong>Route guide</strong>
-            <span>NYC in summer light</span>
-            <small>Rooftops, late jazz, and overheated sidewalks.</small>
-          </div>
-          <div class="ledger-item">
-            <strong>Field note</strong>
-            <span>Beginner courage</span>
-            <small>What falling off a surfboard quietly teaches.</small>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="Featured travel story">
-          <div class="route-slip">
-            <strong>Route fragment</strong>
-            <p>Morro Jable to the first surf lesson, with one long walk back along the Atlantic.</p>
-            <span class="route-line" aria-hidden="true"></span>
-          </div>
-
-          <article class="lead-story">
-            <img src="public/site/fuerteventura-atlantic.jpg" alt="Volcanic coastline and calm Atlantic water in Fuerteventura" fetchpriority="high" decoding="async">
-            <div class="lead-card">
-              <span>Latest essay</span>
-              <h2>Fuerteventura, silence, and the first wave that stayed.</h2>
-              <p>A solo travel essay about burnout, surf school nerves, and learning how to stop performing for the itinerary.</p>
-            </div>
-          </article>
-
-          <div class="photo-caption">
-            <strong>Current coordinates</strong>
-            <p>28.05 N / 14.03 W. Windy, volcanic, kinder than expected.</p>
-          </div>
+  <!-- POSTS -->
+  <section class="posts-section" id="stories">
+    <div class="posts-inner">
+      <h1 class="posts-heading">Stories</h1>
+      <div class="posts-controls">
+        <label for="story-search" class="sr-only">Search posts</label>
+        <input type="search" id="story-search" placeholder="Search posts…" class="search-input" aria-label="Search posts">
+        <div class="topic-pills" role="group" aria-label="Filter by topic">
+          <button class="pill active" data-filter="all">All</button>
+          <button class="pill" data-filter="essay">Essays</button>
+          <button class="pill" data-filter="guide">Guides</button>
+          <button class="pill" data-filter="field-notes">Field Notes</button>
         </div>
       </div>
-    </section>
-
-    <section class="section alt" aria-labelledby="desk-title">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="kicker">Editor's desk</span>
-            <h2 id="desk-title">Three ways into the journal.</h2>
-          </div>
-          <p>Visitors should know immediately whether they are here for feeling, planning, or a quick spark before their next trip.</p>
-        </div>
-
-        <div class="desk-grid">
-          <article class="desk-item">
-            <div>
-              <strong>01 Essays</strong>
-              <h3>Personal travel stories with a pulse.</h3>
-            </div>
-            <p>Burnout, solitude, courage, awe, and the weirdly specific memory of a street at 7:13 pm.</p>
-          </article>
-          <article class="desk-item">
-            <div>
-              <strong>02 Guides</strong>
-              <h3>Useful plans without the sterile checklist voice.</h3>
-            </div>
-            <p>City routes, seasonal itineraries, packing notes, and local discoveries from lived trips.</p>
-          </article>
-          <article class="desk-item">
-            <div>
-              <strong>03 Field notes</strong>
-              <h3>Short observations worth saving.</h3>
-            </div>
-            <p>Quick reads for places, cafes, beaches, mistakes, small rituals, and what to do differently next time.</p>
-          </article>
-        </div>
-
-        <div class="postcard-strip" aria-label="Camera roll postcards">
-          <figure class="postcard">
-            <img src="public/site/fuerteventura-beach.jpg" alt="Turquoise beach and pale volcanic hills in Fuerteventura" loading="lazy" decoding="async">
-            <figcaption>Fuerteventura / Atlantic wind</figcaption>
-          </figure>
-          <figure class="postcard">
-            <img src="public/site/vancouver-cove.jpg" alt="Vancouver cove with a dock framed by green leaves" loading="lazy" decoding="async">
-            <figcaption>Vancouver / blue-green pause</figcaption>
-          </figure>
-          <figure class="postcard">
-            <img src="public/site/abu-dhabi-night.jpg" alt="Abu Dhabi mosque reflected in water at night" loading="lazy" decoding="async">
-            <figcaption>Abu Dhabi / night reflection</figcaption>
-          </figure>
-          <figure class="postcard">
-            <img src="public/site/marrakech-palm-reflection.jpg" alt="Palm trees reflected in a dark Marrakech pool at sunset" loading="lazy" decoding="async">
-            <figcaption>Marrakech / dusk stillness</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="stories" aria-labelledby="stories-title">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="kicker">Stories and guides</span>
-            <h2 id="stories-title">The reading room.</h2>
-          </div>
-          <p>Search by place, mood, or practical need. New entries come from Markdown files, so the archive stays tidy while the journal grows.</p>
-        </div>
-
-        <div class="archive-board">
-          <aside class="archive-note" aria-label="Archive reader map">
-            <div class="archive-status">
-              <span>Field index</span>
-              <strong id="archiveTotal">6</strong>
-              <p>entries ready to read</p>
-            </div>
-            <div class="route-buttons" aria-label="Quick reading routes">
-              <button class="route-button" type="button" data-filter="solo-travel" data-query="">
-                <span>Need courage</span>
-                <small>Solo pieces with nerves, rest, and reset.</small>
-              </button>
-              <button class="route-button" type="button" data-filter="new-york" data-query="">
-                <span>Planning NYC</span>
-                <small>City routes, seasons, and practical wandering.</small>
-              </button>
-              <button class="route-button" type="button" data-filter="all" data-query="surf">
-                <span>Find the ocean</span>
-                <small>Surf notes and Atlantic-side reflections.</small>
-              </button>
-            </div>
-          </aside>
-
-          <div class="filter-panel">
-            <div class="controls" aria-label="Story filters">
-              <div class="search-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-                <label class="sr-only" for="story-search">Search stories by place, mood, or topic</label>
-                <input id="story-search" type="search" placeholder="Search places, moods, or topics" autocomplete="off">
-              </div>
-              <div class="topics" role="list" aria-label="Filter by topic">
-                <button class="topic active" type="button" data-filter="all" aria-pressed="true">All <span class="topic-count">0</span></button>
-                <button class="topic" type="button" data-filter="essay" aria-pressed="false">Essays <span class="topic-count">0</span></button>
-                <button class="topic" type="button" data-filter="guide" aria-pressed="false">Guides <span class="topic-count">0</span></button>
-                <button class="topic" type="button" data-filter="field-note" aria-pressed="false">Field notes <span class="topic-count">0</span></button>
-                <button class="topic" type="button" data-filter="solo-travel" aria-pressed="false">Solo travel <span class="topic-count">0</span></button>
-                <button class="topic" type="button" data-filter="new-york" aria-pressed="false">New York <span class="topic-count">0</span></button>
-                <button class="topic" type="button" data-filter="fuerteventura" aria-pressed="false">Fuerteventura <span class="topic-count">0</span></button>
-                <button class="topic" type="button" data-filter="packing" aria-pressed="false">Packing <span class="topic-count">0</span></button>
-              </div>
-            </div>
-            <div class="result-row">
-              <p id="resultCount" role="status" aria-live="polite">Showing all entries</p>
-              <p id="activeMood">Filter by mood, place, or practical need.</p>
-            </div>
-          </div>
-        </div>
-
         <div class="story-grid" id="storyGrid">
           <!-- Generated by scripts/build-blog.js from posts/*.md. Edit Markdown posts, not these cards. -->
           <a class="story-card" href="blog/fuerteventura-solo-travel.html" data-category="essay solo-travel fuerteventura" data-search="Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive. essay Solo travel Fuerteventura fuerteventura solo travel surfing silence morro jable burnout wellness">
@@ -2528,221 +2368,76 @@
           </a>
         </div>
 
-        <p class="empty" id="emptyState">No matching entries in this notebook yet. Try "NYC", "surf", "packing", or "solo".</p>
+        <p class="empty" id="emptyState" hidden>No posts match your search.</p>
+    </div>
+  </section>
+
+  <!-- Anchor stubs for article back-links -->
+  <span id="destinations" aria-hidden="true"></span>
+  <span id="about" aria-hidden="true"></span>
+  <span id="newsletter" aria-hidden="true"></span>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
+        <span class="footer-name">Majestic Travels</span>
+        <p class="footer-tagline">Solo travel. Real places. No filters.</p>
       </div>
-    </section>
-
-    <section class="section alt" id="destinations" aria-labelledby="destinations-title">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="kicker">Destination index</span>
-            <h2 id="destinations-title">Places with a point of view.</h2>
-          </div>
-          <p>Instead of showing every place as an identical tile, this index makes the strongest destination feel like an editorial feature.</p>
-        </div>
-
-        <div class="destination-grid">
-          <article class="destination-feature">
-            <img src="public/site/fuerteventura-beach.jpg" alt="Turquoise water and pale volcanic hills on a Fuerteventura beach" loading="lazy" decoding="async">
-            <div class="destination-copy">
-              <span class="kicker">Current focus</span>
-              <h3>Fuerteventura</h3>
-              <p>Surf lessons, volcanic beaches, solo walks, and the strange quiet that arrives when the island wind finally wins.</p>
-            </div>
-          </article>
-
-          <div class="destination-list" aria-label="Destination links">
-            <a class="destination-link" href="#stories">
-              <span><strong>New York City</strong><span>Summer essays, December routes, city overwhelm</span></span>
-              <span aria-hidden="true">4</span>
-            </a>
-            <a class="destination-link" href="#stories">
-              <span><strong>Fuerteventura</strong><span>Surf, solitude, Morro Jable, beginner courage</span></span>
-              <span aria-hidden="true">3</span>
-            </a>
-            <a class="destination-link" href="#stories">
-              <span><strong>Paris</strong><span>Slow walks and cafe notes planned for the archive</span></span>
-              <span aria-hidden="true">Soon</span>
-            </a>
-            <a class="destination-link" href="#stories">
-              <span><strong>Bali</strong><span>Wellness notes and longer-stay reflections planned</span></span>
-              <span aria-hidden="true">Soon</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="wrap about-grid">
-        <div class="portrait">
-          <img src="public/site/vancouver-cove.jpg" alt="Quiet Vancouver cove with a dock, trees, and blue mountain water" loading="lazy" decoding="async">
-        </div>
-        <div class="about-copy">
-          <span class="kicker">About the journal</span>
-          <h2 id="about-title">A store became a notebook. That is the better version.</h2>
-          <p>Majestic Travels began around travel products, but the honest center was always the feeling underneath: wanting movement to mean something. This new version keeps the useful parts and gives the heart of the project room to breathe.</p>
-          <p>The blog is built for readers who want practical travel help without losing the human story. Every post should answer two questions: what happened there, and how can a reader make their own version of it?</p>
-          <div class="principles" aria-label="Editorial principles">
-            <span>Honest before polished</span>
-            <span>Useful without selling</span>
-            <span>Specific places, specific feelings</span>
-            <span>Slow travel over content churn</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section newsletter" id="newsletter" aria-labelledby="newsletter-title">
-      <div class="wrap newsletter-grid">
-        <div>
-          <span class="kicker">Postcards from the road</span>
-          <h2 id="newsletter-title">Send readers the next honest thing.</h2>
-          <p>Use this form with your email platform later. For now, it gives the page a real reader path without pretending a store or fake community still exists.</p>
-        </div>
-        <form class="newsletter-form" id="newsletterForm">
-          <label for="email">Email address</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
-          <button class="button" type="submit">Subscribe</button>
-          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#stories">Stories</a>
+        <a href="rss.xml">RSS</a>
+      </nav>
+      <div class="footer-newsletter">
+        <p class="newsletter-label">✉ Stay in the loop</p>
+        <form class="newsletter-form" action="#" method="post">
+          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address">
+          <button type="submit" class="newsletter-btn">Subscribe</button>
         </form>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-grid">
-      <div>
-        <img class="footer-wordmark" src="public/site/brand-wordmark.png" alt="Majestic Travels">
-        <p>Slow travel stories, solo guides, and field notes by Adrien. Built to publish, not to sell.</p>
-      </div>
-      <nav class="footer-links" aria-label="Footer navigation">
-        <a href="#stories">Stories</a>
-        <a href="#destinations">Destinations</a>
-        <a href="#about">About</a>
-        <a href="#top">Back to top</a>
-      </nav>
+      <p class="footer-copy">© 2026 Majestic Travels</p>
     </div>
   </footer>
 
-  <a class="button to-top" id="toTop" href="#top" aria-label="Back to top">Top</a>
-
   <script>
-    const menuButton = document.getElementById("menuButton");
-    const mobilePanel = document.getElementById("mobilePanel");
-    const searchInput = document.getElementById("story-search");
-    const topicButtons = Array.from(document.querySelectorAll(".topic"));
-    const routeButtons = Array.from(document.querySelectorAll(".route-button"));
-    const cards = Array.from(document.querySelectorAll(".story-card"));
-    const emptyState = document.getElementById("emptyState");
-    const archiveTotal = document.getElementById("archiveTotal");
-    const resultCount = document.getElementById("resultCount");
-    const activeMood = document.getElementById("activeMood");
-    const toTop = document.getElementById("toTop");
-    const newsletterForm = document.getElementById("newsletterForm");
-    const formNote = document.getElementById("formNote");
+    (function () {
+      var searchInput = document.getElementById("story-search");
+      var pills = document.querySelectorAll(".pill");
+      var grid = document.getElementById("storyGrid");
+      var emptyState = document.getElementById("emptyState");
+      var activeFilter = "all";
 
-    let activeFilter = "all";
+      function getCards() {
+        return grid.querySelectorAll(".story-card");
+      }
 
-    function matchesCategory(card, filter) {
-      const categories = card.dataset.category.split(" ");
-      return filter === "all" || categories.includes(filter);
-    }
+      function filterCards() {
+        var query = searchInput.value.toLowerCase().trim();
+        var cards = getCards();
+        var visible = 0;
+        cards.forEach(function (card) {
+          var matchesSearch = !query || card.dataset.search.toLowerCase().includes(query);
+          var cardCategories = card.dataset.category ? card.dataset.category.split(" ") : [];
+          var matchesTopic = activeFilter === "all" || cardCategories.includes(activeFilter);
+          var show = matchesSearch && matchesTopic;
+          card.hidden = !show;
+          if (show) visible++;
+        });
+        emptyState.hidden = visible > 0;
+      }
 
-    function cleanTopicLabel(button) {
-      return button.childNodes[0].textContent.trim();
-    }
+      searchInput.addEventListener("input", filterCards);
 
-    function setActiveFilter(filter) {
-      activeFilter = filter;
-      topicButtons.forEach((button) => {
-        const isActive = button.dataset.filter === activeFilter;
-        button.classList.toggle("active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
+      pills.forEach(function (pill) {
+        pill.addEventListener("click", function () {
+          pills.forEach(function (p) { p.classList.remove("active"); });
+          pill.classList.add("active");
+          activeFilter = pill.dataset.filter;
+          filterCards();
+        });
       });
-    }
-
-    function updateTopicCounts() {
-      topicButtons.forEach((button) => {
-        const count = cards.filter((card) => matchesCategory(card, button.dataset.filter)).length;
-        const countNode = button.querySelector(".topic-count");
-        if (countNode) countNode.textContent = count;
-      });
-      archiveTotal.textContent = cards.length;
-    }
-
-    function filterStories() {
-      const query = searchInput.value.trim().toLowerCase();
-      let visibleCount = 0;
-
-      cards.forEach((card) => {
-        const haystack = `${card.dataset.search} ${card.textContent}`.toLowerCase();
-        const matchesFilter = matchesCategory(card, activeFilter);
-        const matchesQuery = !query || haystack.includes(query);
-        const show = matchesFilter && matchesQuery;
-
-        card.hidden = !show;
-        if (show) visibleCount += 1;
-      });
-
-      emptyState.classList.toggle("show", visibleCount === 0);
-      const activeButton = topicButtons.find((button) => button.dataset.filter === activeFilter);
-      const topicLabel = activeButton ? cleanTopicLabel(activeButton) : "All";
-      const entryWord = visibleCount === 1 ? "entry" : "entries";
-      resultCount.innerHTML = `Showing <strong>${visibleCount}</strong> of ${cards.length} ${entryWord}`;
-      activeMood.textContent = query
-        ? `${topicLabel} filtered by "${searchInput.value.trim()}"`
-        : `${topicLabel} entries, newest first`;
-    }
-
-    menuButton.addEventListener("click", () => {
-      const isOpen = mobilePanel.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    mobilePanel.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobilePanel.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    topicButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        setActiveFilter(button.dataset.filter);
-        filterStories();
-      });
-    });
-
-    routeButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        setActiveFilter(button.dataset.filter);
-        searchInput.value = button.dataset.query || "";
-        filterStories();
-        searchInput.focus();
-      });
-    });
-
-    searchInput.addEventListener("input", filterStories);
-    updateTopicCounts();
-    filterStories();
-
-    newsletterForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      formNote.textContent = "You are on the list. Connect this form to your email platform before launch.";
-      newsletterForm.reset();
-    });
-
-    window.addEventListener("scroll", () => {
-      toTop.classList.toggle("visible", window.scrollY > 650);
-    }, { passive: true });
-
-    document.querySelectorAll("img").forEach((image) => {
-      const markBroken = () => image.classList.add("is-broken");
-      image.addEventListener("error", markBroken, { once: true });
-      if (image.complete && image.naturalWidth === 0) markBroken();
-    });
+    })();
   </script>
 </body>
 </html>
