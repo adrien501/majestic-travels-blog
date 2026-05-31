@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.log
+.writer-server.log
+writer-server.err.log
+writer-server.out.log

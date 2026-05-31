@@ -1,0 +1,520 @@
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = path.resolve(__dirname, "..");
+const HOME_FILE = path.join(ROOT, "majestic-travels-blog.html");
+const POSTS_DIR = path.join(ROOT, "posts");
+const BLOG_DIR = path.join(ROOT, "blog");
+const SITEMAP_FILE = path.join(ROOT, "sitemap.xml");
+const ROBOTS_FILE = path.join(ROOT, "robots.txt");
+const RSS_FILE = path.join(ROOT, "rss.xml");
+const SITE_URL = (process.env.SITE_URL || "https://majestic-travels.com").replace(/\/+$/, "");
+
+function read(filePath) {
+  return fs.readFileSync(filePath, "utf8");
+}
+
+function write(filePath, content) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, content, "utf8");
+}
+
+function escapeHtml(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function slugify(value = "") {
+  return value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function parseFrontmatter(source, fileName) {
+  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!match) {
+    throw new Error(`${fileName} is missing frontmatter. Start it with ---`);
+  }
+
+  const meta = {};
+  match[1].split(/\r?\n/).forEach((line) => {
+    const pair = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
+    if (!pair) return;
+    const key = pair[1].trim();
+    const value = pair[2].trim().replace(/^["']|["']$/g, "");
+    meta[key] = value;
+  });
+
+  const body = source.slice(match[0].length).trim();
+  return { meta, body };
+}
+
+function splitList(value = "") {
+  return value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function inlineMarkdown(value = "") {
+  return escapeHtml(value)
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function markdownToHtml(markdown) {
+  const lines = markdown.split(/\r?\n/);
+  const html = [];
+  let paragraph = [];
+  let list = [];
+
+  function flushParagraph() {
+    if (!paragraph.length) return;
+    html.push(`<p>${inlineMarkdown(paragraph.join(" "))}</p>`);
+    paragraph = [];
+  }
+
+  function flushList() {
+    if (!list.length) return;
+    html.push(`<ul>${list.map((item) => `<li>${inlineMarkdown(item)}</li>`).join("")}</ul>`);
+    list = [];
+  }
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+
+    if (!trimmed) {
+      flushParagraph();
+      flushList();
+      return;
+    }
+
+    if (trimmed.startsWith("### ")) {
+      flushParagraph();
+      flushList();
+      html.push(`<h3>${inlineMarkdown(trimmed.slice(4))}</h3>`);
+      return;
+    }
+
+    if (trimmed.startsWith("## ")) {
+      flushParagraph();
+      flushList();
+      html.push(`<h2>${inlineMarkdown(trimmed.slice(3))}</h2>`);
+      return;
+    }
+
+    if (trimmed.startsWith("# ")) {
+      flushParagraph();
+      flushList();
+      html.push(`<h2>${inlineMarkdown(trimmed.slice(2))}</h2>`);
+      return;
+    }
+
+    if (trimmed.startsWith("> ")) {
+      flushParagraph();
+      flushList();
+      html.push(`<blockquote>${inlineMarkdown(trimmed.slice(2))}</blockquote>`);
+      return;
+    }
+
+    if (trimmed.startsWith("- ")) {
+      flushParagraph();
+      list.push(trimmed.slice(2));
+      return;
+    }
+
+    paragraph.push(trimmed);
+  });
+
+  flushParagraph();
+  flushList();
+  return html.join("\n");
+}
+
+function dateLabel(dateValue) {
+  const date = new Date(`${dateValue}T12:00:00`);
+  if (Number.isNaN(date.getTime())) return dateValue;
+  return date.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" });
+}
+
+function absoluteUrl(urlPath = "") {
+  if (/^https?:\/\//i.test(urlPath)) return urlPath;
+  return `${SITE_URL}/${urlPath.replace(/^\/+/, "")}`;
+}
+
+function relativeFromBlog(urlPath = "") {
+  if (/^(https?:|data:|mailto:|tel:)/i.test(urlPath)) return urlPath;
+  return `../${urlPath.replace(/^\/+/, "")}`;
+}
+
+function jsonLd(data) {
+  return JSON.stringify(data, null, 2).replace(/</g, "\\u003c");
+}
+
+function rssDate(dateValue) {
+  const date = new Date(`${dateValue}T12:00:00Z`);
+  if (Number.isNaN(date.getTime())) return new Date().toUTCString();
+  return date.toUTCString();
+}
+
+function getHomeParts(home) {
+  const styleMatch = home.match(/<style>([\s\S]*?)<\/style>/);
+  if (!styleMatch) throw new Error("Could not find homepage CSS.");
+  return { css: styleMatch[1] };
+}
+
+function cardHtml(post, index) {
+  const categorySlugs = [post.category, ...post.tags].map(slugify).join(" ");
+  const search = [post.title, post.excerpt, post.category, post.tags.join(" "), post.keywords].join(" ");
+  const meta = [post.categoryLabel, ...post.tags.slice(0, 1), post.readTime].filter(Boolean);
+  const entryCode = `Entry ${String(index + 1).padStart(2, "0")}`;
+
+  return `          <article class="story-card" data-category="${escapeHtml(categorySlugs)}" data-search="${escapeHtml(search)}">
+            <div class="story-media">
+              <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt)}" loading="lazy" decoding="async">
+              <span class="story-date">${escapeHtml(dateLabel(post.date))}</span>
+            </div>
+            <div class="story-body">
+              <div class="story-meta">${meta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
+              <h3><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h3>
+              <p>${escapeHtml(post.excerpt)}</p>
+              <details>
+                <summary>Open story brief</summary>
+                <p>${escapeHtml(post.brief || "Draft the full post in Markdown, then run npm run build:blog.")}</p>
+              </details>
+              <div class="story-footer">
+                <span>${escapeHtml(entryCode)}</span>
+                <a class="story-read" href="${escapeHtml(post.url)}" aria-label="Read ${escapeHtml(post.title)}">Read entry</a>
+              </div>
+            </div>
+          </article>`;
+}
+
+function articleHtml(post, css, context = {}) {
+  const posts = context.posts || [];
+  const index = context.index || 0;
+  const entryCode = `Entry ${String(index + 1).padStart(2, "0")}`;
+  const articleUrl = absoluteUrl(`blog/${post.slug}.html`);
+  const imageUrl = absoluteUrl(post.image);
+  const articleImage = relativeFromBlog(post.image);
+  const newerPost = posts[index - 1];
+  const olderPost = posts[index + 1];
+  const allTags = [...post.tags, post.categoryLabel].filter(Boolean);
+  const tagMeta = post.tags.map((tag) => `  <meta property="article:tag" content="${escapeHtml(tag)}">`).join("\n");
+  const relatedLink = (label, targetPost, fallbackHref, fallbackTitle) => {
+    if (!targetPost) {
+      return `<a class="article-nav-card" href="${escapeHtml(fallbackHref)}">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(fallbackTitle)}</strong>
+        </a>`;
+    }
+
+    return `<a class="article-nav-card" href="${escapeHtml(`${targetPost.slug}.html`)}">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(targetPost.title)}</strong>
+        </a>`;
+  };
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: [imageUrl],
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Person", name: "Adrien" },
+    publisher: { "@type": "Organization", name: "Majestic Travels" },
+    articleSection: post.categoryLabel,
+    keywords: allTags.join(", "),
+    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }
+  };
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHtml(post.title)} | Majestic Travels</title>
+  <meta name="description" content="${escapeHtml(post.excerpt)}">
+  <link rel="canonical" href="${escapeHtml(articleUrl)}">
+  <link rel="alternate" type="application/rss+xml" title="Majestic Travels RSS" href="${SITE_URL}/rss.xml">
+  <link rel="icon" type="image/png" href="../public/site/brand-logo.png">
+  <link rel="apple-touch-icon" href="../public/site/brand-logo.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="${escapeHtml(post.title)}">
+  <meta property="og:description" content="${escapeHtml(post.excerpt)}">
+  <meta property="og:url" content="${escapeHtml(articleUrl)}">
+  <meta property="og:image" content="${escapeHtml(imageUrl)}">
+  <meta property="article:published_time" content="${escapeHtml(post.date)}">
+  <meta property="article:section" content="${escapeHtml(post.categoryLabel)}">
+${tagMeta}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(post.title)}">
+  <meta name="twitter:description" content="${escapeHtml(post.excerpt)}">
+  <meta name="twitter:image" content="${escapeHtml(imageUrl)}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,50..100,0..1&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">${jsonLd(schema)}</script>
+  <style>${css}
+    .article-page { padding: 62px 0 96px; }
+    .article-shell { width: min(calc(100% - 44px), 1120px); margin: 0 auto; }
+    .article-topbar .nav { grid-template-columns: auto 1fr auto; }
+    .article-home-link { min-height: 44px; padding: 0 12px; font-size: 0.78rem; }
+    .article-breadcrumb { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; margin-bottom: 34px; color: var(--passport); font-weight: 900; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+    .article-hero { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(230px, 0.22fr); gap: 34px; align-items: end; margin-bottom: 34px; }
+    .article-hero-main { display: grid; gap: 20px; }
+    .article-hero h1 { max-width: 13ch; font-size: 5.15rem; line-height: 0.96; letter-spacing: 0; }
+    .article-hero p { max-width: 62ch; color: var(--ink-soft); font-size: 1.18rem; line-height: 1.55; }
+    .article-entry-code { border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.68); padding: 18px; display: grid; gap: 10px; transform: rotate(1.2deg); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); }
+    .article-entry-code span { color: var(--rust); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-entry-code strong { font-family: var(--font-display); font-size: 2.05rem; line-height: 1; }
+    .article-entry-code p { font-size: 0.96rem; line-height: 1.42; }
+    .article-meta-line { display: flex; flex-wrap: wrap; gap: 10px; color: var(--rust); font-weight: 900; text-transform: uppercase; font-size: 0.82rem; }
+    .article-meta-line span { border: 1px solid color-mix(in srgb, currentColor 34%, transparent); border-radius: 999px; padding: 3px 9px; background: rgba(255, 248, 236, 0.68); }
+    .article-cover { position: relative; min-height: 470px; border: 12px solid var(--white); border-radius: 2px; overflow: hidden; background: repeating-linear-gradient(135deg, rgba(255, 248, 236, 0.12) 0 1px, transparent 1px 18px), linear-gradient(135deg, var(--sage-deep), var(--ink)); box-shadow: var(--shadow); }
+    .article-cover::before { content: "FIELD PHOTO"; position: absolute; top: 18px; right: 18px; z-index: 2; border: 1.5px solid rgba(255, 248, 236, 0.72); color: rgba(255, 248, 236, 0.88); padding: 6px 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(3deg); }
+    .article-cover img { width: 100%; height: 100%; min-height: 470px; object-fit: cover; }
+    .article-cover img.is-broken { opacity: 0; }
+    .article-cover figcaption { position: absolute; left: 18px; bottom: 18px; max-width: min(520px, calc(100% - 36px)); background: rgba(24, 32, 28, 0.82); color: rgba(255, 250, 242, 0.94); border: 1px solid rgba(255, 250, 242, 0.18); padding: 8px 10px; font-size: 0.84rem; font-weight: 700; }
+    .article-layout { display: grid; grid-template-columns: minmax(190px, 0.28fr) minmax(0, 0.72fr); gap: 42px; align-items: start; margin-top: 46px; }
+    .article-dossier { position: sticky; top: 104px; border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.62); padding: 18px; display: grid; gap: 16px; }
+    .dossier-label { color: var(--rust); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-dossier p { color: var(--ink-soft); font-size: 0.98rem; }
+    .article-dossier dl { display: grid; gap: 10px; }
+    .article-dossier div { border-top: 1px solid var(--line); padding-top: 10px; }
+    .article-dossier dt { color: var(--ink-soft); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-dossier dd { margin: 3px 0 0; font-weight: 800; }
+    .article-body { max-width: 68ch; font-size: 1.13rem; line-height: 1.78; color: var(--ink-soft); }
+    .article-body > * + * { margin-top: 1.18em; }
+    .article-body > p:first-child::first-letter { float: left; font-family: var(--font-display); color: var(--rust); font-size: 4.8rem; line-height: 0.86; padding: 8px 10px 0 0; font-weight: 800; }
+    .article-body h2, .article-body h3 { color: var(--ink); margin-top: 1.85em; line-height: 1.08; }
+    .article-body h2 { font-size: 2.55rem; }
+    .article-body h3 { font-size: 1.72rem; }
+    .article-body a { color: var(--passport); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .article-body blockquote { border: 1.5px solid var(--line-strong); background: color-mix(in srgb, var(--paper-deep) 62%, var(--white)); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); padding: 22px; color: var(--ink); font-family: var(--font-display); font-size: 1.62rem; line-height: 1.34; transform: rotate(-1deg); }
+    .article-body blockquote::before { content: "Field note"; display: block; margin-bottom: 10px; color: var(--rust); font-family: var(--font-body); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-body ul { padding-left: 1.2em; }
+    .article-body li + li { margin-top: 0.5em; }
+    .article-signoff { margin-top: 42px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink-soft); font-weight: 800; }
+    .article-nav { margin-top: 54px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .article-nav-card { min-height: 126px; border: 1.5px solid var(--line); border-radius: 3px; background: rgba(255, 248, 236, 0.72); padding: 18px; display: grid; align-content: space-between; text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+    .article-nav-card span { color: var(--rust); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-nav-card strong { color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; line-height: 1.1; }
+    .article-nav-card:hover, .article-nav-card:focus-visible { border-color: var(--line-strong); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.1); transform: translateY(-2px); }
+    .article-actions { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 980px) { .article-hero, .article-layout { grid-template-columns: 1fr; } .article-hero h1 { font-size: 4.2rem; } .article-entry-code, .article-dossier { position: static; transform: none; } .article-dossier dl { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 660px) { .article-page { padding-top: 44px; } .article-shell { width: min(calc(100% - 28px), 1120px); } .article-hero h1 { font-size: 3.05rem; } .article-cover, .article-cover img { min-height: 285px; } .article-cover figcaption { position: static; max-width: none; background: var(--ink); } .article-dossier dl, .article-nav { grid-template-columns: 1fr; } .article-body { font-size: 1.04rem; } .article-body > p:first-child::first-letter { font-size: 3.7rem; } .article-body h2 { font-size: 2rem; } .article-body blockquote { font-size: 1.35rem; transform: none; } }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#article">Skip to article</a>
+  <header class="topbar article-topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="../majestic-travels-blog.html" aria-label="Majestic Travels home">
+        <img class="brand-logo" src="../public/site/brand-logo.png" alt="" aria-hidden="true">
+        <span>Majestic Travels</span>
+      </a>
+      <ul class="nav-links" aria-label="Sections">
+        <li><a href="../majestic-travels-blog.html#stories">Stories</a></li>
+        <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
+        <li><a href="../majestic-travels-blog.html#about">About</a></li>
+        <li><a href="../majestic-travels-blog.html#newsletter">Newsletter</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="button secondary article-home-link" href="../majestic-travels-blog.html#stories">Stories</a>
+      </div>
+    </nav>
+  </header>
+  <main class="article-page" id="article">
+    <article class="article-shell">
+      <a class="article-breadcrumb" href="../majestic-travels-blog.html#stories">Back to reading room</a>
+      <header class="article-hero">
+        <div class="article-hero-main">
+          <span class="kicker">${escapeHtml(post.categoryLabel)}</span>
+          <h1>${escapeHtml(post.title)}</h1>
+          <p>${escapeHtml(post.excerpt)}</p>
+          <div class="article-meta-line">
+            <span>${escapeHtml(dateLabel(post.date))}</span>
+            <span>${escapeHtml(post.readTime)}</span>
+            ${post.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+          </div>
+        </div>
+        <aside class="article-entry-code" aria-label="Entry summary">
+          <span>${escapeHtml(entryCode)}</span>
+          <strong>${escapeHtml(post.categoryLabel)}</strong>
+          <p>${escapeHtml(post.brief || "A fresh notebook entry from Majestic Travels.")}</p>
+        </aside>
+      </header>
+      <figure class="article-cover">
+        <img src="${escapeHtml(articleImage)}" alt="${escapeHtml(post.imageAlt)}" fetchpriority="high" decoding="async">
+        <figcaption>Field photo: ${escapeHtml(post.imageAlt)}</figcaption>
+      </figure>
+      <div class="article-layout">
+        <aside class="article-dossier" aria-label="Article details">
+          <span class="dossier-label">Notebook brief</span>
+          <p>${escapeHtml(post.brief || post.excerpt)}</p>
+          <dl>
+            <div>
+              <dt>Filed under</dt>
+              <dd>${escapeHtml(post.categoryLabel)}</dd>
+            </div>
+            <div>
+              <dt>Reading time</dt>
+              <dd>${escapeHtml(post.readTime)}</dd>
+            </div>
+            <div>
+              <dt>Tags</dt>
+              <dd>${escapeHtml(post.tags.join(", ") || "Travel")}</dd>
+            </div>
+          </dl>
+        </aside>
+        <div>
+          <div class="article-body">
+${markdownToHtml(post.body)}
+          </div>
+          <p class="article-signoff">Saved in the Majestic Travels notebook on ${escapeHtml(dateLabel(post.date))}.</p>
+        </div>
+      </div>
+      <nav class="article-nav" aria-label="Article navigation">
+        ${relatedLink("Newer entry", newerPost, "../majestic-travels-blog.html#stories", "Return to the reading room")}
+        ${relatedLink("Older entry", olderPost, "../majestic-travels-blog.html#newsletter", "Get new posts by email")}
+      </nav>
+      <div class="article-actions">
+        <a class="button" href="../majestic-travels-blog.html#stories">Back to stories</a>
+        <a class="button secondary" href="../majestic-travels-blog.html#newsletter">Get new posts</a>
+      </div>
+    </article>
+  </main>
+  <script>
+    document.querySelectorAll("img").forEach((image) => {
+      const markBroken = () => image.classList.add("is-broken");
+      image.addEventListener("error", markBroken, { once: true });
+      if (image.complete && image.naturalWidth === 0) markBroken();
+    });
+  </script>
+</body>
+</html>`;
+}
+
+function loadPosts() {
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  return fs.readdirSync(POSTS_DIR)
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => {
+      const slug = slugify(path.basename(file, ".md"));
+      const { meta, body } = parseFrontmatter(read(path.join(POSTS_DIR, file)), file);
+      const category = slugify(meta.category || "Essay");
+      return {
+        slug,
+        title: meta.title || slug,
+        date: meta.date || "2026-01-01",
+        category,
+        categoryLabel: meta.category || "Essay",
+        tags: splitList(meta.tags),
+        readTime: meta.readTime || "5 min",
+        excerpt: meta.excerpt || "",
+        brief: meta.brief || "",
+        image: meta.image || "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=85",
+        imageAlt: meta.imageAlt || meta.title || "Travel photograph",
+        keywords: meta.keywords || "",
+        body,
+        url: `blog/${slug}.html`
+      };
+    })
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+function updateHome(home, posts) {
+  const start = home.indexOf('<div class="story-grid" id="storyGrid">');
+  const end = home.indexOf('\n        </div>\n\n        <p class="empty"', start);
+  if (start === -1 || end === -1) {
+    throw new Error("Could not find the homepage story grid.");
+  }
+
+  const generatedGrid = `<div class="story-grid" id="storyGrid">
+          <!-- Generated by scripts/build-blog.js from posts/*.md. Edit Markdown posts, not these cards. -->
+${posts.map(cardHtml).join("\n\n")}
+        </div>`;
+
+  return home.slice(0, start) + generatedGrid + home.slice(end + "\n        </div>".length);
+}
+
+function writeLaunchFiles(posts) {
+  const urls = [
+    { loc: `${SITE_URL}/`, changefreq: "weekly", priority: "1.0" },
+    ...posts.map((post) => ({
+      loc: absoluteUrl(`blog/${post.slug}.html`),
+      lastmod: post.date,
+      changefreq: "monthly",
+      priority: "0.8"
+    }))
+  ];
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((item) => `  <url>
+    <loc>${escapeHtml(item.loc)}</loc>${item.lastmod ? `\n    <lastmod>${escapeHtml(item.lastmod)}</lastmod>` : ""}
+    <changefreq>${item.changefreq}</changefreq>
+    <priority>${item.priority}</priority>
+  </url>`).join("\n")}
+</urlset>
+`;
+
+  const robots = `User-agent: *
+Allow: /
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+
+  const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Majestic Travels</title>
+    <link>${SITE_URL}/</link>
+    <description>Slow travel stories, solo guides, and field notes by Adrien.</description>
+    <language>en</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
+${posts.map((post) => `    <item>
+      <title>${escapeHtml(post.title)}</title>
+      <link>${escapeHtml(absoluteUrl(`blog/${post.slug}.html`))}</link>
+      <guid isPermaLink="true">${escapeHtml(absoluteUrl(`blog/${post.slug}.html`))}</guid>
+      <pubDate>${rssDate(post.date)}</pubDate>
+      <category>${escapeHtml(post.categoryLabel)}</category>
+      <description>${escapeHtml(post.excerpt)}</description>
+    </item>`).join("\n")}
+  </channel>
+</rss>
+`;
+
+  write(SITEMAP_FILE, sitemap);
+  write(ROBOTS_FILE, robots);
+  write(RSS_FILE, rss);
+}
+
+function main() {
+  const home = read(HOME_FILE);
+  const posts = loadPosts();
+  if (!posts.length) throw new Error("No Markdown posts found in posts/.");
+
+  const { css } = getHomeParts(home);
+  fs.mkdirSync(BLOG_DIR, { recursive: true });
+  posts.forEach((post, index) => {
+    write(path.join(BLOG_DIR, `${post.slug}.html`), articleHtml(post, css, { index, posts }));
+  });
+  write(HOME_FILE, updateHome(home, posts));
+  writeLaunchFiles(posts);
+
+  console.log(`Built ${posts.length} posts.`);
+  console.log(`Updated ${path.basename(HOME_FILE)}, blog/*.html, sitemap.xml, robots.txt, and rss.xml.`);
+}
+
+main();

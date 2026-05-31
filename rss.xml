@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Majestic Travels</title>
+    <link>https://majestic-travels.com/</link>
+    <description>Slow travel stories, solo guides, and field notes by Adrien.</description>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 May 2026 15:22:03 GMT</lastBuildDate>
+    <atom:link href="https://majestic-travels.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable</title>
+      <link>https://majestic-travels.com/blog/fuerteventura-solo-travel.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/fuerteventura-solo-travel.html</guid>
+      <pubDate>Sat, 18 Apr 2026 12:00:00 GMT</pubDate>
+      <category>Essay</category>
+      <description>I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive.</description>
+    </item>
+    <item>
+      <title>New York City in Summer: A Love Letter to the Greatest City on Earth</title>
+      <link>https://majestic-travels.com/blog/new-york-city-summer.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/new-york-city-summer.html</guid>
+      <pubDate>Sun, 15 Mar 2026 12:00:00 GMT</pubDate>
+      <category>Guide</category>
+      <description>Rooftop sunsets, overheated sidewalks, late jazz, and the reason a loud city can still make you feel beautifully alone.</description>
+    </item>
+    <item>
+      <title>My First Surf Lesson in Fuerteventura and the Fear Before Standing Up</title>
+      <link>https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html</guid>
+      <pubDate>Sat, 28 Feb 2026 12:00:00 GMT</pubDate>
+      <category>Field note</category>
+      <description>A grounded field note on beginner nerves, kind instruction, and the strange confidence that appears after falling repeatedly.</description>
+    </item>
+    <item>
+      <title>The Ultimate 5-Day NYC Itinerary for December Holiday Magic</title>
+      <link>https://majestic-travels.com/blog/nyc-december-itinerary.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/nyc-december-itinerary.html</guid>
+      <pubDate>Thu, 22 Jan 2026 12:00:00 GMT</pubDate>
+      <category>Guide</category>
+      <description>A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.</description>
+    </item>
+    <item>
+      <title>The Travel Adapter Guide: Know Exactly What to Pack</title>
+      <link>https://majestic-travels.com/blog/travel-adapter-guide.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/travel-adapter-guide.html</guid>
+      <pubDate>Thu, 08 Jan 2026 12:00:00 GMT</pubDate>
+      <category>Guide</category>
+      <description>Practical, visual, and calm. A post for the reader who is already at the airport and suddenly unsure about plug types.</description>
+    </item>
+    <item>
+      <title>The Slow Travel Quiz: What Kind of Wanderer Are You?</title>
+      <link>https://majestic-travels.com/blog/slow-travel-quiz.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/slow-travel-quiz.html</guid>
+      <pubDate>Thu, 18 Dec 2025 12:00:00 GMT</pubDate>
+      <category>Essay</category>
+      <description>Less algorithm, more mirror. A reflective quiz that helps readers choose trips by energy, not just destination aesthetics.</description>
+    </item>
+  </channel>
+</rss>
