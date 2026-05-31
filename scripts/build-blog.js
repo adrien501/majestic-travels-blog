@@ -441,7 +441,7 @@ function updateFeatured(home, posts) {
   const post = posts[0]; // most recent post (sorted descending by date)
   const meta = [post.categoryLabel, post.readTime].filter(Boolean).join(" · ");
 
-  const html = `<section class="featured-section">
+  const html = `<section class="featured-section" aria-label="Featured post">
     <div class="featured-inner">
       <a class="featured-card" href="${escapeHtml(post.url)}">
         <div class="featured-media">
@@ -466,7 +466,7 @@ function updateFeatured(home, posts) {
   }
 
   // Second try: replace an already-rendered featured section (re-build after first run)
-  const SECTION_START = '<section class="featured-section">';
+  const SECTION_START = '<section class="featured-section" aria-label="Featured post">';
   const SECTION_END = '</section>';
   const startPos = home.indexOf(SECTION_START);
   if (startPos !== -1) {
