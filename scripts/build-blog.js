@@ -170,31 +170,21 @@ function getHomeParts(home) {
   return { css: styleMatch[1] };
 }
 
-function cardHtml(post, index) {
+function cardHtml(post) {
   const categorySlugs = [post.category, ...post.tags].map(slugify).join(" ");
   const search = [post.title, post.excerpt, post.category, post.tags.join(" "), post.keywords].join(" ");
-  const meta = [post.categoryLabel, ...post.tags.slice(0, 1), post.readTime].filter(Boolean);
-  const entryCode = `Entry ${String(index + 1).padStart(2, "0")}`;
+  const meta = [post.categoryLabel, post.readTime].filter(Boolean).join(" · ");
 
-  return `          <article class="story-card" data-category="${escapeHtml(categorySlugs)}" data-search="${escapeHtml(search)}">
+  return `          <a class="story-card" href="${escapeHtml(post.url)}" data-category="${escapeHtml(categorySlugs)}" data-search="${escapeHtml(search)}">
             <div class="story-media">
               <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt)}" loading="lazy" decoding="async">
-              <span class="story-date">${escapeHtml(dateLabel(post.date))}</span>
             </div>
             <div class="story-body">
-              <div class="story-meta">${meta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
-              <h3><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h3>
-              <p>${escapeHtml(post.excerpt)}</p>
-              <details>
-                <summary>Open story brief</summary>
-                <p>${escapeHtml(post.brief || "Draft the full post in Markdown, then run npm run build:blog.")}</p>
-              </details>
-              <div class="story-footer">
-                <span>${escapeHtml(entryCode)}</span>
-                <a class="story-read" href="${escapeHtml(post.url)}" aria-label="Read ${escapeHtml(post.title)}">Read entry</a>
-              </div>
+              <p class="story-meta">${escapeHtml(meta)}</p>
+              <h3 class="story-title">${escapeHtml(post.title)}</h3>
+              <p class="story-excerpt">${escapeHtml(post.excerpt)}</p>
             </div>
-          </article>`;
+          </a>`;
 }
 
 function articleHtml(post, css, context = {}) {
