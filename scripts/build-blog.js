@@ -438,10 +438,6 @@ ${posts.map(cardHtml).join("\n\n")}
 }
 
 function updateFeatured(home, posts) {
-  const ANCHOR = '<div id="featuredPost"></div>';
-  const pos = home.indexOf(ANCHOR);
-  if (pos === -1) return home; // anchor missing — skip silently
-
   const post = posts[0]; // most recent post (sorted descending by date)
   const meta = [post.categoryLabel, post.readTime].filter(Boolean).join(" · ");
 
@@ -462,7 +458,25 @@ function updateFeatured(home, posts) {
     </div>
   </section>`;
 
-  return home.slice(0, pos) + html + home.slice(pos + ANCHOR.length);
+  // First try: replace the anchor div (fresh template or after git checkout)
+  const ANCHOR = '<div id="featuredPost"></div>';
+  const anchorPos = home.indexOf(ANCHOR);
+  if (anchorPos !== -1) {
+    return home.slice(0, anchorPos) + html + home.slice(anchorPos + ANCHOR.length);
+  }
+
+  // Second try: replace an already-rendered featured section (re-build after first run)
+  const SECTION_START = '<section class="featured-section">';
+  const SECTION_END = '</section>';
+  const startPos = home.indexOf(SECTION_START);
+  if (startPos !== -1) {
+    const endPos = home.indexOf(SECTION_END, startPos);
+    if (endPos !== -1) {
+      return home.slice(0, startPos) + html + home.slice(endPos + SECTION_END.length);
+    }
+  }
+
+  return home; // Neither found — skip silently
 }
 
 function writeLaunchFiles(posts) {
