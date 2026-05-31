@@ -2424,6 +2424,10 @@
       .destinations-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
+    @media (max-width: 480px) {
+      .destinations-grid { grid-template-columns: 1fr; }
+    }
+
     .dest-card {
       position: relative;
       aspect-ratio: 1 / 1;
@@ -2446,6 +2450,11 @@
 
     .dest-card:hover {
       transform: scale(1.03);
+    }
+
+    .dest-card:focus-visible {
+      outline: 3px solid var(--ocean);
+      outline-offset: 3px;
     }
 
     .dest-name {
