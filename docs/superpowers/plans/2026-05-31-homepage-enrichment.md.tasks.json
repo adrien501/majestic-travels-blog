@@ -1,0 +1,40 @@
+{
+  "planPath": "docs/superpowers/plans/2026-05-31-homepage-enrichment.md",
+  "tasks": [
+    {
+      "id": 0,
+      "subject": "Task 0: Hero photo background",
+      "status": "pending",
+      "description": "**Goal:** Replace the solid teal hero with a full-bleed travel photo behind a teal semi-transparent overlay, height bumped to 60vh.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (.site-hero CSS rule)\n\n**Acceptance Criteria:**\n- [ ] .site-hero has background-image using marrakech-palm-reflection.jpg with teal gradient overlay\n- [ ] Hero is at least 60vh tall\n- [ ] Brand PNGs and tagline remain vertically centred\n- [ ] npm run prepare:publish passes\n\n**Verify:** `npm run prepare:publish` → `Built 6 posts. Blog check passed.`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"npm run prepare:publish\", \"acceptanceCriteria\": [\"site-hero has photo background with teal gradient overlay\", \"hero min-height 60vh\", \"build passes\"]}\n```"
+    },
+    {
+      "id": 1,
+      "subject": "Task 1: Featured post section",
+      "status": "pending",
+      "blockedBy": [0],
+      "description": "**Goal:** Auto-inject the most recent post as a large lead card between the hero and the stories grid, via a new updateFeatured() function in the build script.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (insert anchor div + CSS for featured section)\n- Modify: `scripts/build-blog.js` (add updateFeatured(), call in main())\n\n**Acceptance Criteria:**\n- [ ] `<div id=\"featuredPost\"></div>` anchor present in HTML between hero and posts section\n- [ ] updateFeatured() in build-blog.js replaces the anchor with the featured card HTML\n- [ ] Featured card shows: ★ Featured label, category · readtime meta, title, excerpt, Read story → link\n- [ ] npm run prepare:publish passes\n\n**Verify:** `npm run prepare:publish` → `Built 6 posts. Blog check passed.`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\", \"scripts/build-blog.js\"], \"verifyCommand\": \"npm run prepare:publish\", \"acceptanceCriteria\": [\"featuredPost anchor present\", \"updateFeatured() function added\", \"featured card rendered with most recent post\", \"build passes\"]}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Destinations strip",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Add a static section with 5 destination photo cards between the posts section and the footer.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (insert HTML section + CSS)\n\n**Acceptance Criteria:**\n- [ ] Destinations section present with 5 cards: Dubai & Abu Dhabi, Fuerteventura, Ljubljana, Marrakech, Vancouver\n- [ ] Each card is a 1:1 square with destination name overlaid on a dark gradient\n- [ ] Hover zooms the photo slightly\n- [ ] `<span id=\"destinations\">` stub removed, replaced by `<section id=\"destinations\">`\n- [ ] npm run prepare:publish passes\n\n**Verify:** `npm run prepare:publish` → `Built 6 posts. Blog check passed.`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"npm run prepare:publish\", \"acceptanceCriteria\": [\"5 destination cards present\", \"photo backgrounds via CSS custom property\", \"hover zoom works\", \"build passes\"]}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: About section",
+      "status": "pending",
+      "blockedBy": [2],
+      "description": "**Goal:** Add a short personal section between the destinations strip and the footer.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (insert HTML section + CSS)\n\n**Acceptance Criteria:**\n- [ ] About section present with circular photo placeholder, bio text, and CTA link\n- [ ] `<span id=\"about\">` stub removed, replaced by `<section id=\"about\">`\n- [ ] Desktop: photo left + text right; mobile: stacked column\n- [ ] npm run prepare:publish passes\n\n**Verify:** `npm run prepare:publish` → `Built 6 posts. Blog check passed.`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"npm run prepare:publish\", \"acceptanceCriteria\": [\"about section with circular photo\", \"bio text and CTA link present\", \"flexbox row on desktop\", \"build passes\"]}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: Push and verify live",
+      "status": "pending",
+      "blockedBy": [3],
+      "description": "**Goal:** Push all commits to GitHub, confirm Cloudflare deploys, verify the full enriched homepage on majestic-travels.com.\n\n**Files:** None (git operation only)\n\n**Acceptance Criteria:**\n- [ ] git push succeeds\n- [ ] Cloudflare Pages build succeeds\n- [ ] majestic-travels.com shows: photo hero → featured post → stories grid → destinations → about → footer\n\n**Verify:** Visit `https://majestic-travels.com`\n\n```json:metadata\n{\"files\": [], \"verifyCommand\": \"visit https://majestic-travels.com\", \"acceptanceCriteria\": [\"git push succeeds\", \"Cloudflare build succeeds\", \"live site shows all 4 new sections\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-05-31T20:45:00Z"
+}
