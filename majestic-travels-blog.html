@@ -79,6 +79,8 @@
       --coral: #d46d4f;
       --passport: #213d72;
       --volcanic: #2b2925;
+      --ocean: #0e6674;
+      --ocean-dark: #0a4f5e;
       --route-red: #bd372a;
       --sky: #c8d6d5;
       --line: rgba(24, 32, 28, 0.18);
@@ -1827,6 +1829,433 @@
         transition-duration: 0.01ms !important;
       }
     }
+    /* ─── HOMEPAGE REDESIGN OVERRIDES ─────────────────────────────── */
+
+    body {
+      background: var(--paper);
+    }
+
+    body::before {
+      display: none;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────────── */
+
+    .site-nav {
+      background: var(--ocean);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--paper);
+    }
+
+    .nav-logo {
+      height: 30px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 650;
+      font-variation-settings: "SOFT" 70, "WONK" 1;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      padding: 0;
+    }
+
+    .nav-menu a {
+      color: rgba(246, 236, 220, 0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav-menu a:hover {
+      color: var(--paper);
+      text-decoration: underline;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────────── */
+
+    .site-hero {
+      background: var(--ocean);
+      padding: 4rem 1.5rem 5rem;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .hero-logomark {
+      height: 80px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-wordmark {
+      max-width: 360px;
+      width: 100%;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-tagline {
+      color: rgba(246, 236, 220, 0.82);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 0.25rem;
+      padding: 0.6rem 1.75rem;
+      border: 2px solid var(--paper);
+      color: var(--paper);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .hero-cta:hover {
+      background: var(--paper);
+      color: var(--ocean);
+    }
+
+    /* ─── POSTS SECTION ───────────────────────────────────────────── */
+
+    .posts-section {
+      background: var(--paper);
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    .posts-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .posts-heading {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      display: inline-block;
+      margin-bottom: 2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid var(--ocean);
+    }
+
+    .posts-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.6rem 1rem;
+      border: 1.5px solid var(--line-strong);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      background: var(--white);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--ocean);
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      padding: 0.35rem 1rem;
+      border: 1.5px solid var(--ocean);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ocean);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .pill.active,
+    .pill:hover {
+      background: var(--ocean);
+      color: var(--paper);
+    }
+
+    /* ─── STORY GRID + CARDS ──────────────────────────────────────── */
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .story-grid { grid-template-columns: 1fr; }
+      .nav-menu { display: none; }
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .story-card:hover {
+      box-shadow: 0 8px 28px rgba(24, 32, 28, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .story-card .story-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .story-card .story-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-card .story-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .story-card .story-meta {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ocean);
+      margin: 0;
+    }
+
+    .story-card .story-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      line-height: 1.25;
+      transition: color 0.15s;
+      margin: 0;
+    }
+
+    .story-card:hover .story-title {
+      color: var(--ocean);
+    }
+
+    .story-card .story-excerpt {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+      font-size: 1rem;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────────── */
+
+    .site-footer {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 600px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .footer-logo {
+      height: 34px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 70, "WONK" 1;
+      color: var(--paper);
+    }
+
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: rgba(246, 236, 220, 0.6);
+      margin: 0;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-nav a {
+      color: rgba(246, 236, 220, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-nav a:hover {
+      color: var(--paper);
+      text-decoration: underline;
+    }
+
+    .footer-newsletter {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(246, 236, 220, 0.12);
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .newsletter-label {
+      font-size: 0.9rem;
+      color: rgba(246, 236, 220, 0.7);
+      margin-bottom: 0.75rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 380px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid rgba(246, 236, 220, 0.2);
+      background: rgba(246, 236, 220, 0.07);
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border-radius: var(--radius);
+      outline: none;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(246, 236, 220, 0.38);
+    }
+
+    .newsletter-input:focus {
+      border-color: rgba(246, 236, 220, 0.45);
+    }
+
+    .newsletter-btn {
+      padding: 0.55rem 1.1rem;
+      background: var(--ocean);
+      color: var(--paper);
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .newsletter-btn:hover {
+      background: var(--ocean-dark);
+    }
+
+    .footer-copy {
+      grid-column: 1 / -1;
+      font-size: 0.8rem;
+      color: rgba(246, 236, 220, 0.35);
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid rgba(246, 236, 220, 0.08);
+    }
   </style>
 </head>
 <body id="top">
@@ -2032,125 +2461,71 @@
 
         <div class="story-grid" id="storyGrid">
           <!-- Generated by scripts/build-blog.js from posts/*.md. Edit Markdown posts, not these cards. -->
-          <article class="story-card" data-category="essay solo-travel fuerteventura" data-search="Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive. essay Solo travel Fuerteventura fuerteventura solo travel surfing silence morro jable burnout wellness">
+          <a class="story-card" href="blog/fuerteventura-solo-travel.html" data-category="essay solo-travel fuerteventura" data-search="Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive. essay Solo travel Fuerteventura fuerteventura solo travel surfing silence morro jable burnout wellness">
             <div class="story-media">
               <img src="public/site/fuerteventura-atlantic.jpg" alt="Volcanic coastline and calm Atlantic water in Fuerteventura" loading="lazy" decoding="async">
-              <span class="story-date">Apr 18, 2026</span>
             </div>
             <div class="story-body">
-              <div class="story-meta"><span>Essay</span><span>Solo travel</span><span>8 min</span></div>
-              <h3><a href="blog/fuerteventura-solo-travel.html">Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable</a></h3>
-              <p>I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive.</p>
-              <details>
-                <summary>Open story brief</summary>
-                <p>The emotional anchor of the blog: personal, place-specific, and honest enough to make readers trust the archive.</p>
-              </details>
-              <div class="story-footer">
-                <span>Entry 01</span>
-                <a class="story-read" href="blog/fuerteventura-solo-travel.html" aria-label="Read Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable">Read entry</a>
-              </div>
+              <p class="story-meta">Essay · 8 min</p>
+              <h3 class="story-title">Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable</h3>
+              <p class="story-excerpt">I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive.</p>
             </div>
-          </article>
+          </a>
 
-          <article class="story-card" data-category="guide new-york city-guide" data-search="New York City in Summer: A Love Letter to the Greatest City on Earth Rooftop sunsets, overheated sidewalks, late jazz, and the reason a loud city can still make you feel beautifully alone. guide New York City guide new york city summer guide rooftop jazz bars walking itinerary">
+          <a class="story-card" href="blog/new-york-city-summer.html" data-category="guide new-york city-guide" data-search="New York City in Summer: A Love Letter to the Greatest City on Earth Rooftop sunsets, overheated sidewalks, late jazz, and the reason a loud city can still make you feel beautifully alone. guide New York City guide new york city summer guide rooftop jazz bars walking itinerary">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=1200&amp;q=85" alt="New York City lights at dusk" loading="lazy" decoding="async">
-              <span class="story-date">Mar 15, 2026</span>
             </div>
             <div class="story-body">
-              <div class="story-meta"><span>Guide</span><span>New York</span><span>6 min</span></div>
-              <h3><a href="blog/new-york-city-summer.html">New York City in Summer: A Love Letter to the Greatest City on Earth</a></h3>
-              <p>Rooftop sunsets, overheated sidewalks, late jazz, and the reason a loud city can still make you feel beautifully alone.</p>
-              <details>
-                <summary>Open story brief</summary>
-                <p>A hybrid love letter and practical neighborhood route. Sensory detail first, checklist second.</p>
-              </details>
-              <div class="story-footer">
-                <span>Entry 02</span>
-                <a class="story-read" href="blog/new-york-city-summer.html" aria-label="Read New York City in Summer: A Love Letter to the Greatest City on Earth">Read entry</a>
-              </div>
+              <p class="story-meta">Guide · 6 min</p>
+              <h3 class="story-title">New York City in Summer: A Love Letter to the Greatest City on Earth</h3>
+              <p class="story-excerpt">Rooftop sunsets, overheated sidewalks, late jazz, and the reason a loud city can still make you feel beautifully alone.</p>
             </div>
-          </article>
+          </a>
 
-          <article class="story-card" data-category="field-note surf solo-travel" data-search="My First Surf Lesson in Fuerteventura and the Fear Before Standing Up A grounded field note on beginner nerves, kind instruction, and the strange confidence that appears after falling repeatedly. field-note Surf Solo travel surf school fuerteventura otro modo first time nerves beginner">
+          <a class="story-card" href="blog/first-surf-lesson-fuerteventura.html" data-category="field-note surf solo-travel" data-search="My First Surf Lesson in Fuerteventura and the Fear Before Standing Up A grounded field note on beginner nerves, kind instruction, and the strange confidence that appears after falling repeatedly. field-note Surf Solo travel surf school fuerteventura otro modo first time nerves beginner">
             <div class="story-media">
               <img src="public/site/fuerteventura-surf-note.jpg" alt="Solo traveler standing on dark rocks beside the Atlantic in Fuerteventura" loading="lazy" decoding="async">
-              <span class="story-date">Feb 28, 2026</span>
             </div>
             <div class="story-body">
-              <div class="story-meta"><span>Field note</span><span>Surf</span><span>7 min</span></div>
-              <h3><a href="blog/first-surf-lesson-fuerteventura.html">My First Surf Lesson in Fuerteventura and the Fear Before Standing Up</a></h3>
-              <p>A grounded field note on beginner nerves, kind instruction, and the strange confidence that appears after falling repeatedly.</p>
-              <details>
-                <summary>Open story brief</summary>
-                <p>Useful because it answers the quiet question: will I look stupid if I try this alone?</p>
-              </details>
-              <div class="story-footer">
-                <span>Entry 03</span>
-                <a class="story-read" href="blog/first-surf-lesson-fuerteventura.html" aria-label="Read My First Surf Lesson in Fuerteventura and the Fear Before Standing Up">Read entry</a>
-              </div>
+              <p class="story-meta">Field note · 7 min</p>
+              <h3 class="story-title">My First Surf Lesson in Fuerteventura and the Fear Before Standing Up</h3>
+              <p class="story-excerpt">A grounded field note on beginner nerves, kind instruction, and the strange confidence that appears after falling repeatedly.</p>
             </div>
-          </article>
+          </a>
 
-          <article class="story-card" data-category="guide new-york itinerary" data-search="The Ultimate 5-Day NYC Itinerary for December Holiday Magic A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights. guide New York Itinerary december new york itinerary christmas holiday central park rockefeller">
+          <a class="story-card" href="blog/nyc-december-itinerary.html" data-category="guide new-york itinerary" data-search="The Ultimate 5-Day NYC Itinerary for December Holiday Magic A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights. guide New York Itinerary december new york itinerary christmas holiday central park rockefeller">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85" alt="Holiday lights glowing on a city street" loading="lazy" decoding="async">
-              <span class="story-date">Jan 22, 2026</span>
             </div>
             <div class="story-body">
-              <div class="story-meta"><span>Guide</span><span>New York</span><span>10 min</span></div>
-              <h3><a href="blog/nyc-december-itinerary.html">The Ultimate 5-Day NYC Itinerary for December Holiday Magic</a></h3>
-              <p>A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.</p>
-              <details>
-                <summary>Open story brief</summary>
-                <p>Structure this as morning anchor, afternoon wander, evening payoff, and one flexible backup per day.</p>
-              </details>
-              <div class="story-footer">
-                <span>Entry 04</span>
-                <a class="story-read" href="blog/nyc-december-itinerary.html" aria-label="Read The Ultimate 5-Day NYC Itinerary for December Holiday Magic">Read entry</a>
-              </div>
+              <p class="story-meta">Guide · 10 min</p>
+              <h3 class="story-title">The Ultimate 5-Day NYC Itinerary for December Holiday Magic</h3>
+              <p class="story-excerpt">A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.</p>
             </div>
-          </article>
+          </a>
 
-          <article class="story-card" data-category="guide packing travel-tips" data-search="The Travel Adapter Guide: Know Exactly What to Pack Practical, visual, and calm. A post for the reader who is already at the airport and suddenly unsure about plug types. guide Packing Travel tips travel adapter guide packing plug types accessories tips">
+          <a class="story-card" href="blog/travel-adapter-guide.html" data-category="guide packing travel-tips" data-search="The Travel Adapter Guide: Know Exactly What to Pack Practical, visual, and calm. A post for the reader who is already at the airport and suddenly unsure about plug types. guide Packing Travel tips travel adapter guide packing plug types accessories tips">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&amp;q=85" alt="Field notebook, camera, map, and travel bag arranged for a trip" loading="lazy" decoding="async">
-              <span class="story-date">Jan 08, 2026</span>
             </div>
             <div class="story-body">
-              <div class="story-meta"><span>Guide</span><span>Packing</span><span>5 min</span></div>
-              <h3><a href="blog/travel-adapter-guide.html">The Travel Adapter Guide: Know Exactly What to Pack</a></h3>
-              <p>Practical, visual, and calm. A post for the reader who is already at the airport and suddenly unsure about plug types.</p>
-              <details>
-                <summary>Open story brief</summary>
-                <p>Keep this old store topic, but make the angle editorial and helpful rather than product-driven.</p>
-              </details>
-              <div class="story-footer">
-                <span>Entry 05</span>
-                <a class="story-read" href="blog/travel-adapter-guide.html" aria-label="Read The Travel Adapter Guide: Know Exactly What to Pack">Read entry</a>
-              </div>
+              <p class="story-meta">Guide · 5 min</p>
+              <h3 class="story-title">The Travel Adapter Guide: Know Exactly What to Pack</h3>
+              <p class="story-excerpt">Practical, visual, and calm. A post for the reader who is already at the airport and suddenly unsure about plug types.</p>
             </div>
-          </article>
+          </a>
 
-          <article class="story-card" data-category="essay slow-travel solo-travel" data-search="The Slow Travel Quiz: What Kind of Wanderer Are You? Less algorithm, more mirror. A reflective quiz that helps readers choose trips by energy, not just destination aesthetics. essay Slow travel Solo travel slow travel quiz wanderer archetype solo reflection meaning">
+          <a class="story-card" href="blog/slow-travel-quiz.html" data-category="essay slow-travel solo-travel" data-search="The Slow Travel Quiz: What Kind of Wanderer Are You? Less algorithm, more mirror. A reflective quiz that helps readers choose trips by energy, not just destination aesthetics. essay Slow travel Solo travel slow travel quiz wanderer archetype solo reflection meaning">
             <div class="story-media">
               <img src="public/site/ljubljana-lake.jpg" alt="Green mountain lake near Ljubljana with sunlight on the water" loading="lazy" decoding="async">
-              <span class="story-date">Dec 18, 2025</span>
             </div>
             <div class="story-body">
-              <div class="story-meta"><span>Essay</span><span>Slow travel</span><span>4 min</span></div>
-              <h3><a href="blog/slow-travel-quiz.html">The Slow Travel Quiz: What Kind of Wanderer Are You?</a></h3>
-              <p>Less algorithm, more mirror. A reflective quiz that helps readers choose trips by energy, not just destination aesthetics.</p>
-              <details>
-                <summary>Open story brief</summary>
-                <p>Make the quiz feel like a journal prompt with a useful next step.</p>
-              </details>
-              <div class="story-footer">
-                <span>Entry 06</span>
-                <a class="story-read" href="blog/slow-travel-quiz.html" aria-label="Read The Slow Travel Quiz: What Kind of Wanderer Are You?">Read entry</a>
-              </div>
+              <p class="story-meta">Essay · 4 min</p>
+              <h3 class="story-title">The Slow Travel Quiz: What Kind of Wanderer Are You?</h3>
+              <p class="story-excerpt">Less algorithm, more mirror. A reflective quiz that helps readers choose trips by energy, not just destination aesthetics.</p>
             </div>
-          </article>
+          </a>
         </div>
 
         <p class="empty" id="emptyState">No matching entries in this notebook yet. Try "NYC", "surf", "packing", or "solo".</p>
