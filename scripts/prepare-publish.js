@@ -4,6 +4,12 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 const PUBLIC_SITE = path.join(ROOT, "public", "site");
+// Brand PNGs referenced directly in HTML (nav logo, hero wordmark, about photo placeholder)
+const BRAND_PNGS = [
+  "public/logo_cleanedup_centered_transparant-01.png",
+  "public/plain_name_crop.png",
+  "public/plain_name.png",
+];
 
 const files = [
   ["majestic-travels-blog.html", "index.html"],
@@ -63,6 +69,7 @@ function main() {
   files.forEach(([from, to]) => copyFile(from, to));
   copyDir(path.join(ROOT, "blog"), path.join(DIST, "blog"));
   copyDir(PUBLIC_SITE, path.join(DIST, "public", "site"));
+  BRAND_PNGS.forEach((p) => copyFile(p, p));
 
   const outputFiles = walk(DIST);
   const totalBytes = outputFiles.reduce((sum, file) => sum + fs.statSync(file).size, 0);
