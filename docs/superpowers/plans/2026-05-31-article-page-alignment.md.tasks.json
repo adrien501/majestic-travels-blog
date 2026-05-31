@@ -1,0 +1,19 @@
+{
+  "planPath": "docs/superpowers/plans/2026-05-31-article-page-alignment.md",
+  "tasks": [
+    {
+      "id": 0,
+      "subject": "Task 0: Update articleHtml() — nav, accents, footer",
+      "status": "pending",
+      "description": "**Goal:** Replace the old topbar nav with `.site-nav`, switch 8 article CSS colour references from rust/passport to ocean teal, and add the homepage footer — all inside `articleHtml()` in `build-blog.js`.\n\n**Files:**\n- Modify: `scripts/build-blog.js` (the `articleHtml` function, lines 256–394)\n\n**Acceptance Criteria:**\n- [ ] Article pages render the teal `.site-nav` (same markup as homepage, `../` paths)\n- [ ] Kicker label, meta pills, entry-code label, dossier label, breadcrumb, body links, drop-cap, blockquote label, article-nav label are all `var(--ocean)` not rust/passport\n- [ ] Footer appears on all article pages (logo, name, tagline, Stories + RSS nav, newsletter form)\n- [ ] `npm run prepare:publish` → `Built 6 posts. Blog check passed.`\n\n**Verify:** `cd \"C:\\Users\\Adrien\\Desktop\\Majestic Travels\" && npm run prepare:publish` → `Built 6 posts. Blog check passed.`\n\n```json:metadata\n{\"files\": [\"scripts/build-blog.js\"], \"verifyCommand\": \"npm run prepare:publish\", \"acceptanceCriteria\": [\"Article pages render the teal .site-nav\", \"All accent colours changed to var(--ocean)\", \"Footer appears on all article pages\", \"npm run prepare:publish passes\"]}\n```"
+    },
+    {
+      "id": 1,
+      "subject": "Task 1: Push and verify live",
+      "status": "pending",
+      "blockedBy": [0],
+      "description": "**Goal:** Push to GitHub, confirm Cloudflare deploys, verify the updated article pages on majestic-travels.com.\n\n**Files:** None (git operation only)\n\n**Acceptance Criteria:**\n- [ ] `git push` succeeds\n- [ ] Cloudflare Pages build succeeds\n- [ ] Any article page on majestic-travels.com shows the teal nav and footer\n\n**Verify:** Visit `https://majestic-travels.com/blog/fuerteventura-solo-travel.html`\n\n```json:metadata\n{\"files\": [], \"verifyCommand\": \"git push\", \"acceptanceCriteria\": [\"git push succeeds\", \"Cloudflare Pages build succeeds\", \"Article pages show teal nav and footer on majestic-travels.com\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-05-31T00:00:00.000Z"
+}
