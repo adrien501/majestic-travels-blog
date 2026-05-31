@@ -256,18 +256,18 @@ ${tagMeta}
   <style>${css}
     .article-page { padding: 62px 0 96px; }
     .article-shell { width: min(calc(100% - 44px), 1120px); margin: 0 auto; }
-    .article-topbar .nav { grid-template-columns: auto 1fr auto; }
-    .article-home-link { min-height: 44px; padding: 0 12px; font-size: 0.78rem; }
-    .article-breadcrumb { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; margin-bottom: 34px; color: var(--passport); font-weight: 900; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+    .kicker { color: var(--ocean); box-shadow: 3px 3px 0 rgba(14, 102, 116, 0.12); }
+    .kicker::before { color: var(--ocean); }
+    .article-breadcrumb { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; margin-bottom: 34px; color: var(--ocean); font-weight: 900; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
     .article-hero { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(230px, 0.22fr); gap: 34px; align-items: end; margin-bottom: 34px; }
     .article-hero-main { display: grid; gap: 20px; }
     .article-hero h1 { max-width: 13ch; font-size: 5.15rem; line-height: 0.96; letter-spacing: 0; }
     .article-hero p { max-width: 62ch; color: var(--ink-soft); font-size: 1.18rem; line-height: 1.55; }
     .article-entry-code { border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.68); padding: 18px; display: grid; gap: 10px; transform: rotate(1.2deg); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); }
-    .article-entry-code span { color: var(--rust); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-entry-code span { color: var(--ocean); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-entry-code strong { font-family: var(--font-display); font-size: 2.05rem; line-height: 1; }
     .article-entry-code p { font-size: 0.96rem; line-height: 1.42; }
-    .article-meta-line { display: flex; flex-wrap: wrap; gap: 10px; color: var(--rust); font-weight: 900; text-transform: uppercase; font-size: 0.82rem; }
+    .article-meta-line { display: flex; flex-wrap: wrap; gap: 10px; color: var(--ocean); font-weight: 900; text-transform: uppercase; font-size: 0.82rem; }
     .article-meta-line span { border: 1px solid color-mix(in srgb, currentColor 34%, transparent); border-radius: 999px; padding: 3px 9px; background: rgba(255, 248, 236, 0.68); }
     .article-cover { position: relative; min-height: 470px; border: 12px solid var(--white); border-radius: 2px; overflow: hidden; background: repeating-linear-gradient(135deg, rgba(255, 248, 236, 0.12) 0 1px, transparent 1px 18px), linear-gradient(135deg, var(--sage-deep), var(--ink)); box-shadow: var(--shadow); }
     .article-cover::before { content: "FIELD PHOTO"; position: absolute; top: 18px; right: 18px; z-index: 2; border: 1.5px solid rgba(255, 248, 236, 0.72); color: rgba(255, 248, 236, 0.88); padding: 6px 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(3deg); }
@@ -276,7 +276,7 @@ ${tagMeta}
     .article-cover figcaption { position: absolute; left: 18px; bottom: 18px; max-width: min(520px, calc(100% - 36px)); background: rgba(24, 32, 28, 0.82); color: rgba(255, 250, 242, 0.94); border: 1px solid rgba(255, 250, 242, 0.18); padding: 8px 10px; font-size: 0.84rem; font-weight: 700; }
     .article-layout { display: grid; grid-template-columns: minmax(190px, 0.28fr) minmax(0, 0.72fr); gap: 42px; align-items: start; margin-top: 46px; }
     .article-dossier { position: sticky; top: 104px; border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.62); padding: 18px; display: grid; gap: 16px; }
-    .dossier-label { color: var(--rust); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .dossier-label { color: var(--ocean); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-dossier p { color: var(--ink-soft); font-size: 0.98rem; }
     .article-dossier dl { display: grid; gap: 10px; }
     .article-dossier div { border-top: 1px solid var(--line); padding-top: 10px; }
@@ -284,19 +284,19 @@ ${tagMeta}
     .article-dossier dd { margin: 3px 0 0; font-weight: 800; }
     .article-body { max-width: 68ch; font-size: 1.13rem; line-height: 1.78; color: var(--ink-soft); }
     .article-body > * + * { margin-top: 1.18em; }
-    .article-body > p:first-child::first-letter { float: left; font-family: var(--font-display); color: var(--rust); font-size: 4.8rem; line-height: 0.86; padding: 8px 10px 0 0; font-weight: 800; }
+    .article-body > p:first-child::first-letter { float: left; font-family: var(--font-display); color: var(--ocean); font-size: 4.8rem; line-height: 0.86; padding: 8px 10px 0 0; font-weight: 800; }
     .article-body h2, .article-body h3 { color: var(--ink); margin-top: 1.85em; line-height: 1.08; }
     .article-body h2 { font-size: 2.55rem; }
     .article-body h3 { font-size: 1.72rem; }
-    .article-body a { color: var(--passport); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .article-body a { color: var(--ocean); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
     .article-body blockquote { border: 1.5px solid var(--line-strong); background: color-mix(in srgb, var(--paper-deep) 62%, var(--white)); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); padding: 22px; color: var(--ink); font-family: var(--font-display); font-size: 1.62rem; line-height: 1.34; transform: rotate(-1deg); }
-    .article-body blockquote::before { content: "Field note"; display: block; margin-bottom: 10px; color: var(--rust); font-family: var(--font-body); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-body blockquote::before { content: "Field note"; display: block; margin-bottom: 10px; color: var(--ocean); font-family: var(--font-body); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-body ul { padding-left: 1.2em; }
     .article-body li + li { margin-top: 0.5em; }
     .article-signoff { margin-top: 42px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink-soft); font-weight: 800; }
     .article-nav { margin-top: 54px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .article-nav-card { min-height: 126px; border: 1.5px solid var(--line); border-radius: 3px; background: rgba(255, 248, 236, 0.72); padding: 18px; display: grid; align-content: space-between; text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
-    .article-nav-card span { color: var(--rust); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-nav-card span { color: var(--ocean); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-nav-card strong { color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; line-height: 1.1; }
     .article-nav-card:hover, .article-nav-card:focus-visible { border-color: var(--line-strong); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.1); transform: translateY(-2px); }
     .article-actions { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
@@ -306,23 +306,18 @@ ${tagMeta}
 </head>
 <body id="top">
   <a class="skip-link" href="#article">Skip to article</a>
-  <header class="topbar article-topbar">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="../majestic-travels-blog.html" aria-label="Majestic Travels home">
-        <img class="brand-logo" src="../public/site/brand-logo.png" alt="" aria-hidden="true">
-        <span>Majestic Travels</span>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../majestic-travels-blog.html" class="nav-brand">
+        <img src="../public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="nav-logo">
+        <span class="nav-brand-name">Majestic Travels</span>
       </a>
-      <ul class="nav-links" aria-label="Sections">
+      <ul class="nav-menu" role="list">
         <li><a href="../majestic-travels-blog.html#stories">Stories</a></li>
-        <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
-        <li><a href="../majestic-travels-blog.html#about">About</a></li>
-        <li><a href="../majestic-travels-blog.html#newsletter">Newsletter</a></li>
+        <li><a href="../rss.xml">RSS</a></li>
       </ul>
-      <div class="nav-actions">
-        <a class="button secondary article-home-link" href="../majestic-travels-blog.html#stories">Stories</a>
-      </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
   <main class="article-page" id="article">
     <article class="article-shell">
       <a class="article-breadcrumb" href="../majestic-travels-blog.html#stories">Back to reading room</a>
@@ -383,6 +378,27 @@ ${markdownToHtml(post.body)}
       </div>
     </article>
   </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
+        <span class="footer-name">Majestic Travels</span>
+        <p class="footer-tagline">Solo travel. Real places. No filters.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../majestic-travels-blog.html#stories">Stories</a>
+        <a href="../rss.xml">RSS</a>
+      </nav>
+      <div class="footer-newsletter">
+        <p class="newsletter-label">✉ Stay in the loop</p>
+        <form class="newsletter-form" action="#" method="post">
+          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address">
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+      <p class="footer-copy">© 2026 Majestic Travels</p>
+    </div>
+  </footer>
   <script>
     document.querySelectorAll("img").forEach((image) => {
       const markBroken = () => image.classList.add("is-broken");
