@@ -2292,6 +2292,11 @@
       transform: translateY(-2px);
     }
 
+    .featured-card:focus-visible {
+      outline: 3px solid var(--ocean);
+      outline-offset: 3px;
+    }
+
     .featured-media {
       flex: 0 0 55%;
       min-height: 320px;
@@ -2586,6 +2591,30 @@
     </div>
   </section>
 
+  <!-- DESTINATIONS -->
+  <section class="destinations-section" id="destinations" aria-label="Destinations">
+    <div class="destinations-inner">
+      <h2 class="section-heading">Destinations</h2>
+      <div class="destinations-grid">
+        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/abu-dhabi-night.jpg')">
+          <span class="dest-name">Dubai &amp; Abu Dhabi</span>
+        </a>
+        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/fuerteventura-atlantic.jpg')">
+          <span class="dest-name">Fuerteventura</span>
+        </a>
+        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/ljubljana-lake.jpg')">
+          <span class="dest-name">Ljubljana</span>
+        </a>
+        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/marrakech-palm-reflection.jpg')">
+          <span class="dest-name">Marrakech</span>
+        </a>
+        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/vancouver-cove.jpg')">
+          <span class="dest-name">Vancouver</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- POSTS -->
   <section class="posts-section" id="stories">
     <div class="posts-inner">
@@ -2673,34 +2702,10 @@
     </div>
   </section>
 
-  <!-- DESTINATIONS -->
-  <section class="destinations-section" id="destinations" aria-label="Destinations">
-    <div class="destinations-inner">
-      <h2 class="section-heading">Destinations</h2>
-      <div class="destinations-grid">
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/abu-dhabi-night.jpg')">
-          <span class="dest-name">Dubai &amp; Abu Dhabi</span>
-        </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/fuerteventura-atlantic.jpg')">
-          <span class="dest-name">Fuerteventura</span>
-        </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/ljubljana-lake.jpg')">
-          <span class="dest-name">Ljubljana</span>
-        </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/marrakech-palm-reflection.jpg')">
-          <span class="dest-name">Marrakech</span>
-        </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/vancouver-cove.jpg')">
-          <span class="dest-name">Vancouver</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- ABOUT -->
   <section class="about-section" id="about" aria-label="About">
     <div class="about-inner">
-      <img src="public/site/brand-logo.png" alt="Majestic Travels logo" class="about-photo" loading="lazy">
+      <img src="public/site/brand-logo.png" alt="Adrien" class="about-photo" loading="lazy">
       <div class="about-text">
         <h2 class="section-heading">About</h2>
         <p>Hi, I'm Adrien. I travel solo, slowly, and with too much curiosity. Majestic Travels is where I write about the places that change you — not the itinerary, but the feeling.</p>
