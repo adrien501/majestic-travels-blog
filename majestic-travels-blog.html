@@ -2489,7 +2489,7 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      object-fit: cover;
+      object-fit: contain;
       flex-shrink: 0;
       border: 3px solid var(--ocean);
     }
@@ -2522,6 +2522,12 @@
     }
 
     .about-cta:hover {
+      text-decoration: underline;
+    }
+
+    .about-cta:focus-visible {
+      outline: 3px solid var(--ocean);
+      outline-offset: 3px;
       text-decoration: underline;
     }
 
@@ -2694,7 +2700,7 @@
   <!-- ABOUT -->
   <section class="about-section" id="about" aria-label="About">
     <div class="about-inner">
-      <img src="public/site/brand-logo.png" alt="Adrien" class="about-photo">
+      <img src="public/site/brand-logo.png" alt="Majestic Travels logo" class="about-photo" loading="lazy">
       <div class="about-text">
         <h2 class="section-heading">About</h2>
         <p>Hi, I'm Adrien. I travel solo, slowly, and with too much curiosity. Majestic Travels is where I write about the places that change you — not the itinerary, but the feeling.</p>
