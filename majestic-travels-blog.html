@@ -2262,6 +2262,131 @@
       margin-top: 0.5rem;
       border-top: 1px solid rgba(246, 236, 220, 0.08);
     }
+
+    /* ─── FEATURED POST ──────────────────────────────────────────── */
+
+    .featured-section {
+      background: var(--paper);
+      padding: 3rem 1.5rem 0;
+    }
+
+    .featured-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .featured-card {
+      display: flex;
+      gap: 2.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 24px rgba(24, 32, 28, 0.08);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .featured-card:hover {
+      box-shadow: 0 8px 36px rgba(24, 32, 28, 0.13);
+      transform: translateY(-2px);
+    }
+
+    .featured-media {
+      flex: 0 0 55%;
+      min-height: 320px;
+      overflow: hidden;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .featured-body {
+      flex: 1;
+      padding: 2rem 2rem 2rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .featured-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ocean);
+    }
+
+    .featured-meta {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .featured-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      line-height: 1.15;
+      margin: 0;
+      transition: color 0.15s;
+    }
+
+    .featured-card:hover .featured-title {
+      color: var(--ocean);
+    }
+
+    .featured-excerpt {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .featured-cta {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ocean);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .featured-card {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .featured-media {
+        flex: none;
+        min-height: 220px;
+      }
+
+      .featured-body {
+        padding: 1.25rem;
+      }
+
+      .featured-title {
+        font-size: 1.4rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2290,6 +2415,24 @@
       <a href="#stories" class="hero-cta">Read the stories ↓</a>
     </div>
   </header>
+
+  <!-- FEATURED POST (injected by build-blog.js) -->
+  <section class="featured-section">
+    <div class="featured-inner">
+      <a class="featured-card" href="blog/fuerteventura-solo-travel.html">
+        <div class="featured-media">
+          <img src="public/site/fuerteventura-atlantic.jpg" alt="Volcanic coastline and calm Atlantic water in Fuerteventura" loading="eager" decoding="async">
+        </div>
+        <div class="featured-body">
+          <span class="featured-label">★ Featured</span>
+          <p class="featured-meta">Essay · 8 min</p>
+          <h2 class="featured-title">Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable</h2>
+          <p class="featured-excerpt">I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive.</p>
+          <span class="featured-cta">Read story →</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
   <!-- POSTS -->
   <section class="posts-section" id="stories">

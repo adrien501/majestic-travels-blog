@@ -437,6 +437,34 @@ ${posts.map(cardHtml).join("\n\n")}
   return home.slice(0, start) + generatedGrid + home.slice(end + "\n        </div>".length);
 }
 
+function updateFeatured(home, posts) {
+  const ANCHOR = '<div id="featuredPost"></div>';
+  const pos = home.indexOf(ANCHOR);
+  if (pos === -1) return home; // anchor missing — skip silently
+
+  const post = posts[0]; // most recent post (sorted descending by date)
+  const meta = [post.categoryLabel, post.readTime].filter(Boolean).join(" · ");
+
+  const html = `<section class="featured-section">
+    <div class="featured-inner">
+      <a class="featured-card" href="${escapeHtml(post.url)}">
+        <div class="featured-media">
+          <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt)}" loading="eager" decoding="async">
+        </div>
+        <div class="featured-body">
+          <span class="featured-label">★ Featured</span>
+          <p class="featured-meta">${escapeHtml(meta)}</p>
+          <h2 class="featured-title">${escapeHtml(post.title)}</h2>
+          <p class="featured-excerpt">${escapeHtml(post.excerpt)}</p>
+          <span class="featured-cta">Read story →</span>
+        </div>
+      </a>
+    </div>
+  </section>`;
+
+  return home.slice(0, pos) + html + home.slice(pos + ANCHOR.length);
+}
+
 function writeLaunchFiles(posts) {
   const urls = [
     { loc: `${SITE_URL}/`, changefreq: "weekly", priority: "1.0" },
@@ -500,7 +528,7 @@ function main() {
   posts.forEach((post, index) => {
     write(path.join(BLOG_DIR, `${post.slug}.html`), articleHtml(post, css, { index, posts }));
   });
-  write(HOME_FILE, updateHome(home, posts));
+  write(HOME_FILE, updateFeatured(updateHome(home, posts), posts));
   writeLaunchFiles(posts);
 
   console.log(`Built ${posts.length} posts.`);
