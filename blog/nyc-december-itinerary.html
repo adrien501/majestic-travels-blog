@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Ultimate 5-Day NYC Itinerary for December Holiday Magic | Majestic Travels</title>
-  <meta name="description" content="A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.">
+  <title>The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems) | Majestic Travels</title>
+  <meta name="description" content="Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems.">
   <link rel="canonical" href="https://majestic-travels.com/blog/nyc-december-itinerary.html">
   <link rel="alternate" type="application/rss+xml" title="Majestic Travels RSS" href="https://majestic-travels.com/rss.xml">
   <link rel="icon" type="image/png" href="../public/site/brand-logo.png">
   <link rel="apple-touch-icon" href="../public/site/brand-logo.png">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="The Ultimate 5-Day NYC Itinerary for December Holiday Magic">
-  <meta property="og:description" content="A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.">
+  <meta property="og:title" content="The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems)">
+  <meta property="og:description" content="Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems.">
   <meta property="og:url" content="https://majestic-travels.com/blog/nyc-december-itinerary.html">
   <meta property="og:image" content="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85">
   <meta property="article:published_time" content="2026-01-22">
-  <meta property="article:section" content="Guide">
+  <meta property="article:section" content="Winter Itinerary">
   <meta property="article:tag" content="New York">
   <meta property="article:tag" content="Itinerary">
+  <meta property="article:tag" content="December">
+  <meta property="article:tag" content="Holiday">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The Ultimate 5-Day NYC Itinerary for December Holiday Magic">
-  <meta name="twitter:description" content="A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.">
+  <meta name="twitter:title" content="The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems)">
+  <meta name="twitter:description" content="Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +30,8 @@
   <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "The Ultimate 5-Day NYC Itinerary for December Holiday Magic",
-  "description": "A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.",
+  "headline": "The Ultimate 5-Day New York City Itinerary for December (Holiday Magic & Hidden Gems)",
+  "description": "Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems.",
   "image": [
     "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&q=85"
   ],
@@ -43,8 +45,8 @@
     "@type": "Organization",
     "name": "Majestic Travels"
   },
-  "articleSection": "Guide",
-  "keywords": "New York, Itinerary, Guide",
+  "articleSection": "Winter Itinerary",
+  "keywords": "New York, Itinerary, December, Holiday, Winter Itinerary",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://majestic-travels.com/blog/nyc-december-itinerary.html"
@@ -70,6 +72,8 @@
       --coral: #d46d4f;
       --passport: #213d72;
       --volcanic: #2b2925;
+      --ocean: #0e6674;
+      --ocean-dark: #0a4f5e;
       --route-red: #bd372a;
       --sky: #c8d6d5;
       --line: rgba(24, 32, 28, 0.18);
@@ -1818,21 +1822,735 @@
         transition-duration: 0.01ms !important;
       }
     }
+    /* ─── HOMEPAGE REDESIGN OVERRIDES ─────────────────────────────── */
+
+    body {
+      background: var(--paper);
+    }
+
+    body::before {
+      display: none;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────────── */
+
+    .site-nav {
+      background: var(--ocean);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--paper);
+    }
+
+    .nav-logo {
+      height: 30px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 650;
+      font-variation-settings: "SOFT" 70, "WONK" 1;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      padding: 0;
+    }
+
+    .nav-menu a {
+      color: rgba(246, 236, 220, 0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav-menu a:hover {
+      color: var(--paper);
+      text-decoration: underline;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────────── */
+
+    .site-hero {
+      background:
+        linear-gradient(rgba(14, 102, 116, 0.75), rgba(14, 102, 116, 0.75)),
+        url('public/site/marrakech-palm-reflection.jpg') center / cover no-repeat;
+      min-height: 60vh;
+      padding: 4rem 1.5rem 5rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .hero-logomark {
+      height: 80px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-wordmark {
+      max-width: 360px;
+      width: 100%;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-tagline {
+      color: rgba(246, 236, 220, 0.82);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 0.25rem;
+      padding: 0.6rem 1.75rem;
+      border: 2px solid var(--paper);
+      color: var(--paper);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .hero-cta:hover {
+      background: var(--paper);
+      color: var(--ocean);
+    }
+
+    /* ─── POSTS SECTION ───────────────────────────────────────────── */
+
+    .posts-section {
+      background: var(--paper);
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    .posts-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .posts-heading {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      display: inline-block;
+      margin-bottom: 2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid var(--ocean);
+    }
+
+    .posts-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.6rem 1rem;
+      border: 1.5px solid var(--line-strong);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      background: var(--white);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--ocean);
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      padding: 0.35rem 1rem;
+      border: 1.5px solid var(--ocean);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ocean);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .pill.active,
+    .pill:hover {
+      background: var(--ocean);
+      color: var(--paper);
+    }
+
+    /* ─── STORY GRID + CARDS ──────────────────────────────────────── */
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .story-grid { grid-template-columns: 1fr; }
+      .nav-menu { display: none; }
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .story-card:hover {
+      box-shadow: 0 8px 28px rgba(24, 32, 28, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .story-card .story-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .story-card .story-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-card .story-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .story-card .story-meta {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ocean);
+      margin: 0;
+    }
+
+    .story-card .story-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      line-height: 1.25;
+      transition: color 0.15s;
+      margin: 0;
+    }
+
+    .story-card:hover .story-title {
+      color: var(--ocean);
+    }
+
+    .story-card .story-excerpt {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+      font-size: 1rem;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────────── */
+
+    .site-footer {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 600px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .footer-logo {
+      height: 34px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 70, "WONK" 1;
+      color: var(--paper);
+    }
+
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: rgba(246, 236, 220, 0.6);
+      margin: 0;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-nav a {
+      color: rgba(246, 236, 220, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-nav a:hover {
+      color: var(--paper);
+      text-decoration: underline;
+    }
+
+    .footer-newsletter {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(246, 236, 220, 0.12);
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .newsletter-label {
+      font-size: 0.9rem;
+      color: rgba(246, 236, 220, 0.7);
+      margin-bottom: 0.75rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 380px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid rgba(246, 236, 220, 0.2);
+      background: rgba(246, 236, 220, 0.07);
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border-radius: var(--radius);
+      outline: none;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(246, 236, 220, 0.38);
+    }
+
+    .newsletter-input:focus {
+      border-color: rgba(246, 236, 220, 0.45);
+    }
+
+    .newsletter-btn {
+      padding: 0.55rem 1.1rem;
+      background: var(--ocean);
+      color: var(--paper);
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .newsletter-btn:hover {
+      background: var(--ocean-dark);
+    }
+
+    .footer-copy {
+      grid-column: 1 / -1;
+      font-size: 0.8rem;
+      color: rgba(246, 236, 220, 0.35);
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid rgba(246, 236, 220, 0.08);
+    }
+
+    /* ─── FEATURED POST ──────────────────────────────────────────── */
+
+    .featured-section {
+      background: var(--paper);
+      padding: 3rem 1.5rem 0;
+    }
+
+    .featured-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .featured-card {
+      display: flex;
+      gap: 2.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 24px rgba(24, 32, 28, 0.08);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .featured-card:hover {
+      box-shadow: 0 8px 36px rgba(24, 32, 28, 0.13);
+      transform: translateY(-2px);
+    }
+
+    .featured-card:focus-visible {
+      outline: 3px solid var(--ocean);
+      outline-offset: 3px;
+    }
+
+    .featured-media {
+      flex: 0 0 55%;
+      min-height: 320px;
+      overflow: hidden;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .featured-body {
+      flex: 1;
+      padding: 2rem 2rem 2rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .featured-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ocean);
+    }
+
+    .featured-meta {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .featured-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      line-height: 1.15;
+      margin: 0;
+      transition: color 0.15s;
+    }
+
+    .featured-card:hover .featured-title {
+      color: var(--ocean);
+    }
+
+    .featured-excerpt {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .featured-cta {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ocean);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .featured-card {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .featured-media {
+        flex: none;
+        min-height: 220px;
+      }
+
+      .featured-body {
+        padding: 1.25rem;
+      }
+
+      .featured-title {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* ─── SECTION HEADING (shared) ──────────────────────────────── */
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      display: inline-block;
+      margin-bottom: 2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid var(--ocean);
+    }
+
+    /* ─── DESTINATIONS ───────────────────────────────────────────── */
+
+    .destinations-section {
+      background: var(--paper);
+      padding: 4rem 1.5rem;
+    }
+
+    .destinations-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .destinations-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .destinations-grid { grid-template-columns: 1fr; }
+    }
+
+    .dest-card {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background-image: var(--dest-img);
+      background-size: cover;
+      background-position: center;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .dest-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(24, 32, 28, 0.72) 0%, transparent 55%);
+    }
+
+    .dest-card:hover {
+      transform: scale(1.03);
+    }
+
+    .dest-card:focus-visible {
+      outline: 3px solid var(--ocean);
+      outline-offset: 3px;
+    }
+
+    .dest-name {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      z-index: 1;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      line-height: 1.2;
+    }
+    /* ─── ABOUT ──────────────────────────────────────────────────── */
+
+    .about-section {
+      background: var(--paper);
+      padding: 4rem 1.5rem;
+    }
+
+    .about-inner {
+      max-width: var(--narrow);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .about-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: contain;
+      flex-shrink: 0;
+      border: 3px solid var(--ocean);
+    }
+
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .about-text .section-heading {
+      margin-bottom: 0;
+    }
+
+    .about-text p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .about-cta {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ocean);
+      text-decoration: none;
+    }
+
+    .about-cta:hover {
+      text-decoration: underline;
+    }
+
+    .about-cta:focus-visible {
+      outline: 3px solid var(--ocean);
+      outline-offset: 3px;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .about-inner {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+    }
   
     .article-page { padding: 62px 0 96px; }
     .article-shell { width: min(calc(100% - 44px), 1120px); margin: 0 auto; }
-    .article-topbar .nav { grid-template-columns: auto 1fr auto; }
-    .article-home-link { min-height: 44px; padding: 0 12px; font-size: 0.78rem; }
-    .article-breadcrumb { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; margin-bottom: 34px; color: var(--passport); font-weight: 900; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+    .kicker { color: var(--ocean); box-shadow: 3px 3px 0 rgba(14, 102, 116, 0.12); }
+    .kicker::before { color: var(--ocean); }
+    .article-breadcrumb { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; margin-bottom: 34px; color: var(--ocean); font-weight: 900; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
     .article-hero { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(230px, 0.22fr); gap: 34px; align-items: end; margin-bottom: 34px; }
     .article-hero-main { display: grid; gap: 20px; }
     .article-hero h1 { max-width: 13ch; font-size: 5.15rem; line-height: 0.96; letter-spacing: 0; }
     .article-hero p { max-width: 62ch; color: var(--ink-soft); font-size: 1.18rem; line-height: 1.55; }
     .article-entry-code { border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.68); padding: 18px; display: grid; gap: 10px; transform: rotate(1.2deg); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); }
-    .article-entry-code span { color: var(--rust); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-entry-code span { color: var(--ocean); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-entry-code strong { font-family: var(--font-display); font-size: 2.05rem; line-height: 1; }
     .article-entry-code p { font-size: 0.96rem; line-height: 1.42; }
-    .article-meta-line { display: flex; flex-wrap: wrap; gap: 10px; color: var(--rust); font-weight: 900; text-transform: uppercase; font-size: 0.82rem; }
+    .article-meta-line { display: flex; flex-wrap: wrap; gap: 10px; color: var(--ocean); font-weight: 900; text-transform: uppercase; font-size: 0.82rem; }
     .article-meta-line span { border: 1px solid color-mix(in srgb, currentColor 34%, transparent); border-radius: 999px; padding: 3px 9px; background: rgba(255, 248, 236, 0.68); }
     .article-cover { position: relative; min-height: 470px; border: 12px solid var(--white); border-radius: 2px; overflow: hidden; background: repeating-linear-gradient(135deg, rgba(255, 248, 236, 0.12) 0 1px, transparent 1px 18px), linear-gradient(135deg, var(--sage-deep), var(--ink)); box-shadow: var(--shadow); }
     .article-cover::before { content: "FIELD PHOTO"; position: absolute; top: 18px; right: 18px; z-index: 2; border: 1.5px solid rgba(255, 248, 236, 0.72); color: rgba(255, 248, 236, 0.88); padding: 6px 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(3deg); }
@@ -1841,7 +2559,7 @@
     .article-cover figcaption { position: absolute; left: 18px; bottom: 18px; max-width: min(520px, calc(100% - 36px)); background: rgba(24, 32, 28, 0.82); color: rgba(255, 250, 242, 0.94); border: 1px solid rgba(255, 250, 242, 0.18); padding: 8px 10px; font-size: 0.84rem; font-weight: 700; }
     .article-layout { display: grid; grid-template-columns: minmax(190px, 0.28fr) minmax(0, 0.72fr); gap: 42px; align-items: start; margin-top: 46px; }
     .article-dossier { position: sticky; top: 104px; border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.62); padding: 18px; display: grid; gap: 16px; }
-    .dossier-label { color: var(--rust); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .dossier-label { color: var(--ocean); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-dossier p { color: var(--ink-soft); font-size: 0.98rem; }
     .article-dossier dl { display: grid; gap: 10px; }
     .article-dossier div { border-top: 1px solid var(--line); padding-top: 10px; }
@@ -1849,19 +2567,19 @@
     .article-dossier dd { margin: 3px 0 0; font-weight: 800; }
     .article-body { max-width: 68ch; font-size: 1.13rem; line-height: 1.78; color: var(--ink-soft); }
     .article-body > * + * { margin-top: 1.18em; }
-    .article-body > p:first-child::first-letter { float: left; font-family: var(--font-display); color: var(--rust); font-size: 4.8rem; line-height: 0.86; padding: 8px 10px 0 0; font-weight: 800; }
+    .article-body > p:first-child::first-letter { float: left; font-family: var(--font-display); color: var(--ocean); font-size: 4.8rem; line-height: 0.86; padding: 8px 10px 0 0; font-weight: 800; }
     .article-body h2, .article-body h3 { color: var(--ink); margin-top: 1.85em; line-height: 1.08; }
     .article-body h2 { font-size: 2.55rem; }
     .article-body h3 { font-size: 1.72rem; }
-    .article-body a { color: var(--passport); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .article-body a { color: var(--ocean); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
     .article-body blockquote { border: 1.5px solid var(--line-strong); background: color-mix(in srgb, var(--paper-deep) 62%, var(--white)); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); padding: 22px; color: var(--ink); font-family: var(--font-display); font-size: 1.62rem; line-height: 1.34; transform: rotate(-1deg); }
-    .article-body blockquote::before { content: "Field note"; display: block; margin-bottom: 10px; color: var(--rust); font-family: var(--font-body); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-body blockquote::before { content: "Field note"; display: block; margin-bottom: 10px; color: var(--ocean); font-family: var(--font-body); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-body ul { padding-left: 1.2em; }
     .article-body li + li { margin-top: 0.5em; }
     .article-signoff { margin-top: 42px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink-soft); font-weight: 800; }
     .article-nav { margin-top: 54px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .article-nav-card { min-height: 126px; border: 1.5px solid var(--line); border-radius: 3px; background: rgba(255, 248, 236, 0.72); padding: 18px; display: grid; align-content: space-between; text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
-    .article-nav-card span { color: var(--rust); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-nav-card span { color: var(--ocean); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-nav-card strong { color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; line-height: 1.1; }
     .article-nav-card:hover, .article-nav-card:focus-visible { border-color: var(--line-strong); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.1); transform: translateY(-2px); }
     .article-actions { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
@@ -1871,46 +2589,41 @@
 </head>
 <body id="top">
   <a class="skip-link" href="#article">Skip to article</a>
-  <header class="topbar article-topbar">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="../majestic-travels-blog.html" aria-label="Majestic Travels home">
-        <img class="brand-logo" src="../public/site/brand-logo.png" alt="" aria-hidden="true">
-        <span>Majestic Travels</span>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../majestic-travels-blog.html" class="nav-brand">
+        <img src="../public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="nav-logo">
+        <span class="nav-brand-name">Majestic Travels</span>
       </a>
-      <ul class="nav-links" aria-label="Sections">
+      <ul class="nav-menu" role="list">
         <li><a href="../majestic-travels-blog.html#stories">Stories</a></li>
-        <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
-        <li><a href="../majestic-travels-blog.html#about">About</a></li>
-        <li><a href="../majestic-travels-blog.html#newsletter">Newsletter</a></li>
+        <li><a href="../rss.xml">RSS</a></li>
       </ul>
-      <div class="nav-actions">
-        <a class="button secondary article-home-link" href="../majestic-travels-blog.html#stories">Stories</a>
-      </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
   <main class="article-page" id="article">
     <article class="article-shell">
       <a class="article-breadcrumb" href="../majestic-travels-blog.html#stories">Back to reading room</a>
       <header class="article-hero">
         <div class="article-hero-main">
-          <span class="kicker">Guide</span>
-          <h1>The Ultimate 5-Day NYC Itinerary for December Holiday Magic</h1>
-          <p>A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.</p>
+          <span class="kicker">Winter Itinerary</span>
+          <h1>The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems)</h1>
+          <p>Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems.</p>
           <div class="article-meta-line">
             <span>Jan 22, 2026</span>
-            <span>10 min</span>
-            <span>New York</span><span>Itinerary</span>
+            <span>8 min</span>
+            <span>New York</span><span>Itinerary</span><span>December</span><span>Holiday</span>
           </div>
         </div>
         <aside class="article-entry-code" aria-label="Entry summary">
-          <span>Entry 04</span>
-          <strong>Guide</strong>
+          <span>Entry 06</span>
+          <strong>Winter Itinerary</strong>
           <p>Structure this as morning anchor, afternoon wander, evening payoff, and one flexible backup per day.</p>
         </aside>
       </header>
       <figure class="article-cover">
-        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85" alt="Holiday lights glowing on a city street" fetchpriority="high" decoding="async">
-        <figcaption>Field photo: Holiday lights glowing on a city street</figcaption>
+        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85" alt="Holiday lights glowing on a city street at night" fetchpriority="high" decoding="async">
+        <figcaption>Field photo: Holiday lights glowing on a city street at night</figcaption>
       </figure>
       <div class="article-layout">
         <aside class="article-dossier" aria-label="Article details">
@@ -1919,30 +2632,45 @@
           <dl>
             <div>
               <dt>Filed under</dt>
-              <dd>Guide</dd>
+              <dd>Winter Itinerary</dd>
             </div>
             <div>
               <dt>Reading time</dt>
-              <dd>10 min</dd>
+              <dd>8 min</dd>
             </div>
             <div>
               <dt>Tags</dt>
-              <dd>New York, Itinerary</dd>
+              <dd>New York, Itinerary, December, Holiday</dd>
             </div>
           </dl>
         </aside>
         <div>
           <div class="article-body">
-<p>December in New York is crowded, expensive, cold, and completely unreasonable.</p>
-<p>It is also magic when you plan it with enough space to breathe.</p>
-<h2>Day one: arrive gently</h2>
-<p>Do not schedule your most important activity on arrival day. Walk, eat something warm, and let the city become real before you ask too much of it.</p>
-<h2>Day two: classic lights</h2>
-<p>Rockefeller Center is busy for a reason. Go early, leave before your patience disappears, and use the rest of the day for quieter streets.</p>
-<h2>The rhythm</h2>
-<p>Each day works best with three pieces:</p>
-<ul><li>One iconic stop</li><li>One neighborhood wander</li><li>One warm indoor reset</li></ul>
-<p>That rhythm keeps the trip festive without turning it into a holiday obstacle course.</p>
+<p>New York City during the holidays is pure magic. With twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — this 5-day itinerary gives you the perfect December experience filled with iconic spots, local tips, and hidden gems. Whether you're planning a romantic escape, a family adventure, or your first time in the Big Apple, this curated itinerary ensures you capture the best of the city's holiday magic without the overwhelm.</p>
+<p><strong>At a Glance</strong></p>
+<ul><li><strong>Travel Dates:</strong> December 20–25</li><li><strong>Trip Length:</strong> 5 days / 4 nights</li><li><strong>Ideal For:</strong> Families, couples, first-time visitors</li><li><strong>Vibe:</strong> Holiday markets, iconic views, cozy cafés, cultural gems</li></ul>
+<h2>Day 1: Downtown and Holiday Vibes</h2>
+<ul><li><strong>Morning:</strong> Free Staten Island Ferry past Statue of Liberty, then explore Battery Park, SeaGlass Carousel, and the Charging Bull</li><li><strong>Midday:</strong> Reflect at the 9/11 Memorial, explore the Oculus, and take in city views from One World Observatory</li><li><strong>Afternoon:</strong> Visit Grand Central Terminal and Winter Village at Bryant Park for ice skating and shopping</li><li><strong>Evening:</strong> Try Carmine's or Ellen's Stardust Diner — or catch the Radio City Christmas Spectacular for peak holiday vibes</li></ul>
+<h2>Day 2: Midtown Magic and Fifth Avenue</h2>
+<ul><li><strong>Morning:</strong> Visit FAO Schwarz and marvel at Fifth Avenue's famous holiday window displays</li><li><strong>Lunch:</strong> Serendipity 3 (book ahead), The Halal Guys, or The Plaza Food Hall</li><li><strong>Afternoon:</strong> Summit One Vanderbilt for breathtaking views, then explore Hudson Yards' festive markets</li><li><strong>Evening:</strong> Dyker Heights Christmas Lights tour in Brooklyn (the most extravagant holiday displays in NYC)</li></ul>
+<h2>Day 3: Museums, Markets and Broadway</h2>
+<ul><li><strong>Morning:</strong> Intrepid Sea, Air and Space Museum followed by a walk through Little Island</li><li><strong>Lunch:</strong> Chelsea Market favorites — Los Tacos No.1 or Very Fresh Noodles</li><li><strong>Afternoon:</strong> Walk the High Line or take the East River Ferry to DUMBO for skyline views</li><li><strong>Evening:</strong> Broadway show (Aladdin, Lion King or Harry Potter) or late-night pizza at Pizza Suprema</li></ul>
+<h2>Day 4: Central Park and Cozy Downtown</h2>
+<ul><li><strong>Morning:</strong> Central Park highlights — Bethesda Terrace, Alice in Wonderland statue, and Belvedere Castle</li><li><strong>Midday:</strong> Skating at Wollman Rink or visit Central Park Zoo. Lunch at Shake Shack or Eisenberg's Diner</li><li><strong>Afternoon:</strong> Flatiron Building and Union Square Holiday Market or browse Strand Bookstore</li><li><strong>Evening:</strong> Washington Square Park and dinner at John's of Bleecker Street (legendary coal-fired pizza)</li></ul>
+<h2>Day 5: Liberty Island to Empire Views</h2>
+<ul><li><strong>Morning:</strong> Statue of Liberty pedestal access and museum (book tickets in advance)</li><li><strong>Midday:</strong> Lunch at Ellen's Stardust Diner (singing waitstaff!)</li><li><strong>Afternoon:</strong> Roosevelt Island tram and Four Freedoms Park for unique skyline perspectives</li><li><strong>Evening:</strong> Empire State Building observation deck at sunset, dessert at Junior's</li></ul>
+<h2>Where to Stay: Hotel Hendricks</h2>
+<p>This centrally located boutique hotel offers the perfect blend of comfort and style during the busy holiday season. Its midtown location puts you within walking distance of Rockefeller Center, Times Square, and Fifth Avenue shopping.</p>
+<h2>Pro Tips for NYC in December</h2>
+<p><strong>Apps to Download</strong></p>
+<ul><li>Citymapper — best transit navigation</li><li>Too Good To Go — discounted food</li><li>TodayTix — Broadway ticket deals</li></ul>
+<p><strong>Essentials to Pack</strong></p>
+<ul><li>Thermal layers and waterproof boots</li><li>Portable charger and eSIM (Airalo)</li><li>Printed itinerary and passport copies</li></ul>
+<h2>Must-Try Winter Eats and Drinks</h2>
+<ul><li><strong>Joe's Pizza:</strong> Classic $3 New York slice that never disappoints</li><li><strong>Wafels &amp; Dinges:</strong> Belgian street waffles at Bryant Park's Winter Village</li><li><strong>Rolf's Restaurant:</strong> The most over-the-top Christmas décor in NYC (reservations essential)</li><li><strong>Devoción:</strong> Rich Colombian-style peppermint hot chocolate</li><li><strong>Levain Bakery:</strong> Warm, gooey cookies perfect for cold days</li></ul>
+<h2>Optional Add-On Days</h2>
+<ul><li><strong>Harlem Soul:</strong> The Met Cloisters, gospel brunch at Sylvia's, and Sunday concert at Abyssinian Baptist Church</li><li><strong>Queens Adventure:</strong> Museum of the Moving Image, Astoria's diverse food scene</li><li><strong>Brooklyn Escape:</strong> Prospect Park skating, Brooklyn Botanic Garden, and holiday lights at Borough Hall</li></ul>
+<p>Staying in NYC? Consider <a href="https://www.hotelhendricksny.com">Hotel Hendricks</a> for a stylish and central stay.</p>
           </div>
           <p class="article-signoff">Saved in the Majestic Travels notebook on Jan 22, 2026.</p>
         </div>
@@ -1950,11 +2678,11 @@
       <nav class="article-nav" aria-label="Article navigation">
         <a class="article-nav-card" href="first-surf-lesson-fuerteventura.html">
           <span>Newer entry</span>
-          <strong>My First Surf Lesson in Fuerteventura and the Fear Before Standing Up</strong>
+          <strong>My First Time Surfing in Fuerteventura and OTRO MODO Surf School</strong>
         </a>
-        <a class="article-nav-card" href="travel-adapter-guide.html">
+        <a class="article-nav-card" href="../majestic-travels-blog.html#newsletter">
           <span>Older entry</span>
-          <strong>The Travel Adapter Guide: Know Exactly What to Pack</strong>
+          <strong>Get new posts by email</strong>
         </a>
       </nav>
       <div class="article-actions">
@@ -1963,6 +2691,27 @@
       </div>
     </article>
   </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
+        <span class="footer-name">Majestic Travels</span>
+        <p class="footer-tagline">Solo travel. Real places. No filters.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="../majestic-travels-blog.html#stories">Stories</a>
+        <a href="../rss.xml">RSS</a>
+      </nav>
+      <div class="footer-newsletter">
+        <p class="newsletter-label">✉ Stay in the loop</p>
+        <form class="newsletter-form" action="#" method="post">
+          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address">
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+      <p class="footer-copy">© 2026 Majestic Travels</p>
+    </div>
+  </footer>
   <script>
     document.querySelectorAll("img").forEach((image) => {
       const markBroken = () => image.classList.add("is-broken");
