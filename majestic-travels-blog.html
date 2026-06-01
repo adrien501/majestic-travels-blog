@@ -59,6 +59,10 @@
   }
   </script>
 
+  <script>
+(function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);document.querySelector('meta[name="theme-color"]').content=t==='dark'?'#1a1917':'#2c2a26'})();
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     * { margin: 0; }
@@ -80,6 +84,22 @@
       --max: 1180px;
       --narrow: 760px;
       --radius: 6px;
+      --footer-bg: #2c2a26;
+    }
+
+    [data-theme="dark"] {
+      --ink: #f0e9df;
+      --ink-soft: #a89e94;
+      --cream: #1a1917;
+      --cream-deep: #242220;
+      --white: #2c2a26;
+      --sandstone: #d4a06e;
+      --clay: #c07a5a;
+      --sage: #8a9b82;
+      --charcoal: #f0e9df;
+      --line: rgba(250, 246, 240, 0.10);
+      --line-strong: rgba(250, 246, 240, 0.18);
+      --footer-bg: #141312;
     }
 
     html {
@@ -1149,6 +1169,15 @@
   </footer>
 
   <script>
+    window.toggleTheme = function() {
+      var html = document.documentElement;
+      var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
+    };
+
     (function () {
       var searchInput = document.getElementById("story-search");
       var pills = document.querySelectorAll(".pill");
