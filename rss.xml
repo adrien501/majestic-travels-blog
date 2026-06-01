@@ -5,55 +5,55 @@
     <link>https://majestic-travels.com/</link>
     <description>Slow travel stories, solo guides, and field notes by Adrien.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 31 May 2026 15:22:03 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 16:36:00 GMT</lastBuildDate>
     <atom:link href="https://majestic-travels.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable</title>
+      <title>December in NYC: The Ultimate Holiday Magic Guide</title>
+      <link>https://majestic-travels.com/blog/nyc-december-holiday-magic.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/nyc-december-holiday-magic.html</guid>
+      <pubDate>Sun, 15 Nov 2026 12:00:00 GMT</pubDate>
+      <category>Holiday Guide</category>
+      <description>New York City is at its most magical in December. The entire city transforms into a living holiday card — from the Rockefeller tree to Dyker Heights, with insider tips on how to do it right.</description>
+    </item>
+    <item>
+      <title>I Went to Fuerteventura to Escape and Found Myself Again</title>
       <link>https://majestic-travels.com/blog/fuerteventura-solo-travel.html</link>
       <guid isPermaLink="true">https://majestic-travels.com/blog/fuerteventura-solo-travel.html</guid>
       <pubDate>Sat, 18 Apr 2026 12:00:00 GMT</pubDate>
-      <category>Essay</category>
-      <description>I arrived restless and left quieter. A reflective story about the first wave, the long beach, and the relief of not needing to be impressive.</description>
+      <category>Personal Journey</category>
+      <description>Not here for parties or nightlife — just a desperate need to breathe. A story about burnout, surfing, hidden beaches, and the version of yourself buried between stress and boredom.</description>
+    </item>
+    <item>
+      <title>The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps</title>
+      <link>https://majestic-travels.com/blog/nyc-10-day-guide.html</link>
+      <guid isPermaLink="true">https://majestic-travels.com/blog/nyc-10-day-guide.html</guid>
+      <pubDate>Wed, 01 Apr 2026 12:00:00 GMT</pubDate>
+      <category>Ultimate Guide</category>
+      <description>Everything learned from countless NYC trips — hidden gems discovered at dawn, the iconic sights done right, and every lesson from the hard way so you do not have to repeat the mistakes.</description>
     </item>
     <item>
       <title>New York City in Summer: A Love Letter to the Greatest City on Earth</title>
       <link>https://majestic-travels.com/blog/new-york-city-summer.html</link>
       <guid isPermaLink="true">https://majestic-travels.com/blog/new-york-city-summer.html</guid>
       <pubDate>Sun, 15 Mar 2026 12:00:00 GMT</pubDate>
-      <category>Guide</category>
-      <description>Rooftop sunsets, overheated sidewalks, late jazz, and the reason a loud city can still make you feel beautifully alone.</description>
+      <category>City Guide</category>
+      <description>The way golden light bounces off skyscrapers at sunset, the hum of sidewalk chatter mixing with distant jazz, the smell of hot pretzels and sudden rain on pavement. It's alive. It pulses. And if you let it, it'll rewrite your soul.</description>
     </item>
     <item>
-      <title>My First Surf Lesson in Fuerteventura and the Fear Before Standing Up</title>
+      <title>My First Time Surfing in Fuerteventura and OTRO MODO Surf School</title>
       <link>https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html</link>
       <guid isPermaLink="true">https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html</guid>
       <pubDate>Sat, 28 Feb 2026 12:00:00 GMT</pubDate>
-      <category>Field note</category>
-      <description>A grounded field note on beginner nerves, kind instruction, and the strange confidence that appears after falling repeatedly.</description>
+      <category>Travel Journal</category>
+      <description>Some people go to the Canary Islands for the sun. I went to learn how to surf. What I didn't expect was how much it would teach me about trust — in the ocean, in my body, and in the unknown.</description>
     </item>
     <item>
-      <title>The Ultimate 5-Day NYC Itinerary for December Holiday Magic</title>
+      <title>The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems)</title>
       <link>https://majestic-travels.com/blog/nyc-december-itinerary.html</link>
       <guid isPermaLink="true">https://majestic-travels.com/blog/nyc-december-itinerary.html</guid>
       <pubDate>Thu, 22 Jan 2026 12:00:00 GMT</pubDate>
-      <category>Guide</category>
-      <description>A warm, walkable plan for lights, museums, winter food stops, Central Park, and the moments between the obvious sights.</description>
-    </item>
-    <item>
-      <title>The Travel Adapter Guide: Know Exactly What to Pack</title>
-      <link>https://majestic-travels.com/blog/travel-adapter-guide.html</link>
-      <guid isPermaLink="true">https://majestic-travels.com/blog/travel-adapter-guide.html</guid>
-      <pubDate>Thu, 08 Jan 2026 12:00:00 GMT</pubDate>
-      <category>Guide</category>
-      <description>Practical, visual, and calm. A post for the reader who is already at the airport and suddenly unsure about plug types.</description>
-    </item>
-    <item>
-      <title>The Slow Travel Quiz: What Kind of Wanderer Are You?</title>
-      <link>https://majestic-travels.com/blog/slow-travel-quiz.html</link>
-      <guid isPermaLink="true">https://majestic-travels.com/blog/slow-travel-quiz.html</guid>
-      <pubDate>Thu, 18 Dec 2025 12:00:00 GMT</pubDate>
-      <category>Essay</category>
-      <description>Less algorithm, more mirror. A reflective quiz that helps readers choose trips by energy, not just destination aesthetics.</description>
+      <category>Winter Itinerary</category>
+      <description>Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems.</description>
     </item>
   </channel>
 </rss>

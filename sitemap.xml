@@ -6,8 +6,20 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://majestic-travels.com/blog/nyc-december-holiday-magic.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://majestic-travels.com/blog/fuerteventura-solo-travel.html</loc>
     <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://majestic-travels.com/blog/nyc-10-day-guide.html</loc>
+    <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -26,18 +38,6 @@
   <url>
     <loc>https://majestic-travels.com/blog/nyc-december-itinerary.html</loc>
     <lastmod>2026-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://majestic-travels.com/blog/travel-adapter-guide.html</loc>
-    <lastmod>2026-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://majestic-travels.com/blog/slow-travel-quiz.html</loc>
-    <lastmod>2025-12-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
