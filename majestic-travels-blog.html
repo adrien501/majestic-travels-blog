@@ -516,6 +516,8 @@
     .footer-logo {
       height: 34px;
       width: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
       filter: brightness(0) invert(1);
       margin-bottom: 0.25rem;
     }
@@ -562,6 +564,14 @@
       font-size: 0.9rem;
       color: rgba(246, 236, 220, 0.7);
       margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .newsletter-label svg {
+      width: 1.1em;
+      height: 1.1em;
+      flex-shrink: 0;
     }
 
     .newsletter-form {
@@ -848,10 +858,11 @@
     }
 
     .about-photo {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: 65% 15%;
       flex-shrink: 0;
       border: 3px solid var(--sandstone);
     }
@@ -1085,11 +1096,11 @@
   <!-- ABOUT -->
   <section class="about-section" id="about" aria-label="About">
     <div class="about-inner">
-      <img src="public/site/brand-logo.png" alt="Adrien" class="about-photo" loading="lazy">
+      <img src="public/site/profile-pic.jpg" alt="Adrien in a cockpit" class="about-photo" loading="lazy">
       <div class="about-text">
         <h2 class="section-heading">About</h2>
         <p>Hi, I'm Adrien. I travel solo, slowly, and with too much curiosity. Majestic Travels is where I write about the places that change you — not the itinerary, but the feeling.</p>
-        <a href="#stories" class="about-cta">Read the stories ↓</a>
+        <a href="#stories" class="about-cta">Read the stories ↑</a>
       </div>
     </div>
   </section>
@@ -1127,7 +1138,7 @@
         <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
       </nav>
       <div class="footer-newsletter">
-        <p class="newsletter-label">✉ Stay in the loop</p>
+        <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
         <form class="newsletter-form" action="#" method="post">
           <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address">
           <button type="submit" class="newsletter-btn">Subscribe</button>
