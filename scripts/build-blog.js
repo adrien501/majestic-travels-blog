@@ -256,18 +256,18 @@ ${tagMeta}
   <style>${css}
     .article-page { padding: 62px 0 96px; }
     .article-shell { width: min(calc(100% - 44px), 1120px); margin: 0 auto; }
-    .kicker { color: var(--ocean); box-shadow: 3px 3px 0 rgba(14, 102, 116, 0.12); }
-    .kicker::before { color: var(--ocean); }
-    .article-breadcrumb { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; margin-bottom: 34px; color: var(--ocean); font-weight: 900; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+    .kicker { color: var(--clay); box-shadow: 3px 3px 0 rgba(158, 91, 60, 0.12); }
+    .kicker::before { color: var(--clay); }
+    .article-breadcrumb { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; margin-bottom: 34px; color: var(--clay); font-weight: 900; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; text-decoration-thickness: 2px; text-underline-offset: 5px; }
     .article-hero { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(230px, 0.22fr); gap: 34px; align-items: end; margin-bottom: 34px; }
     .article-hero-main { display: grid; gap: 20px; }
     .article-hero h1 { max-width: 13ch; font-size: 5.15rem; line-height: 0.96; letter-spacing: 0; }
     .article-hero p { max-width: 62ch; color: var(--ink-soft); font-size: 1.18rem; line-height: 1.55; }
     .article-entry-code { border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.68); padding: 18px; display: grid; gap: 10px; transform: rotate(1.2deg); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); }
-    .article-entry-code span { color: var(--ocean); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-entry-code span { color: var(--sandstone); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-entry-code strong { font-family: var(--font-display); font-size: 2.05rem; line-height: 1; }
     .article-entry-code p { font-size: 0.96rem; line-height: 1.42; }
-    .article-meta-line { display: flex; flex-wrap: wrap; gap: 10px; color: var(--ocean); font-weight: 900; text-transform: uppercase; font-size: 0.82rem; }
+    .article-meta-line { display: flex; flex-wrap: wrap; gap: 10px; color: var(--sandstone); font-weight: 900; text-transform: uppercase; font-size: 0.82rem; }
     .article-meta-line span { border: 1px solid color-mix(in srgb, currentColor 34%, transparent); border-radius: 999px; padding: 3px 9px; background: rgba(255, 248, 236, 0.68); }
     .article-cover { position: relative; min-height: 470px; border: 12px solid var(--white); border-radius: 2px; overflow: hidden; background: repeating-linear-gradient(135deg, rgba(255, 248, 236, 0.12) 0 1px, transparent 1px 18px), linear-gradient(135deg, var(--sage-deep), var(--ink)); box-shadow: var(--shadow); }
     .article-cover::before { content: "FIELD PHOTO"; position: absolute; top: 18px; right: 18px; z-index: 2; border: 1.5px solid rgba(255, 248, 236, 0.72); color: rgba(255, 248, 236, 0.88); padding: 6px 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(3deg); }
@@ -276,7 +276,7 @@ ${tagMeta}
     .article-cover figcaption { position: absolute; left: 18px; bottom: 18px; max-width: min(520px, calc(100% - 36px)); background: rgba(24, 32, 28, 0.82); color: rgba(255, 250, 242, 0.94); border: 1px solid rgba(255, 250, 242, 0.18); padding: 8px 10px; font-size: 0.84rem; font-weight: 700; }
     .article-layout { display: grid; grid-template-columns: minmax(190px, 0.28fr) minmax(0, 0.72fr); gap: 42px; align-items: start; margin-top: 46px; }
     .article-dossier { position: sticky; top: 104px; border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.62); padding: 18px; display: grid; gap: 16px; }
-    .dossier-label { color: var(--ocean); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .dossier-label { color: var(--sandstone); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-dossier p { color: var(--ink-soft); font-size: 0.98rem; }
     .article-dossier dl { display: grid; gap: 10px; }
     .article-dossier div { border-top: 1px solid var(--line); padding-top: 10px; }
@@ -284,19 +284,19 @@ ${tagMeta}
     .article-dossier dd { margin: 3px 0 0; font-weight: 800; }
     .article-body { max-width: 68ch; font-size: 1.13rem; line-height: 1.78; color: var(--ink-soft); }
     .article-body > * + * { margin-top: 1.18em; }
-    .article-body > p:first-child::first-letter { float: left; font-family: var(--font-display); color: var(--ocean); font-size: 4.8rem; line-height: 0.86; padding: 8px 10px 0 0; font-weight: 800; }
+    .article-body > p:first-child::first-letter { float: left; font-family: var(--font-display); color: var(--clay); font-size: 4.8rem; line-height: 0.86; padding: 8px 10px 0 0; font-weight: 800; }
     .article-body h2, .article-body h3 { color: var(--ink); margin-top: 1.85em; line-height: 1.08; }
     .article-body h2 { font-size: 2.55rem; }
     .article-body h3 { font-size: 1.72rem; }
-    .article-body a { color: var(--ocean); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .article-body a { color: var(--clay); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
     .article-body blockquote { border: 1.5px solid var(--line-strong); background: color-mix(in srgb, var(--paper-deep) 62%, var(--white)); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.08); padding: 22px; color: var(--ink); font-family: var(--font-display); font-size: 1.62rem; line-height: 1.34; transform: rotate(-1deg); }
-    .article-body blockquote::before { content: "Field note"; display: block; margin-bottom: 10px; color: var(--ocean); font-family: var(--font-body); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-body blockquote::before { content: "Field note"; display: block; margin-bottom: 10px; color: var(--sandstone); font-family: var(--font-body); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-body ul { padding-left: 1.2em; }
     .article-body li + li { margin-top: 0.5em; }
     .article-signoff { margin-top: 42px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink-soft); font-weight: 800; }
     .article-nav { margin-top: 54px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .article-nav-card { min-height: 126px; border: 1.5px solid var(--line); border-radius: 3px; background: rgba(255, 248, 236, 0.72); padding: 18px; display: grid; align-content: space-between; text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
-    .article-nav-card span { color: var(--ocean); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .article-nav-card span { color: var(--sandstone); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
     .article-nav-card strong { color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; line-height: 1.1; }
     .article-nav-card:hover, .article-nav-card:focus-visible { border-color: var(--line-strong); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.1); transform: translateY(-2px); }
     .article-actions { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
@@ -316,6 +316,20 @@ ${tagMeta}
         <li><a href="../majestic-travels-blog.html#stories">Stories</a></li>
         <li><a href="../rss.xml">RSS</a></li>
       </ul>
+      <div class="nav-socials">
+        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg>
+        </a>
+        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
+        </a>
+        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg>
+        </a>
+      </div>
     </div>
   </nav>
   <main class="article-page" id="article">
@@ -384,10 +398,28 @@ ${markdownToHtml(post.body)}
         <img src="../public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
         <span class="footer-name">Majestic Travels</span>
         <p class="footer-tagline">Solo travel. Real places. No filters.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg>
+          </a>
+          <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
+          </a>
+          <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg>
+          </a>
+        </div>
       </div>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="../majestic-travels-blog.html#stories">Stories</a>
         <a href="../rss.xml">RSS</a>
+        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener">Ko-fi</a>
+        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
       </nav>
       <div class="footer-newsletter">
         <p class="newsletter-label">✉ Stay in the loop</p>
@@ -549,7 +581,7 @@ ${posts.map((post) => `    <item>
 }
 
 function main() {
-  const home = read(HOME_FILE);
+  const home = read(HOME_FILE).replace(/\r\n/g, "\n");
   const posts = loadPosts();
   if (!posts.length) throw new Error("No Markdown posts found in posts/.");
 
