@@ -1,0 +1,40 @@
+{
+  "planPath": "docs/superpowers/plans/2026-06-01-ui-redesign.md",
+  "tasks": [
+    {
+      "id": 1,
+      "subject": "Task 1: Remove dead old CSS and update palette variables",
+      "status": "pending",
+      "description": "**Goal:** Delete ~1800 lines of unused original homepage CSS (lines 62-1831) and replace with clean :root variables using the Sand & Stone palette.\n\n**Files:**\n- Modify: `majestic-travels-blog.html:62-1831`\n\n**Verify:** Open homepage in browser — no broken layout, no blank gaps\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open majestic-travels-blog.html in browser\", \"acceptanceCriteria\": [\"Old CSS classes removed\", \"Sand & Stone palette in :root\", \"theme-color updated\", \"No blank space in stories grid\"]}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Compact hero and constrain featured post",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Shrink hero from 60vh to 35vh, adjust overlay to warm charcoal, constrain featured card max-height.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (CSS)\n\n**Verify:** Open homepage — hero is compact, featured card constrained\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open majestic-travels-blog.html in browser\", \"acceptanceCriteria\": [\"Hero 35vh\", \"Warm charcoal overlay\", \"Featured card max-height 240px\"]}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: Add social links to homepage nav and footer",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Add Instagram, TikTok, Ko-fi, and Gumroad links to nav bar and footer.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (HTML + CSS)\n\n**Verify:** Open homepage — social icons in nav and footer\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open majestic-travels-blog.html in browser\", \"acceptanceCriteria\": [\"Social icons in nav\", \"Social links in footer\", \"target=_blank rel=noopener\", \"aria-labels present\"]}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: Apply palette + social links to blog article template",
+      "status": "pending",
+      "blockedBy": [1, 3],
+      "description": "**Goal:** Update build-blog.js article template with Sand & Stone palette and social links.\n\n**Files:**\n- Modify: `scripts/build-blog.js:190-411`\n\n**Verify:** `npm run build:blog` then open blog page\n\n```json:metadata\n{\"files\": [\"scripts/build-blog.js\"], \"verifyCommand\": \"npm run build:blog\", \"acceptanceCriteria\": [\"ocean references replaced\", \"Social icons in article nav\", \"Social links in article footer\", \"Build runs cleanly\"]}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 5: Update placeholders, remaining teal refs, final build",
+      "status": "pending",
+      "blockedBy": [2, 3, 4],
+      "description": "**Goal:** Replace gradient placeholders, update remaining teal references, run final build.\n\n**Files:**\n- Modify: `majestic-travels-blog.html` (CSS)\n\n**Verify:** `npm run build:blog` then visual check\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"npm run build:blog\", \"acceptanceCriteria\": [\"Neutral placeholders\", \"Sandstone newsletter button\", \"Clay pills\", \"No teal anywhere\", \"Build passes\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-06-01T12:00:00Z"
+}
