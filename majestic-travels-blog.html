@@ -214,9 +214,9 @@
 
     .site-hero {
       background:
-        linear-gradient(rgba(14, 102, 116, 0.75), rgba(14, 102, 116, 0.75)),
+        linear-gradient(rgba(44, 42, 38, 0.55), rgba(44, 42, 38, 0.55)),
         url('public/site/marrakech-palm-reflection.jpg') center / cover no-repeat;
-      min-height: 60vh;
+      min-height: 35vh;
       padding: 4rem 1.5rem 5rem;
       text-align: center;
       display: flex;
@@ -270,7 +270,7 @@
 
     .hero-cta:hover {
       background: var(--cream);
-      color: var(--sandstone);
+      color: var(--charcoal);
     }
 
     /* ─── POSTS SECTION ───────────────────────────────────────────── */
@@ -597,6 +597,7 @@
       color: inherit;
       box-shadow: 0 4px 24px rgba(24, 32, 28, 0.08);
       transition: box-shadow 0.2s, transform 0.2s;
+      max-height: 240px;
     }
 
     .featured-card:hover {
@@ -612,6 +613,7 @@
     .featured-media {
       flex: 0 0 55%;
       min-height: 320px;
+      max-height: 240px;
       overflow: hidden;
     }
 
@@ -689,11 +691,13 @@
       .featured-card {
         flex-direction: column;
         gap: 0;
+        max-height: none;
       }
 
       .featured-media {
         flex: none;
         min-height: 220px;
+        max-height: 220px;
       }
 
       .featured-body {
