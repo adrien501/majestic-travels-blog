@@ -206,12 +206,11 @@ function getKlaviyoConfig(home) {
 
 function updateKlaviyoConfig(home, config) {
   const publicKey = escapeHtml(config.publicKey || "");
-  const listId = escapeHtml(config.listId || "");
 
   return home
     .replace(/klaviyo\.js\?company_id=[^"]*/g, `klaviyo.js?company_id=${encodeURIComponent(config.publicKey || "")}`)
     .replace(/data-klaviyo-public-key="[^"]*"/g, `data-klaviyo-public-key="${publicKey}"`)
-    .replace(/data-klaviyo-list-id="[^"]*"/g, `data-klaviyo-list-id="${listId}"`);
+    .replace(/\sdata-klaviyo-list-id="[^"]*"/g, "");
 }
 
 const DESTINATION_TAGS = {
@@ -483,7 +482,7 @@ ${markdownToHtml(post.body)}
     <div class="newsletter-section-inner">
       <h2>Get exclusive itineraries &amp; travel stories</h2>
       <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm" action="https://a.klaviyo.com/client/subscriptions" method="post" data-klaviyo-form data-klaviyo-public-key="${escapeHtml(klaviyo.publicKey || "")}" data-klaviyo-list-id="${escapeHtml(klaviyo.listId || "")}">
+      <form class="newsletter-form" id="ctaNewsletterForm" action="/api/subscribe" method="post" data-klaviyo-form>
         <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
@@ -500,7 +499,7 @@ ${markdownToHtml(post.body)}
       <div class="footer-right">
       <div class="footer-newsletter">
         <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
-        <form class="newsletter-form" id="footerNewsletterForm" action="https://a.klaviyo.com/client/subscriptions" method="post" data-klaviyo-form data-klaviyo-public-key="${escapeHtml(klaviyo.publicKey || "")}" data-klaviyo-list-id="${escapeHtml(klaviyo.listId || "")}">
+        <form class="newsletter-form" id="footerNewsletterForm" action="/api/subscribe" method="post" data-klaviyo-form>
           <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
           <button type="submit" class="newsletter-btn">Subscribe</button>
         </form>
@@ -532,64 +531,23 @@ ${markdownToHtml(post.body)}
       if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
     };
     (function() {
-      var KLAVIYO_REVISION = "2026-04-15";
-      var KLAVIYO_SUBSCRIPTION_ENDPOINT = "https://a.klaviyo.com/client/subscriptions";
-
       function newsletterErrorMessage(body) {
-        if (body && body.errors && body.errors[0]) {
-          return body.errors[0].detail || body.errors[0].title || "Something went wrong — try again.";
+        if (body && body.error) {
+          return body.error;
         }
         return "Something went wrong — try again.";
       }
 
       function subscribeWithKlaviyo(form, email) {
-        var publicKey = form.dataset.klaviyoPublicKey || "";
-        var listId = form.dataset.klaviyoListId || "";
-
-        if (!publicKey || !listId) {
-          return Promise.reject(new Error("Newsletter is not configured yet."));
-        }
-
-        return fetch(KLAVIYO_SUBSCRIPTION_ENDPOINT + "?company_id=" + encodeURIComponent(publicKey), {
+        return fetch(form.action || "/api/subscribe", {
           method: "POST",
           headers: {
-            accept: "application/vnd.api+json",
-            "content-type": "application/vnd.api+json",
-            revision: KLAVIYO_REVISION
+            accept: "application/json",
+            "content-type": "application/json"
           },
           body: JSON.stringify({
-            data: {
-              type: "subscription",
-              attributes: {
-                custom_source: "Majestic Travels newsletter",
-                profile: {
-                  data: {
-                    type: "profile",
-                    attributes: {
-                      email: email,
-                      subscriptions: {
-                        email: {
-                          marketing: {
-                            consent: "SUBSCRIBED"
-                          }
-                        }
-                      },
-                      properties: {
-                        signup_source: window.location.pathname || "/"
-                      }
-                    }
-                  }
-                }
-              },
-              relationships: {
-                list: {
-                  data: {
-                    type: "list",
-                    id: listId
-                  }
-                }
-              }
-            }
+            email: email,
+            source: window.location.pathname || "/"
           })
         }).then(function(response) {
           if (response.ok) return;
