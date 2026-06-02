@@ -66,7 +66,12 @@ function inlineMarkdown(value = "") {
   return escapeHtml(value)
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, text, url) {
+      if (/^https?:\/\//i.test(url)) {
+        return '<a href="' + url + '" target="_blank" rel="noopener">' + text + '</a>';
+      }
+      return '<a href="' + url + '">' + text + '</a>';
+    });
 }
 
 function markdownToHtml(markdown) {
