@@ -602,103 +602,72 @@
     /* ─── FOOTER ──────────────────────────────────────────────────── */
 
     .site-footer {
-      background: var(--ink);
-      color: var(--cream);
-      padding: 3rem 1.5rem 2rem;
+      background: var(--footer-bg);
+      color: #faf6f0;
+      padding: 3.5rem 1.5rem 2rem;
     }
 
     .footer-inner {
       max-width: var(--max);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    @media (max-width: 600px) {
-      .footer-inner { grid-template-columns: 1fr; }
-    }
-
-    .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
     }
 
     .footer-logo {
-      height: 34px;
+      height: 48px;
       width: auto;
-      aspect-ratio: auto;
-      object-fit: contain;
       filter: brightness(0) invert(1);
-      margin-bottom: 0.25rem;
     }
 
     .footer-name {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       font-variation-settings: "SOFT" 70, "WONK" 1;
-      color: var(--cream);
     }
 
     .footer-tagline {
       font-size: 0.875rem;
-      color: rgba(246, 236, 220, 0.6);
+      opacity: 0.6;
       margin: 0;
     }
 
-    .footer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .footer-nav a {
-      color: rgba(246, 236, 220, 0.7);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .footer-nav a:hover {
-      color: var(--cream);
-      text-decoration: underline;
-    }
-
     .footer-newsletter {
-      grid-column: 1 / -1;
-      border-top: 1px solid rgba(246, 236, 220, 0.12);
-      padding-top: 1.5rem;
-      margin-top: 0.5rem;
+      margin: 0.75rem 0;
     }
 
     .newsletter-label {
-      font-size: 0.9rem;
-      color: rgba(246, 236, 220, 0.7);
-      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
     }
     .newsletter-label svg {
-      width: 1.1em;
-      height: 1.1em;
+      width: 1em;
+      height: 1em;
       flex-shrink: 0;
     }
 
     .newsletter-form {
       display: flex;
       gap: 0.5rem;
-      max-width: 380px;
+      max-width: 360px;
+      margin: 0 auto;
     }
 
     .newsletter-input {
       flex: 1;
       padding: 0.55rem 0.9rem;
-      border: 1px solid rgba(246, 236, 220, 0.2);
-      background: rgba(246, 236, 220, 0.07);
-      color: var(--cream);
+      border: 1px solid rgba(250, 246, 240, 0.2);
+      background: rgba(250, 246, 240, 0.07);
+      color: #faf6f0;
       font-family: var(--font-body);
       font-size: 0.9rem;
       border-radius: var(--radius);
@@ -706,17 +675,17 @@
     }
 
     .newsletter-input::placeholder {
-      color: rgba(246, 236, 220, 0.38);
+      color: rgba(250, 246, 240, 0.38);
     }
 
     .newsletter-input:focus {
-      border-color: rgba(246, 236, 220, 0.45);
+      border-color: rgba(250, 246, 240, 0.45);
     }
 
     .newsletter-btn {
       padding: 0.55rem 1.1rem;
       background: var(--sandstone);
-      color: var(--cream);
+      color: #fff;
       border: none;
       font-family: var(--font-body);
       font-size: 0.9rem;
@@ -730,13 +699,44 @@
       background: var(--clay);
     }
 
+    .newsletter-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.25rem 0.75rem;
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    .footer-links li:not(:last-child)::after {
+      content: "·";
+      margin-left: 0.75rem;
+      opacity: 0.4;
+    }
+
+    .footer-links a {
+      opacity: 0.6;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: opacity 0.15s;
+    }
+
+    .footer-links a:hover { opacity: 1; }
+
     .footer-copy {
-      grid-column: 1 / -1;
-      font-size: 0.8rem;
-      color: rgba(246, 236, 220, 0.35);
-      padding-top: 1.5rem;
-      margin-top: 0.5rem;
-      border-top: 1px solid rgba(246, 236, 220, 0.08);
+      font-size: 0.78rem;
+      opacity: 0.3;
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 480px) {
+      .site-footer { padding: 2.5rem 1.5rem 1.5rem; }
     }
 
     /* ─── FEATURED POST ──────────────────────────────────────────── */
@@ -1408,41 +1408,37 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
-        <span class="footer-name">Majestic Travels</span>
-        <p class="footer-tagline">Solo travel. Real places. No filters.</p>
-        <div class="footer-socials">
-          <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg>
-          </a>
-          <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
-          </a>
-          <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg>
-          </a>
-        </div>
-      </div>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#stories">Stories</a>
-        <a href="rss.xml">RSS</a>
-        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener">Ko-fi</a>
-        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
-      </nav>
+      <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
+      <span class="footer-name">Majestic Travels</span>
+      <p class="footer-tagline">Solo travel. Real places. No filters.</p>
       <div class="footer-newsletter">
         <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
         <form class="newsletter-form" id="footerNewsletterForm">
-          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address">
+          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" required>
           <button type="submit" class="newsletter-btn">Subscribe</button>
         </form>
       </div>
-      <p class="footer-copy">© 2026 Majestic Travels</p>
+      <ul class="footer-links">
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="rss.xml">RSS</a></li>
+      </ul>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg>
+        </a>
+        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
+        </a>
+        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Majestic Travels</p>
     </div>
   </footer>
 
