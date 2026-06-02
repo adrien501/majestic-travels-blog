@@ -4,51 +4,51 @@
     {
       "id": 8,
       "subject": "Task 1: Dark Mode CSS Foundation",
-      "status": "pending",
+      "status": "completed",
       "description": "**Goal:** Add dark-mode CSS variable overrides, no-flash inline theme script, and toggleTheme function.\n\n**Files:**\n- Modify: `majestic-travels-blog.html`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open homepage, run toggleTheme() in console\", \"acceptanceCriteria\": [\"dark mode CSS overrides all tokens\", \"no flash on reload\", \"toggleTheme persists to localStorage\"]}\n```"
     },
     {
       "id": 9,
       "subject": "Task 2: Navbar Redesign",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [8],
       "description": "**Goal:** Replace solid sandstone nav with transparent frosted-glass nav, add dark-mode toggle, hamburger for mobile.\n\n**Files:**\n- Modify: `majestic-travels-blog.html`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open homepage, scroll past hero, test toggle, resize to mobile\", \"acceptanceCriteria\": [\"frosted glass nav\", \"solid on scroll\", \"dark mode toggle\", \"hamburger menu\"]}\n```"
     },
     {
       "id": 10,
       "subject": "Task 3: Destinations + NYC + Filtering",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [9],
       "description": "**Goal:** Add NYC as 6th destination, 3x2 grid, click-to-filter stories with URL param support.\n\n**Files:**\n- Modify: `majestic-travels-blog.html`\n- Modify: `scripts/build-blog.js`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\", \"scripts/build-blog.js\"], \"verifyCommand\": \"node scripts/build-blog.js && open homepage, click NYC card\", \"acceptanceCriteria\": [\"NYC card visible\", \"click filters stories\", \"URL param works\", \"mobile scroll strip\"]}\n```"
     },
     {
       "id": 11,
       "subject": "Task 4: Klaviyo Integration",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [10],
       "description": "**Goal:** Add dedicated email signup section above footer + wire both forms to Klaviyo (public key VQW5sn).\n\n**Files:**\n- Modify: `majestic-travels-blog.html`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open homepage, submit email in newsletter section\", \"acceptanceCriteria\": [\"Klaviyo loaded\", \"dedicated section renders\", \"form submits successfully\"]}\n```"
     },
     {
       "id": 12,
       "subject": "Task 5: Footer Redesign",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [11],
       "description": "**Goal:** Rewrite footer as centered stacked layout — larger logo, inline links, centered socials, always dark.\n\n**Files:**\n- Modify: `majestic-travels-blog.html`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\"], \"verifyCommand\": \"open homepage, scroll to footer, toggle dark mode\", \"acceptanceCriteria\": [\"centered stack layout\", \"always dark\", \"48px logo\", \"inline links\"]}\n```"
     },
     {
       "id": 13,
       "subject": "Task 6: Sync Build Script for Article Pages",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [12],
       "description": "**Goal:** Mirror all homepage changes into articleHtml() in build-blog.js.\n\n**Files:**\n- Modify: `scripts/build-blog.js`\n\n```json:metadata\n{\"files\": [\"scripts/build-blog.js\"], \"verifyCommand\": \"node scripts/build-blog.js && open blog/nyc-december-holiday-magic.html\", \"acceptanceCriteria\": [\"theme script in head\", \"dark mode works\", \"new nav with toggle\", \"centered footer\", \"Klaviyo forms\"]}\n```"
     },
     {
       "id": 14,
       "subject": "Task 7: Final Verification & Cleanup",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [13],
       "description": "**Goal:** Full build + E2E verification of all features together.\n\n**Files:**\n- Potentially fix: `majestic-travels-blog.html`, `scripts/build-blog.js`\n\n```json:metadata\n{\"files\": [\"majestic-travels-blog.html\", \"scripts/build-blog.js\"], \"verifyCommand\": \"node scripts/build-blog.js && full E2E browser test\", \"acceptanceCriteria\": [\"build succeeds\", \"all features work\", \"mobile responsive\", \"no console errors\"]}\n```"
     }
   ],
-  "lastUpdated": "2026-06-01T12:00:00Z"
+  "lastUpdated": "2026-06-02T00:00:00Z"
 }
