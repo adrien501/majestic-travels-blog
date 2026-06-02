@@ -31,14 +31,15 @@ function copyFile(from, to) {
   fs.copyFileSync(source, target);
 }
 
-function copyDir(source, target) {
+function copyDir(source, target, skipExtensions) {
   fs.mkdirSync(target, { recursive: true });
   for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
     const sourcePath = path.join(source, entry.name);
     const targetPath = path.join(target, entry.name);
     if (entry.isDirectory()) {
-      copyDir(sourcePath, targetPath);
+      copyDir(sourcePath, targetPath, skipExtensions);
     } else {
+      if (skipExtensions && skipExtensions.some((ext) => entry.name.toLowerCase().endsWith(ext))) continue;
       fs.copyFileSync(sourcePath, targetPath);
     }
   }
@@ -70,6 +71,12 @@ function main() {
   copyDir(path.join(ROOT, "blog"), path.join(DIST, "blog"));
   copyDir(PUBLIC_SITE, path.join(DIST, "public", "site"));
   BRAND_PNGS.forEach((p) => copyFile(p, p));
+
+  // Copy destination photos (skip raw camera files like .dng)
+  const picsSource = path.join(ROOT, "public", "pics");
+  if (fs.existsSync(picsSource)) {
+    copyDir(picsSource, path.join(DIST, "public", "pics"), [".dng"]);
+  }
 
   const outputFiles = walk(DIST);
   const totalBytes = outputFiles.reduce((sum, file) => sum + fs.statSync(file).size, 0);
