@@ -170,12 +170,32 @@ function getHomeParts(home) {
   return { css: styleMatch[1] };
 }
 
+const DESTINATION_TAGS = {
+  "dubai": ["Dubai", "Abu Dhabi"],
+  "fuerteventura": ["Fuerteventura"],
+  "ljubljana": ["Ljubljana"],
+  "marrakech": ["Marrakech"],
+  "vancouver": ["Vancouver"],
+  "new-york": ["New York"]
+};
+
+function getDestinations(tags) {
+  const dests = [];
+  for (const [dest, keywords] of Object.entries(DESTINATION_TAGS)) {
+    if (tags.some((tag) => keywords.some((kw) => tag.toLowerCase().includes(kw.toLowerCase())))) {
+      dests.push(dest);
+    }
+  }
+  return dests.join(" ");
+}
+
 function cardHtml(post) {
   const categorySlugs = [post.category, ...post.tags].map(slugify).join(" ");
   const search = [post.title, post.excerpt, post.category, post.tags.join(" "), post.keywords].join(" ");
   const meta = [post.categoryLabel, post.readTime].filter(Boolean).join(" · ");
+  const destinations = getDestinations(post.tags);
 
-  return `          <a class="story-card" href="${escapeHtml(post.url)}" data-category="${escapeHtml(categorySlugs)}" data-search="${escapeHtml(search)}">
+  return `          <a class="story-card" href="${escapeHtml(post.url)}" data-category="${escapeHtml(categorySlugs)}" data-search="${escapeHtml(search)}" data-destinations="${escapeHtml(destinations)}">
             <div class="story-media">
               <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt)}" loading="lazy" decoding="async">
             </div>

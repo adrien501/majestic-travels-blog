@@ -900,7 +900,7 @@
 
     .destinations-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
 
@@ -909,12 +909,25 @@
     }
 
     @media (max-width: 480px) {
-      .destinations-grid { grid-template-columns: 1fr; }
+      .destinations-grid {
+        grid-template-columns: none;
+        display: flex;
+        gap: 0.75rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+      }
+      .dest-card {
+        flex: 0 0 140px;
+        aspect-ratio: 3 / 4;
+        scroll-snap-align: start;
+      }
     }
 
     .dest-card {
       position: relative;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
       border-radius: var(--radius);
       background-image: var(--dest-img);
@@ -922,7 +935,8 @@
       background-position: center;
       text-decoration: none;
       display: block;
-      transition: transform 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .dest-card::after {
@@ -934,11 +948,17 @@
 
     .dest-card:hover {
       transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
 
     .dest-card:focus-visible {
       outline: 3px solid var(--sandstone);
       outline-offset: 3px;
+    }
+
+    .dest-card.dest-active {
+      outline: 3px solid var(--sandstone);
+      outline-offset: -3px;
     }
 
     .dest-name {
@@ -954,6 +974,48 @@
       font-variation-settings: "SOFT" 64, "WONK" 1;
       line-height: 1.2;
     }
+
+    /* ─── DESTINATION FILTER INDICATOR ──────────── */
+
+    .dest-filter-indicator {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .dest-filter-indicator.active { display: flex; }
+
+    .dest-filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      background: var(--sandstone);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .dest-filter-clear {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0 0 0 0.25rem;
+      opacity: 0.8;
+    }
+
+    .dest-filter-clear:hover { opacity: 1; }
+
+    .dest-filter-count {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+
     /* ─── ABOUT ──────────────────────────────────────────────────── */
 
     .about-section {
@@ -1100,20 +1162,23 @@
     <div class="destinations-inner">
       <h2 class="section-heading">Destinations</h2>
       <div class="destinations-grid">
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/abu-dhabi-night.jpg')">
+        <a class="dest-card" href="#stories" data-destination="dubai" style="--dest-img: url('public/site/abu-dhabi-night.jpg')">
           <span class="dest-name">Dubai &amp; Abu Dhabi</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/fuerteventura-atlantic.jpg')">
+        <a class="dest-card" href="#stories" data-destination="fuerteventura" style="--dest-img: url('public/site/fuerteventura-atlantic.jpg')">
           <span class="dest-name">Fuerteventura</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/ljubljana-lake.jpg')">
+        <a class="dest-card" href="#stories" data-destination="ljubljana" style="--dest-img: url('public/site/ljubljana-lake.jpg')">
           <span class="dest-name">Ljubljana</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/marrakech-palm-reflection.jpg')">
+        <a class="dest-card" href="#stories" data-destination="marrakech" style="--dest-img: url('public/site/marrakech-palm-reflection.jpg')">
           <span class="dest-name">Marrakech</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/vancouver-cove.jpg')">
+        <a class="dest-card" href="#stories" data-destination="vancouver" style="--dest-img: url('public/site/vancouver-cove.jpg')">
           <span class="dest-name">Vancouver</span>
+        </a>
+        <a class="dest-card" href="#stories" data-destination="new-york" style="--dest-img: linear-gradient(135deg, #4a5a6a, #2a3a4a)">
+          <span class="dest-name">New York City</span>
         </a>
       </div>
     </div>
@@ -1132,10 +1197,17 @@
           <button class="pill" data-filter="guide">Guides</button>
           <button class="pill" data-filter="field-notes">Field Notes</button>
         </div>
+        <div class="dest-filter-indicator" id="destFilterIndicator">
+          <span class="dest-filter-pill">
+            <span id="destFilterName"></span>
+            <button class="dest-filter-clear" id="destFilterClear" aria-label="Clear destination filter">&times;</button>
+          </span>
+          <span class="dest-filter-count" id="destFilterCount"></span>
+        </div>
       </div>
         <div class="story-grid" id="storyGrid">
           <!-- Generated by scripts/build-blog.js from posts/*.md. Edit Markdown posts, not these cards. -->
-          <a class="story-card" href="blog/nyc-december-holiday-magic.html" data-category="holiday-guide new-york december christmas holiday" data-search="December in NYC: The Ultimate Holiday Magic Guide New York City is at its most magical in December. The entire city transforms into a living holiday card — from the Rockefeller tree to Dyker Heights, with insider tips on how to do it right. holiday-guide New York December Christmas Holiday nyc december christmas holiday rockefeller tree saks light show dyker heights rockettes nutcracker bryant park">
+          <a class="story-card" href="blog/nyc-december-holiday-magic.html" data-category="holiday-guide new-york december christmas holiday" data-search="December in NYC: The Ultimate Holiday Magic Guide New York City is at its most magical in December. The entire city transforms into a living holiday card — from the Rockefeller tree to Dyker Heights, with insider tips on how to do it right. holiday-guide New York December Christmas Holiday nyc december christmas holiday rockefeller tree saks light show dyker heights rockettes nutcracker bryant park" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85" alt="Rockefeller Center Christmas tree lit up at night in New York City" loading="lazy" decoding="async">
             </div>
@@ -1146,7 +1218,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/fuerteventura-solo-travel.html" data-category="personal-journey solo-travel fuerteventura wellness" data-search="I Went to Fuerteventura to Escape and Found Myself Again Not here for parties or nightlife — just a desperate need to breathe. A story about burnout, surfing, hidden beaches, and the version of yourself buried between stress and boredom. personal-journey Solo travel Fuerteventura Wellness fuerteventura solo travel surfing silence morro jable burnout wellness escape">
+          <a class="story-card" href="blog/fuerteventura-solo-travel.html" data-category="personal-journey solo-travel fuerteventura wellness" data-search="I Went to Fuerteventura to Escape and Found Myself Again Not here for parties or nightlife — just a desperate need to breathe. A story about burnout, surfing, hidden beaches, and the version of yourself buried between stress and boredom. personal-journey Solo travel Fuerteventura Wellness fuerteventura solo travel surfing silence morro jable burnout wellness escape" data-destinations="fuerteventura">
             <div class="story-media">
               <img src="public/site/fuerteventura-atlantic.jpg" alt="Volcanic coastline and calm Atlantic water in Fuerteventura" loading="lazy" decoding="async">
             </div>
@@ -1157,7 +1229,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/nyc-10-day-guide.html" data-category="ultimate-guide new-york city-guide brooklyn itinerary" data-search="The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps Everything learned from countless NYC trips — hidden gems discovered at dawn, the iconic sights done right, and every lesson from the hard way so you do not have to repeat the mistakes. ultimate-guide New York City guide Brooklyn Itinerary nyc 10 day guide new york brooklyn dumbo williamsburg central park high line roosevelt island tipping guide">
+          <a class="story-card" href="blog/nyc-10-day-guide.html" data-category="ultimate-guide new-york city-guide brooklyn itinerary" data-search="The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps Everything learned from countless NYC trips — hidden gems discovered at dawn, the iconic sights done right, and every lesson from the hard way so you do not have to repeat the mistakes. ultimate-guide New York City guide Brooklyn Itinerary nyc 10 day guide new york brooklyn dumbo williamsburg central park high line roosevelt island tipping guide" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=1200&amp;q=85" alt="New York City skyline at night from across the water" loading="lazy" decoding="async">
             </div>
@@ -1168,7 +1240,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/new-york-city-summer.html" data-category="city-guide new-york city-guide summer" data-search="New York City in Summer: A Love Letter to the Greatest City on Earth The way golden light bounces off skyscrapers at sunset, the hum of sidewalk chatter mixing with distant jazz, the smell of hot pretzels and sudden rain on pavement. It's alive. It pulses. And if you let it, it'll rewrite your soul. city-guide New York City guide Summer new york city summer guide times square central park brooklyn bridge high line rooftop">
+          <a class="story-card" href="blog/new-york-city-summer.html" data-category="city-guide new-york city-guide summer" data-search="New York City in Summer: A Love Letter to the Greatest City on Earth The way golden light bounces off skyscrapers at sunset, the hum of sidewalk chatter mixing with distant jazz, the smell of hot pretzels and sudden rain on pavement. It's alive. It pulses. And if you let it, it'll rewrite your soul. city-guide New York City guide Summer new york city summer guide times square central park brooklyn bridge high line rooftop" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=1200&amp;q=85" alt="New York City skyline at dusk" loading="lazy" decoding="async">
             </div>
@@ -1179,7 +1251,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/first-surf-lesson-fuerteventura.html" data-category="travel-journal surf solo-travel fuerteventura" data-search="My First Time Surfing in Fuerteventura and OTRO MODO Surf School Some people go to the Canary Islands for the sun. I went to learn how to surf. What I didn't expect was how much it would teach me about trust — in the ocean, in my body, and in the unknown. travel-journal Surf Solo travel Fuerteventura surf school fuerteventura otro modo first time nerves beginner surf lessons morro jable">
+          <a class="story-card" href="blog/first-surf-lesson-fuerteventura.html" data-category="travel-journal surf solo-travel fuerteventura" data-search="My First Time Surfing in Fuerteventura and OTRO MODO Surf School Some people go to the Canary Islands for the sun. I went to learn how to surf. What I didn't expect was how much it would teach me about trust — in the ocean, in my body, and in the unknown. travel-journal Surf Solo travel Fuerteventura surf school fuerteventura otro modo first time nerves beginner surf lessons morro jable" data-destinations="fuerteventura">
             <div class="story-media">
               <img src="public/site/fuerteventura-surf-note.jpg" alt="Solo traveler standing on dark rocks beside the Atlantic in Fuerteventura" loading="lazy" decoding="async">
             </div>
@@ -1190,7 +1262,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/nyc-december-itinerary.html" data-category="winter-itinerary new-york itinerary december holiday" data-search="The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems) Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems. winter-itinerary New York Itinerary December Holiday december new york itinerary christmas holiday central park rockefeller 5 day guide">
+          <a class="story-card" href="blog/nyc-december-itinerary.html" data-category="winter-itinerary new-york itinerary december holiday" data-search="The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems) Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems. winter-itinerary New York Itinerary December Holiday december new york itinerary christmas holiday central park rockefeller 5 day guide" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85" alt="Holiday lights glowing on a city street at night" loading="lazy" decoding="async">
             </div>
@@ -1262,62 +1334,141 @@
   </footer>
 
   <script>
-    window.toggleTheme = function() {
-      var html = document.documentElement;
-      var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
-    };
+window.toggleTheme = function() {
+  var html = document.documentElement;
+  var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
+};
 
-    (function () {
-      // Nav solid state on scroll
-      var hero = document.querySelector('.site-hero');
-      var nav = document.querySelector('.site-nav');
-      if (hero && nav) {
-        var navObserver = new IntersectionObserver(function(entries) {
-          nav.classList.toggle('nav-solid', !entries[0].isIntersecting);
-        }, { threshold: 0 });
-        navObserver.observe(hero);
-      }
+(function () {
+  // Nav solid state on scroll
+  var hero = document.querySelector('.site-hero');
+  var nav = document.querySelector('.site-nav');
+  if (hero && nav) {
+    var navObserver = new IntersectionObserver(function(entries) {
+      nav.classList.toggle('nav-solid', !entries[0].isIntersecting);
+    }, { threshold: 0 });
+    navObserver.observe(hero);
+  }
 
-      var searchInput = document.getElementById("story-search");
-      var pills = document.querySelectorAll(".pill");
-      var grid = document.getElementById("storyGrid");
-      var emptyState = document.getElementById("emptyState");
-      var activeFilter = "all";
+  // Filtering
+  var searchInput = document.getElementById("story-search");
+  var pills = document.querySelectorAll(".pill");
+  var grid = document.getElementById("storyGrid");
+  var emptyState = document.getElementById("emptyState");
+  var activeFilter = "all";
+  var activeDest = "";
 
-      function getCards() {
-        return grid.querySelectorAll(".story-card");
-      }
+  var destIndicator = document.getElementById("destFilterIndicator");
+  var destNameEl = document.getElementById("destFilterName");
+  var destCountEl = document.getElementById("destFilterCount");
+  var destCards = document.querySelectorAll(".dest-card[data-destination]");
 
-      function filterCards() {
-        var query = searchInput.value.toLowerCase().trim();
-        var cards = getCards();
-        var visible = 0;
-        cards.forEach(function (card) {
-          var matchesSearch = !query || card.dataset.search.toLowerCase().includes(query);
-          var cardCategories = card.dataset.category ? card.dataset.category.split(" ") : [];
-          var matchesTopic = activeFilter === "all" || cardCategories.includes(activeFilter);
-          var show = matchesSearch && matchesTopic;
-          card.hidden = !show;
-          if (show) visible++;
-        });
-        emptyState.hidden = visible > 0;
-      }
+  var DEST_LABELS = {
+    "dubai": "Dubai & Abu Dhabi",
+    "fuerteventura": "Fuerteventura",
+    "ljubljana": "Ljubljana",
+    "marrakech": "Marrakech",
+    "vancouver": "Vancouver",
+    "new-york": "New York City"
+  };
 
-      searchInput.addEventListener("input", filterCards);
+  function getCards() {
+    return grid.querySelectorAll(".story-card");
+  }
 
-      pills.forEach(function (pill) {
-        pill.addEventListener("click", function () {
-          pills.forEach(function (p) { p.classList.remove("active"); });
-          pill.classList.add("active");
-          activeFilter = pill.dataset.filter;
-          filterCards();
-        });
-      });
-    })();
+  function filterCards() {
+    var query = searchInput.value.toLowerCase().trim();
+    var cards = getCards();
+    var visible = 0;
+    var total = cards.length;
+    cards.forEach(function (card) {
+      var matchesSearch = !query || card.dataset.search.toLowerCase().includes(query);
+      var cardCategories = card.dataset.category ? card.dataset.category.split(" ") : [];
+      var matchesTopic = activeFilter === "all" || cardCategories.includes(activeFilter);
+      var matchesDest = !activeDest || (card.dataset.destinations && card.dataset.destinations.split(" ").indexOf(activeDest) !== -1);
+      var show = matchesSearch && matchesTopic && matchesDest;
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    emptyState.hidden = visible > 0;
+    if (!activeDest) {
+      emptyState.textContent = "No posts match your search.";
+    } else if (visible === 0) {
+      emptyState.textContent = "No stories from " + (DEST_LABELS[activeDest] || activeDest) + " yet — check back soon.";
+    }
+
+    if (activeDest) {
+      destIndicator.classList.add("active");
+      destNameEl.textContent = DEST_LABELS[activeDest] || activeDest;
+      destCountEl.textContent = "Showing " + visible + " of " + total + " stories";
+    } else {
+      destIndicator.classList.remove("active");
+    }
+
+    destCards.forEach(function(dc) {
+      dc.classList.toggle("dest-active", dc.dataset.destination === activeDest);
+    });
+  }
+
+  function setDestFilter(dest) {
+    if (activeDest === dest) {
+      activeDest = "";
+      updateUrl("");
+    } else {
+      activeDest = dest;
+      updateUrl(dest);
+    }
+    filterCards();
+  }
+
+  function updateUrl(dest) {
+    var url = new URL(window.location);
+    if (dest) {
+      url.searchParams.set("destination", dest);
+    } else {
+      url.searchParams.delete("destination");
+    }
+    history.replaceState(null, "", url);
+  }
+
+  destCards.forEach(function(card) {
+    card.addEventListener("click", function(e) {
+      e.preventDefault();
+      setDestFilter(card.dataset.destination);
+      document.getElementById("stories").scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  var clearBtn = document.getElementById("destFilterClear");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", function() {
+      activeDest = "";
+      updateUrl("");
+      filterCards();
+    });
+  }
+
+  searchInput.addEventListener("input", filterCards);
+  pills.forEach(function (pill) {
+    pill.addEventListener("click", function () {
+      pills.forEach(function (p) { p.classList.remove("active"); });
+      pill.classList.add("active");
+      activeFilter = pill.dataset.filter;
+      filterCards();
+    });
+  });
+
+  var params = new URLSearchParams(window.location.search);
+  var destParam = params.get("destination");
+  if (destParam && DEST_LABELS[destParam]) {
+    activeDest = destParam;
+    filterCards();
+  }
+})();
   </script>
 </body>
 </html>
