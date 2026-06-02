@@ -30,6 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,50..100,0..1&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VQW5sn"></script>
 
   <script type="application/ld+json">
   {
@@ -59,6 +60,10 @@
   }
   </script>
 
+  <script>
+(function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);document.querySelector('meta[name="theme-color"]').content=t==='dark'?'#1a1917':'#2c2a26'})();
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     * { margin: 0; }
@@ -80,6 +85,22 @@
       --max: 1180px;
       --narrow: 760px;
       --radius: 6px;
+      --footer-bg: #2c2a26;
+    }
+
+    [data-theme="dark"] {
+      --ink: #f0e9df;
+      --ink-soft: #a89e94;
+      --cream: #1a1917;
+      --cream-deep: #242220;
+      --white: #2c2a26;
+      --sandstone: #d4a06e;
+      --clay: #c07a5a;
+      --sage: #8a9b82;
+      --charcoal: #f0e9df;
+      --line: rgba(250, 246, 240, 0.10);
+      --line-strong: rgba(250, 246, 240, 0.18);
+      --footer-bg: #141312;
     }
 
     html {
@@ -154,10 +175,24 @@
     /* ─── NAV ─────────────────────────────────────────────────────── */
 
     .site-nav {
-      background: var(--sandstone);
       position: sticky;
       top: 0;
       z-index: 100;
+      background: rgba(44, 42, 38, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      border-bottom: 1px solid transparent;
+    }
+
+    [data-theme="dark"] .site-nav {
+      background: rgba(26, 25, 23, 0.3);
+    }
+
+    .site-nav.nav-solid {
+      background: var(--cream);
+      border-bottom-color: var(--line);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
     }
 
     .nav-inner {
@@ -175,14 +210,21 @@
       align-items: center;
       gap: 0.75rem;
       text-decoration: none;
-      color: var(--cream);
+      color: #faf6f0;
+      transition: color 0.2s;
     }
+
+    .nav-solid .nav-brand { color: var(--ink); }
 
     .nav-logo {
       height: 30px;
       width: auto;
       filter: brightness(0) invert(1);
+      transition: filter 0.2s;
     }
+
+    .nav-solid .nav-logo { filter: none; }
+    [data-theme="dark"] .nav-solid .nav-logo { filter: brightness(0) invert(1); }
 
     .nav-brand-name {
       font-family: var(--font-display);
@@ -199,55 +241,126 @@
     }
 
     .nav-menu a {
-      color: rgba(246, 236, 220, 0.85);
+      color: rgba(250, 246, 240, 0.85);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
+      transition: color 0.2s;
     }
 
-    .nav-menu a:hover {
-      color: var(--cream);
-      text-decoration: underline;
-    }
+    .nav-solid .nav-menu a { color: var(--ink-soft); }
+    .nav-menu a:hover { color: #faf6f0; }
+    .nav-solid .nav-menu a:hover { color: var(--ink); }
 
-    .nav-socials {
+    .nav-actions {
       display: flex;
-      gap: 0.5rem;
       align-items: center;
-      margin-left: 0.5rem;
+      gap: 0.5rem;
     }
-    .nav-socials a {
+
+    .theme-toggle {
       display: grid;
       place-items: center;
-      width: 32px;
-      height: 32px;
-      color: rgba(250, 246, 240, 0.6);
-      transition: color 0.15s;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(250, 246, 240, 0.3);
+      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      color: rgba(250, 246, 240, 0.85);
     }
-    .nav-socials a:hover { color: var(--cream); }
-    .nav-socials svg { width: 18px; height: 18px; }
+
+    .nav-solid .theme-toggle {
+      border-color: var(--line-strong);
+      color: var(--ink-soft);
+    }
+
+    .theme-toggle:hover {
+      border-color: rgba(250, 246, 240, 0.6);
+      color: #faf6f0;
+    }
+
+    .nav-solid .theme-toggle:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .theme-toggle svg { width: 16px; height: 16px; }
+    .theme-toggle .icon-moon { display: none; }
+    [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+    .nav-hamburger {
+      display: none;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(250, 246, 240, 0.3);
+      border-radius: var(--radius);
+      background: transparent;
+      cursor: pointer;
+      color: rgba(250, 246, 240, 0.85);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-solid .nav-hamburger {
+      border-color: var(--line-strong);
+      color: var(--ink-soft);
+    }
+
+    .nav-hamburger svg { width: 18px; height: 18px; }
+
+    .nav-mobile-panel {
+      display: none;
+      position: absolute;
+      top: 62px;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-mobile-panel.open { display: block; }
+
+    .nav-mobile-panel a {
+      display: block;
+      padding: 0.6rem 0;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-mobile-panel a:last-child { border-bottom: none; }
+    .nav-mobile-panel a:hover { color: var(--clay); }
+
+    /* ─── FOOTER SOCIALS (used in footer only now) ───── */
 
     .footer-socials {
       display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 0.75rem;
     }
     .footer-socials a {
       display: grid;
       place-items: center;
       width: 32px;
       height: 32px;
-      border-radius: 4px;
-      background: rgba(250, 246, 240, 0.08);
-      border: 1px solid rgba(250, 246, 240, 0.12);
-      color: rgba(250, 246, 240, 0.6);
-      transition: color 0.15s, background 0.15s;
+      border-radius: 50%;
+      border: 1px solid rgba(250, 246, 240, 0.15);
+      color: rgba(250, 246, 240, 0.5);
+      transition: color 0.15s, border-color 0.15s;
     }
     .footer-socials a:hover {
-      color: var(--cream);
-      background: rgba(250, 246, 240, 0.15);
+      color: #faf6f0;
+      border-color: rgba(250, 246, 240, 0.4);
     }
-    .footer-socials svg { width: 18px; height: 18px; }
+    .footer-socials svg { width: 16px; height: 16px; }
 
     /* ─── HERO ────────────────────────────────────────────────────── */
 
@@ -400,7 +513,7 @@
     @media (max-width: 480px) {
       .story-grid { grid-template-columns: 1fr; }
       .nav-menu { display: none; }
-      .nav-socials { display: none; }
+      .nav-hamburger { display: grid; }
     }
 
     .story-card {
@@ -489,103 +602,72 @@
     /* ─── FOOTER ──────────────────────────────────────────────────── */
 
     .site-footer {
-      background: var(--ink);
-      color: var(--cream);
-      padding: 3rem 1.5rem 2rem;
+      background: var(--footer-bg);
+      color: #faf6f0;
+      padding: 3.5rem 1.5rem 2rem;
     }
 
     .footer-inner {
       max-width: var(--max);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    @media (max-width: 600px) {
-      .footer-inner { grid-template-columns: 1fr; }
-    }
-
-    .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
     }
 
     .footer-logo {
-      height: 34px;
+      height: 48px;
       width: auto;
-      aspect-ratio: auto;
-      object-fit: contain;
       filter: brightness(0) invert(1);
-      margin-bottom: 0.25rem;
     }
 
     .footer-name {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       font-variation-settings: "SOFT" 70, "WONK" 1;
-      color: var(--cream);
     }
 
     .footer-tagline {
       font-size: 0.875rem;
-      color: rgba(246, 236, 220, 0.6);
+      opacity: 0.6;
       margin: 0;
     }
 
-    .footer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .footer-nav a {
-      color: rgba(246, 236, 220, 0.7);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .footer-nav a:hover {
-      color: var(--cream);
-      text-decoration: underline;
-    }
-
     .footer-newsletter {
-      grid-column: 1 / -1;
-      border-top: 1px solid rgba(246, 236, 220, 0.12);
-      padding-top: 1.5rem;
-      margin-top: 0.5rem;
+      margin: 0.75rem 0;
     }
 
     .newsletter-label {
-      font-size: 0.9rem;
-      color: rgba(246, 236, 220, 0.7);
-      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
     }
     .newsletter-label svg {
-      width: 1.1em;
-      height: 1.1em;
+      width: 1em;
+      height: 1em;
       flex-shrink: 0;
     }
 
     .newsletter-form {
       display: flex;
       gap: 0.5rem;
-      max-width: 380px;
+      max-width: 360px;
+      margin: 0 auto;
     }
 
     .newsletter-input {
       flex: 1;
       padding: 0.55rem 0.9rem;
-      border: 1px solid rgba(246, 236, 220, 0.2);
-      background: rgba(246, 236, 220, 0.07);
-      color: var(--cream);
+      border: 1px solid rgba(250, 246, 240, 0.2);
+      background: rgba(250, 246, 240, 0.07);
+      color: #faf6f0;
       font-family: var(--font-body);
       font-size: 0.9rem;
       border-radius: var(--radius);
@@ -593,17 +675,17 @@
     }
 
     .newsletter-input::placeholder {
-      color: rgba(246, 236, 220, 0.38);
+      color: rgba(250, 246, 240, 0.38);
     }
 
     .newsletter-input:focus {
-      border-color: rgba(246, 236, 220, 0.45);
+      border-color: rgba(250, 246, 240, 0.45);
     }
 
     .newsletter-btn {
       padding: 0.55rem 1.1rem;
       background: var(--sandstone);
-      color: var(--cream);
+      color: #fff;
       border: none;
       font-family: var(--font-body);
       font-size: 0.9rem;
@@ -617,13 +699,44 @@
       background: var(--clay);
     }
 
+    .newsletter-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.25rem 0.75rem;
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    .footer-links li:not(:last-child)::after {
+      content: "·";
+      margin-left: 0.75rem;
+      opacity: 0.4;
+    }
+
+    .footer-links a {
+      opacity: 0.6;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: opacity 0.15s;
+    }
+
+    .footer-links a:hover { opacity: 1; }
+
     .footer-copy {
-      grid-column: 1 / -1;
-      font-size: 0.8rem;
-      color: rgba(246, 236, 220, 0.35);
-      padding-top: 1.5rem;
-      margin-top: 0.5rem;
-      border-top: 1px solid rgba(246, 236, 220, 0.08);
+      font-size: 0.78rem;
+      opacity: 0.3;
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 480px) {
+      .site-footer { padding: 2.5rem 1.5rem 1.5rem; }
     }
 
     /* ─── FEATURED POST ──────────────────────────────────────────── */
@@ -788,7 +901,7 @@
 
     .destinations-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
 
@@ -797,12 +910,25 @@
     }
 
     @media (max-width: 480px) {
-      .destinations-grid { grid-template-columns: 1fr; }
+      .destinations-grid {
+        grid-template-columns: none;
+        display: flex;
+        gap: 0.75rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+      }
+      .dest-card {
+        flex: 0 0 140px;
+        aspect-ratio: 3 / 4;
+        scroll-snap-align: start;
+      }
     }
 
     .dest-card {
       position: relative;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
       border-radius: var(--radius);
       background-image: var(--dest-img);
@@ -810,7 +936,8 @@
       background-position: center;
       text-decoration: none;
       display: block;
-      transition: transform 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .dest-card::after {
@@ -822,11 +949,17 @@
 
     .dest-card:hover {
       transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
 
     .dest-card:focus-visible {
       outline: 3px solid var(--sandstone);
       outline-offset: 3px;
+    }
+
+    .dest-card.dest-active {
+      outline: 3px solid var(--sandstone);
+      outline-offset: -3px;
     }
 
     .dest-name {
@@ -842,6 +975,48 @@
       font-variation-settings: "SOFT" 64, "WONK" 1;
       line-height: 1.2;
     }
+
+    /* ─── DESTINATION FILTER INDICATOR ──────────── */
+
+    .dest-filter-indicator {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .dest-filter-indicator.active { display: flex; }
+
+    .dest-filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      background: var(--sandstone);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .dest-filter-clear {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0 0 0 0.25rem;
+      opacity: 0.8;
+    }
+
+    .dest-filter-clear:hover { opacity: 1; }
+
+    .dest-filter-count {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+
     /* ─── ABOUT ──────────────────────────────────────────────────── */
 
     .about-section {
@@ -912,6 +1087,105 @@
       }
     }
 
+    /* ─── NEWSLETTER CTA SECTION ─────────────────────────────────── */
+
+    .newsletter-section {
+      background: var(--cream-deep);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+
+    .newsletter-section-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .newsletter-section h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .newsletter-section p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .newsletter-section .newsletter-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .newsletter-section .newsletter-input {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--line-strong);
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      border-radius: var(--radius);
+      outline: none;
+    }
+
+    .newsletter-section .newsletter-input:focus {
+      border-color: var(--sandstone);
+    }
+
+    .newsletter-section .newsletter-input::placeholder {
+      color: var(--ink-soft);
+      opacity: 0.5;
+    }
+
+    .newsletter-section .newsletter-btn {
+      padding: 0.65rem 1.25rem;
+      background: var(--sandstone);
+      color: #fff;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .newsletter-section .newsletter-btn:hover {
+      background: var(--clay);
+    }
+
+    .newsletter-section .newsletter-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .newsletter-note {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      margin-top: 0.75rem;
+      opacity: 0.6;
+    }
+
+    .newsletter-success {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--sandstone);
+      font-weight: 700;
+    }
+
+    .newsletter-error {
+      font-size: 0.85rem;
+      color: var(--clay);
+      margin-top: 0.5rem;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -934,21 +1208,22 @@
       </a>
       <ul class="nav-menu" role="list">
         <li><a href="#stories">Stories</a></li>
-        <li><a href="rss.xml">RSS</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#about">About</a></li>
       </ul>
-      <div class="nav-socials">
-        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg>
-        </a>
-        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
-        </a>
-        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg>
-        </a>
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button class="nav-hamburger" aria-label="Menu" aria-expanded="false" onclick="document.querySelector('.nav-mobile-panel').classList.toggle('open');this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='false'?'true':'false')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="nav-mobile-panel">
+        <a href="#stories">Stories</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#about">About</a>
       </div>
     </div>
   </nav>
@@ -987,20 +1262,23 @@
     <div class="destinations-inner">
       <h2 class="section-heading">Destinations</h2>
       <div class="destinations-grid">
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/abu-dhabi-night.jpg')">
+        <a class="dest-card" href="#stories" data-destination="dubai" style="--dest-img: url('public/site/abu-dhabi-night.jpg')">
           <span class="dest-name">Dubai &amp; Abu Dhabi</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/fuerteventura-atlantic.jpg')">
+        <a class="dest-card" href="#stories" data-destination="fuerteventura" style="--dest-img: url('public/site/fuerteventura-atlantic.jpg')">
           <span class="dest-name">Fuerteventura</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/ljubljana-lake.jpg')">
+        <a class="dest-card" href="#stories" data-destination="ljubljana" style="--dest-img: url('public/site/ljubljana-lake.jpg')">
           <span class="dest-name">Ljubljana</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/marrakech-palm-reflection.jpg')">
+        <a class="dest-card" href="#stories" data-destination="marrakech" style="--dest-img: url('public/site/marrakech-palm-reflection.jpg')">
           <span class="dest-name">Marrakech</span>
         </a>
-        <a class="dest-card" href="#stories" style="--dest-img: url('public/site/vancouver-cove.jpg')">
+        <a class="dest-card" href="#stories" data-destination="vancouver" style="--dest-img: url('public/site/vancouver-cove.jpg')">
           <span class="dest-name">Vancouver</span>
+        </a>
+        <a class="dest-card" href="#stories" data-destination="new-york" style="--dest-img: url('public/site/nyc01.jpg')">
+          <span class="dest-name">New York City</span>
         </a>
       </div>
     </div>
@@ -1019,10 +1297,17 @@
           <button class="pill" data-filter="guide">Guides</button>
           <button class="pill" data-filter="field-notes">Field Notes</button>
         </div>
+        <div class="dest-filter-indicator" id="destFilterIndicator">
+          <span class="dest-filter-pill">
+            <span id="destFilterName"></span>
+            <button class="dest-filter-clear" id="destFilterClear" aria-label="Clear destination filter">&times;</button>
+          </span>
+          <span class="dest-filter-count" id="destFilterCount"></span>
+        </div>
       </div>
         <div class="story-grid" id="storyGrid">
           <!-- Generated by scripts/build-blog.js from posts/*.md. Edit Markdown posts, not these cards. -->
-          <a class="story-card" href="blog/nyc-december-holiday-magic.html" data-category="holiday-guide new-york december christmas holiday" data-search="December in NYC: The Ultimate Holiday Magic Guide New York City is at its most magical in December. The entire city transforms into a living holiday card — from the Rockefeller tree to Dyker Heights, with insider tips on how to do it right. holiday-guide New York December Christmas Holiday nyc december christmas holiday rockefeller tree saks light show dyker heights rockettes nutcracker bryant park">
+          <a class="story-card" href="blog/nyc-december-holiday-magic.html" data-category="holiday-guide new-york december christmas holiday" data-search="December in NYC: The Ultimate Holiday Magic Guide New York City is at its most magical in December. The entire city transforms into a living holiday card — from the Rockefeller tree to Dyker Heights, with insider tips on how to do it right. holiday-guide New York December Christmas Holiday nyc december christmas holiday rockefeller tree saks light show dyker heights rockettes nutcracker bryant park" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85" alt="Rockefeller Center Christmas tree lit up at night in New York City" loading="lazy" decoding="async">
             </div>
@@ -1033,7 +1318,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/fuerteventura-solo-travel.html" data-category="personal-journey solo-travel fuerteventura wellness" data-search="I Went to Fuerteventura to Escape and Found Myself Again Not here for parties or nightlife — just a desperate need to breathe. A story about burnout, surfing, hidden beaches, and the version of yourself buried between stress and boredom. personal-journey Solo travel Fuerteventura Wellness fuerteventura solo travel surfing silence morro jable burnout wellness escape">
+          <a class="story-card" href="blog/fuerteventura-solo-travel.html" data-category="personal-journey solo-travel fuerteventura wellness" data-search="I Went to Fuerteventura to Escape and Found Myself Again Not here for parties or nightlife — just a desperate need to breathe. A story about burnout, surfing, hidden beaches, and the version of yourself buried between stress and boredom. personal-journey Solo travel Fuerteventura Wellness fuerteventura solo travel surfing silence morro jable burnout wellness escape" data-destinations="fuerteventura">
             <div class="story-media">
               <img src="public/site/fuerteventura-atlantic.jpg" alt="Volcanic coastline and calm Atlantic water in Fuerteventura" loading="lazy" decoding="async">
             </div>
@@ -1044,7 +1329,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/nyc-10-day-guide.html" data-category="ultimate-guide new-york city-guide brooklyn itinerary" data-search="The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps Everything learned from countless NYC trips — hidden gems discovered at dawn, the iconic sights done right, and every lesson from the hard way so you do not have to repeat the mistakes. ultimate-guide New York City guide Brooklyn Itinerary nyc 10 day guide new york brooklyn dumbo williamsburg central park high line roosevelt island tipping guide">
+          <a class="story-card" href="blog/nyc-10-day-guide.html" data-category="ultimate-guide new-york city-guide brooklyn itinerary" data-search="The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps Everything learned from countless NYC trips — hidden gems discovered at dawn, the iconic sights done right, and every lesson from the hard way so you do not have to repeat the mistakes. ultimate-guide New York City guide Brooklyn Itinerary nyc 10 day guide new york brooklyn dumbo williamsburg central park high line roosevelt island tipping guide" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=1200&amp;q=85" alt="New York City skyline at night from across the water" loading="lazy" decoding="async">
             </div>
@@ -1055,7 +1340,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/new-york-city-summer.html" data-category="city-guide new-york city-guide summer" data-search="New York City in Summer: A Love Letter to the Greatest City on Earth The way golden light bounces off skyscrapers at sunset, the hum of sidewalk chatter mixing with distant jazz, the smell of hot pretzels and sudden rain on pavement. It's alive. It pulses. And if you let it, it'll rewrite your soul. city-guide New York City guide Summer new york city summer guide times square central park brooklyn bridge high line rooftop">
+          <a class="story-card" href="blog/new-york-city-summer.html" data-category="city-guide new-york city-guide summer" data-search="New York City in Summer: A Love Letter to the Greatest City on Earth The way golden light bounces off skyscrapers at sunset, the hum of sidewalk chatter mixing with distant jazz, the smell of hot pretzels and sudden rain on pavement. It's alive. It pulses. And if you let it, it'll rewrite your soul. city-guide New York City guide Summer new york city summer guide times square central park brooklyn bridge high line rooftop" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=1200&amp;q=85" alt="New York City skyline at dusk" loading="lazy" decoding="async">
             </div>
@@ -1066,7 +1351,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/first-surf-lesson-fuerteventura.html" data-category="travel-journal surf solo-travel fuerteventura" data-search="My First Time Surfing in Fuerteventura and OTRO MODO Surf School Some people go to the Canary Islands for the sun. I went to learn how to surf. What I didn't expect was how much it would teach me about trust — in the ocean, in my body, and in the unknown. travel-journal Surf Solo travel Fuerteventura surf school fuerteventura otro modo first time nerves beginner surf lessons morro jable">
+          <a class="story-card" href="blog/first-surf-lesson-fuerteventura.html" data-category="travel-journal surf solo-travel fuerteventura" data-search="My First Time Surfing in Fuerteventura and OTRO MODO Surf School Some people go to the Canary Islands for the sun. I went to learn how to surf. What I didn't expect was how much it would teach me about trust — in the ocean, in my body, and in the unknown. travel-journal Surf Solo travel Fuerteventura surf school fuerteventura otro modo first time nerves beginner surf lessons morro jable" data-destinations="fuerteventura">
             <div class="story-media">
               <img src="public/site/fuerteventura-surf-note.jpg" alt="Solo traveler standing on dark rocks beside the Atlantic in Fuerteventura" loading="lazy" decoding="async">
             </div>
@@ -1077,7 +1362,7 @@
             </div>
           </a>
 
-          <a class="story-card" href="blog/nyc-december-itinerary.html" data-category="winter-itinerary new-york itinerary december holiday" data-search="The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems) Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems. winter-itinerary New York Itinerary December Holiday december new york itinerary christmas holiday central park rockefeller 5 day guide">
+          <a class="story-card" href="blog/nyc-december-itinerary.html" data-category="winter-itinerary new-york itinerary december holiday" data-search="The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems) Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems. winter-itinerary New York Itinerary December Holiday december new york itinerary christmas holiday central park rockefeller 5 day guide" data-destinations="new-york">
             <div class="story-media">
               <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1200&amp;q=85" alt="Holiday lights glowing on a city street at night" loading="lazy" decoding="async">
             </div>
@@ -1107,85 +1392,232 @@
 
   <span id="newsletter" aria-hidden="true"></span>
 
+  <!-- NEWSLETTER CTA -->
+  <section class="newsletter-section" aria-label="Newsletter signup">
+    <div class="newsletter-section-inner">
+      <h2>Get exclusive itineraries &amp; travel stories</h2>
+      <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
+      <form class="newsletter-form" id="ctaNewsletterForm">
+        <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" required>
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+      <p class="newsletter-note">Unsubscribe anytime</p>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
-        <span class="footer-name">Majestic Travels</span>
-        <p class="footer-tagline">Solo travel. Real places. No filters.</p>
-        <div class="footer-socials">
-          <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg>
-          </a>
-          <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
-          </a>
-          <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg>
-          </a>
-        </div>
-      </div>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#stories">Stories</a>
-        <a href="rss.xml">RSS</a>
-        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener">Ko-fi</a>
-        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
-      </nav>
+      <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
+      <span class="footer-name">Majestic Travels</span>
+      <p class="footer-tagline">Solo travel. Real places. No filters.</p>
       <div class="footer-newsletter">
         <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
-        <form class="newsletter-form" action="#" method="post">
-          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address">
+        <form class="newsletter-form" id="footerNewsletterForm">
+          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" required>
           <button type="submit" class="newsletter-btn">Subscribe</button>
         </form>
       </div>
-      <p class="footer-copy">© 2026 Majestic Travels</p>
+      <ul class="footer-links">
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="rss.xml">RSS</a></li>
+      </ul>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg>
+        </a>
+        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
+        </a>
+        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Majestic Travels</p>
     </div>
   </footer>
 
   <script>
-    (function () {
-      var searchInput = document.getElementById("story-search");
-      var pills = document.querySelectorAll(".pill");
-      var grid = document.getElementById("storyGrid");
-      var emptyState = document.getElementById("emptyState");
-      var activeFilter = "all";
+window.toggleTheme = function() {
+  var html = document.documentElement;
+  var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
+};
 
-      function getCards() {
-        return grid.querySelectorAll(".story-card");
+(function () {
+  // Nav solid state on scroll
+  var hero = document.querySelector('.site-hero');
+  var nav = document.querySelector('.site-nav');
+  if (hero && nav) {
+    var navObserver = new IntersectionObserver(function(entries) {
+      nav.classList.toggle('nav-solid', !entries[0].isIntersecting);
+    }, { threshold: 0 });
+    navObserver.observe(hero);
+  }
+
+  // Filtering
+  var searchInput = document.getElementById("story-search");
+  var pills = document.querySelectorAll(".pill");
+  var grid = document.getElementById("storyGrid");
+  var emptyState = document.getElementById("emptyState");
+  var activeFilter = "all";
+  var activeDest = "";
+
+  var destIndicator = document.getElementById("destFilterIndicator");
+  var destNameEl = document.getElementById("destFilterName");
+  var destCountEl = document.getElementById("destFilterCount");
+  var destCards = document.querySelectorAll(".dest-card[data-destination]");
+
+  var DEST_LABELS = {
+    "dubai": "Dubai & Abu Dhabi",
+    "fuerteventura": "Fuerteventura",
+    "ljubljana": "Ljubljana",
+    "marrakech": "Marrakech",
+    "vancouver": "Vancouver",
+    "new-york": "New York City"
+  };
+
+  function getCards() {
+    return grid.querySelectorAll(".story-card");
+  }
+
+  function filterCards() {
+    var query = searchInput.value.toLowerCase().trim();
+    var cards = getCards();
+    var visible = 0;
+    var total = cards.length;
+    cards.forEach(function (card) {
+      var matchesSearch = !query || card.dataset.search.toLowerCase().includes(query);
+      var cardCategories = card.dataset.category ? card.dataset.category.split(" ") : [];
+      var matchesTopic = activeFilter === "all" || cardCategories.includes(activeFilter);
+      var matchesDest = !activeDest || (card.dataset.destinations && card.dataset.destinations.split(" ").indexOf(activeDest) !== -1);
+      var show = matchesSearch && matchesTopic && matchesDest;
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    emptyState.hidden = visible > 0;
+    if (!activeDest) {
+      emptyState.textContent = "No posts match your search.";
+    } else if (visible === 0) {
+      emptyState.textContent = "No stories from " + (DEST_LABELS[activeDest] || activeDest) + " yet — check back soon.";
+    }
+
+    if (activeDest) {
+      destIndicator.classList.add("active");
+      destNameEl.textContent = DEST_LABELS[activeDest] || activeDest;
+      destCountEl.textContent = "Showing " + visible + " of " + total + " stories";
+    } else {
+      destIndicator.classList.remove("active");
+    }
+
+    destCards.forEach(function(dc) {
+      dc.classList.toggle("dest-active", dc.dataset.destination === activeDest);
+    });
+  }
+
+  function setDestFilter(dest) {
+    if (activeDest === dest) {
+      activeDest = "";
+      updateUrl("");
+    } else {
+      activeDest = dest;
+      updateUrl(dest);
+    }
+    filterCards();
+  }
+
+  function updateUrl(dest) {
+    var url = new URL(window.location);
+    if (dest) {
+      url.searchParams.set("destination", dest);
+    } else {
+      url.searchParams.delete("destination");
+    }
+    history.replaceState(null, "", url);
+  }
+
+  destCards.forEach(function(card) {
+    card.addEventListener("click", function(e) {
+      e.preventDefault();
+      setDestFilter(card.dataset.destination);
+      document.getElementById("stories").scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  var clearBtn = document.getElementById("destFilterClear");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", function() {
+      activeDest = "";
+      updateUrl("");
+      filterCards();
+    });
+  }
+
+  searchInput.addEventListener("input", filterCards);
+  pills.forEach(function (pill) {
+    pill.addEventListener("click", function () {
+      pills.forEach(function (p) { p.classList.remove("active"); });
+      pill.classList.add("active");
+      activeFilter = pill.dataset.filter;
+      filterCards();
+    });
+  });
+
+  var params = new URLSearchParams(window.location.search);
+  var destParam = params.get("destination");
+  if (destParam && DEST_LABELS[destParam]) {
+    activeDest = destParam;
+    filterCards();
+  }
+
+  // Klaviyo newsletter forms
+  function handleNewsletterSubmit(form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      var input = form.querySelector("input[type='email']");
+      var btn = form.querySelector("button[type='submit']");
+      var email = input.value.trim();
+      if (!email) return;
+
+      var originalText = btn.textContent;
+      btn.textContent = "...";
+      btn.disabled = true;
+      input.disabled = true;
+
+      var prevError = form.parentNode.querySelector(".newsletter-error");
+      if (prevError) prevError.remove();
+
+      try {
+        var _learnq = window._learnq || [];
+        _learnq.push(["identify", { "$email": email }]);
+        _learnq.push(["track", "Newsletter Signup", { source: "website" }]);
+        window._learnq = _learnq;
+        form.innerHTML = '<p class="newsletter-success">You\'re in! Check your inbox.</p>';
+      } catch (err) {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        input.disabled = false;
+        var errEl = document.createElement("p");
+        errEl.className = "newsletter-error";
+        errEl.textContent = "Something went wrong — try again.";
+        form.parentNode.insertBefore(errEl, form.nextSibling);
       }
+    });
+  }
 
-      function filterCards() {
-        var query = searchInput.value.toLowerCase().trim();
-        var cards = getCards();
-        var visible = 0;
-        cards.forEach(function (card) {
-          var matchesSearch = !query || card.dataset.search.toLowerCase().includes(query);
-          var cardCategories = card.dataset.category ? card.dataset.category.split(" ") : [];
-          var matchesTopic = activeFilter === "all" || cardCategories.includes(activeFilter);
-          var show = matchesSearch && matchesTopic;
-          card.hidden = !show;
-          if (show) visible++;
-        });
-        emptyState.hidden = visible > 0;
-      }
-
-      searchInput.addEventListener("input", filterCards);
-
-      pills.forEach(function (pill) {
-        pill.addEventListener("click", function () {
-          pills.forEach(function (p) { p.classList.remove("active"); });
-          pill.classList.add("active");
-          activeFilter = pill.dataset.filter;
-          filterCards();
-        });
-      });
-    })();
+  var ctaForm = document.getElementById("ctaNewsletterForm");
+  if (ctaForm) handleNewsletterSubmit(ctaForm);
+  var footerForm = document.getElementById("footerNewsletterForm");
+  if (footerForm) handleNewsletterSubmit(footerForm);
+})();
   </script>
 </body>
 </html>
