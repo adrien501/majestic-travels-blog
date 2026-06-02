@@ -185,6 +185,35 @@ function getHomeParts(home) {
   return { css: styleMatch[1] };
 }
 
+const DEFAULT_KLAVIYO_PUBLIC_KEY = "VQW5sn";
+
+function htmlAttrValue(html, attrName) {
+  const match = html.match(new RegExp(`${attrName}="([^"]*)"`));
+  return match ? match[1] : "";
+}
+
+function klaviyoPublicKeyFromHome(home) {
+  const scriptMatch = home.match(/klaviyo\.js\?company_id=([^"&]+)/i);
+  return scriptMatch ? decodeURIComponent(scriptMatch[1]) : "";
+}
+
+function getKlaviyoConfig(home) {
+  return {
+    publicKey: process.env.KLAVIYO_PUBLIC_API_KEY || htmlAttrValue(home, "data-klaviyo-public-key") || klaviyoPublicKeyFromHome(home) || DEFAULT_KLAVIYO_PUBLIC_KEY,
+    listId: process.env.KLAVIYO_LIST_ID || htmlAttrValue(home, "data-klaviyo-list-id")
+  };
+}
+
+function updateKlaviyoConfig(home, config) {
+  const publicKey = escapeHtml(config.publicKey || "");
+  const listId = escapeHtml(config.listId || "");
+
+  return home
+    .replace(/klaviyo\.js\?company_id=[^"]*/g, `klaviyo.js?company_id=${encodeURIComponent(config.publicKey || "")}`)
+    .replace(/data-klaviyo-public-key="[^"]*"/g, `data-klaviyo-public-key="${publicKey}"`)
+    .replace(/data-klaviyo-list-id="[^"]*"/g, `data-klaviyo-list-id="${listId}"`);
+}
+
 const DESTINATION_TAGS = {
   "dubai": ["Dubai", "Abu Dhabi"],
   "fuerteventura": ["Fuerteventura"],
@@ -231,6 +260,7 @@ function articleHtml(post, css, context = {}) {
   const articleImage = relativeFromBlog(post.image);
   const newerPost = posts[index - 1];
   const olderPost = posts[index + 1];
+  const klaviyo = context.klaviyo || {};
   const allTags = [...post.tags, post.categoryLabel].filter(Boolean);
   const tagMeta = post.tags.map((tag) => `  <meta property="article:tag" content="${escapeHtml(tag)}">`).join("\n");
   const relatedLink = (label, targetPost, fallbackHref, fallbackTitle) => {
@@ -453,8 +483,8 @@ ${markdownToHtml(post.body)}
     <div class="newsletter-section-inner">
       <h2>Get exclusive itineraries &amp; travel stories</h2>
       <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm">
-        <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" required>
+      <form class="newsletter-form" id="ctaNewsletterForm" action="https://a.klaviyo.com/client/subscriptions" method="post" data-klaviyo-form data-klaviyo-public-key="${escapeHtml(klaviyo.publicKey || "")}" data-klaviyo-list-id="${escapeHtml(klaviyo.listId || "")}">
+        <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
       <p class="newsletter-note">Unsubscribe anytime</p>
@@ -470,8 +500,8 @@ ${markdownToHtml(post.body)}
       <div class="footer-right">
       <div class="footer-newsletter">
         <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
-        <form class="newsletter-form" id="footerNewsletterForm">
-          <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" required>
+        <form class="newsletter-form" id="footerNewsletterForm" action="https://a.klaviyo.com/client/subscriptions" method="post" data-klaviyo-form data-klaviyo-public-key="${escapeHtml(klaviyo.publicKey || "")}" data-klaviyo-list-id="${escapeHtml(klaviyo.listId || "")}">
+          <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
           <button type="submit" class="newsletter-btn">Subscribe</button>
         </form>
       </div>
@@ -491,7 +521,7 @@ ${markdownToHtml(post.body)}
       </div>
     </div>
   </footer>
-  <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VQW5sn"></script>
+  <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=${encodeURIComponent(klaviyo.publicKey || "")}"></script>
   <script>
     window.toggleTheme = function() {
       var html = document.documentElement;
@@ -502,34 +532,101 @@ ${markdownToHtml(post.body)}
       if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
     };
     (function() {
+      var KLAVIYO_REVISION = "2026-04-15";
+      var KLAVIYO_SUBSCRIPTION_ENDPOINT = "https://a.klaviyo.com/client/subscriptions";
+
+      function newsletterErrorMessage(body) {
+        if (body && body.errors && body.errors[0]) {
+          return body.errors[0].detail || body.errors[0].title || "Something went wrong — try again.";
+        }
+        return "Something went wrong — try again.";
+      }
+
+      function subscribeWithKlaviyo(form, email) {
+        var publicKey = form.dataset.klaviyoPublicKey || "";
+        var listId = form.dataset.klaviyoListId || "";
+
+        if (!publicKey || !listId) {
+          return Promise.reject(new Error("Newsletter is not configured yet."));
+        }
+
+        return fetch(KLAVIYO_SUBSCRIPTION_ENDPOINT + "?company_id=" + encodeURIComponent(publicKey), {
+          method: "POST",
+          headers: {
+            accept: "application/vnd.api+json",
+            "content-type": "application/vnd.api+json",
+            revision: KLAVIYO_REVISION
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                custom_source: "Majestic Travels newsletter",
+                profile: {
+                  data: {
+                    type: "profile",
+                    attributes: {
+                      email: email,
+                      subscriptions: {
+                        email: {
+                          marketing: {
+                            consent: "SUBSCRIBED"
+                          }
+                        }
+                      },
+                      properties: {
+                        signup_source: window.location.pathname || "/"
+                      }
+                    }
+                  }
+                }
+              },
+              relationships: {
+                list: {
+                  data: {
+                    type: "list",
+                    id: listId
+                  }
+                }
+              }
+            }
+          })
+        }).then(function(response) {
+          if (response.ok) return;
+          return response.json().catch(function() { return null; }).then(function(body) {
+            throw new Error(newsletterErrorMessage(body));
+          });
+        });
+      }
+
       function handleNewsletterSubmit(form) {
         form.addEventListener("submit", function(e) {
           e.preventDefault();
           var input = form.querySelector("input[type='email']");
           var btn = form.querySelector("button[type='submit']");
           var email = input.value.trim();
-          if (!email) return;
+          if (!email || !input.reportValidity()) return;
           var originalText = btn.textContent;
           btn.textContent = "...";
           btn.disabled = true;
           input.disabled = true;
           var prevError = form.parentNode.querySelector(".newsletter-error");
           if (prevError) prevError.remove();
-          try {
+          subscribeWithKlaviyo(form, email).then(function() {
             var _learnq = window._learnq || [];
             _learnq.push(["identify", { "$email": email }]);
             _learnq.push(["track", "Newsletter Signup", { source: "website" }]);
             window._learnq = _learnq;
             form.innerHTML = '<p class="newsletter-success">You\\'re in! Check your inbox.</p>';
-          } catch (err) {
+          }).catch(function(err) {
             btn.textContent = originalText;
             btn.disabled = false;
             input.disabled = false;
             var errEl = document.createElement("p");
             errEl.className = "newsletter-error";
-            errEl.textContent = "Something went wrong — try again.";
+            errEl.textContent = err.message || "Something went wrong — try again.";
             form.parentNode.insertBefore(errEl, form.nextSibling);
-          }
+          });
         });
       }
       var ctaForm = document.getElementById("ctaNewsletterForm");
@@ -691,11 +788,12 @@ function main() {
   if (!posts.length) throw new Error("No Markdown posts found in posts/.");
 
   const { css } = getHomeParts(home);
+  const klaviyo = getKlaviyoConfig(home);
   fs.mkdirSync(BLOG_DIR, { recursive: true });
   posts.forEach((post, index) => {
-    write(path.join(BLOG_DIR, `${post.slug}.html`), articleHtml(post, css, { index, posts }));
+    write(path.join(BLOG_DIR, `${post.slug}.html`), articleHtml(post, css, { index, posts, klaviyo }));
   });
-  write(HOME_FILE, updateFeatured(updateHome(home, posts), posts));
+  write(HOME_FILE, updateKlaviyoConfig(updateFeatured(updateHome(home, posts), posts), klaviyo));
   writeLaunchFiles(posts);
 
   console.log(`Built ${posts.length} posts.`);
