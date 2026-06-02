@@ -30,6 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,50..100,0..1&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VQW5sn"></script>
 
   <script type="application/ld+json">
   {
@@ -1086,6 +1087,105 @@
       }
     }
 
+    /* ─── NEWSLETTER CTA SECTION ─────────────────────────────────── */
+
+    .newsletter-section {
+      background: var(--cream-deep);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+
+    .newsletter-section-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .newsletter-section h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-variation-settings: "SOFT" 64, "WONK" 1;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .newsletter-section p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .newsletter-section .newsletter-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .newsletter-section .newsletter-input {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--line-strong);
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      border-radius: var(--radius);
+      outline: none;
+    }
+
+    .newsletter-section .newsletter-input:focus {
+      border-color: var(--sandstone);
+    }
+
+    .newsletter-section .newsletter-input::placeholder {
+      color: var(--ink-soft);
+      opacity: 0.5;
+    }
+
+    .newsletter-section .newsletter-btn {
+      padding: 0.65rem 1.25rem;
+      background: var(--sandstone);
+      color: #fff;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .newsletter-section .newsletter-btn:hover {
+      background: var(--clay);
+    }
+
+    .newsletter-section .newsletter-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .newsletter-note {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      margin-top: 0.75rem;
+      opacity: 0.6;
+    }
+
+    .newsletter-success {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--sandstone);
+      font-weight: 700;
+    }
+
+    .newsletter-error {
+      font-size: 0.85rem;
+      color: var(--clay);
+      margin-top: 0.5rem;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1292,6 +1392,19 @@
 
   <span id="newsletter" aria-hidden="true"></span>
 
+  <!-- NEWSLETTER CTA -->
+  <section class="newsletter-section" aria-label="Newsletter signup">
+    <div class="newsletter-section-inner">
+      <h2>Get exclusive itineraries &amp; travel stories</h2>
+      <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
+      <form class="newsletter-form" id="ctaNewsletterForm">
+        <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" required>
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+      <p class="newsletter-note">Unsubscribe anytime</p>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
@@ -1324,7 +1437,7 @@
       </nav>
       <div class="footer-newsletter">
         <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
-        <form class="newsletter-form" action="#" method="post">
+        <form class="newsletter-form" id="footerNewsletterForm">
           <input type="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address">
           <button type="submit" class="newsletter-btn">Subscribe</button>
         </form>
@@ -1468,6 +1581,46 @@ window.toggleTheme = function() {
     activeDest = destParam;
     filterCards();
   }
+
+  // Klaviyo newsletter forms
+  function handleNewsletterSubmit(form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      var input = form.querySelector("input[type='email']");
+      var btn = form.querySelector("button[type='submit']");
+      var email = input.value.trim();
+      if (!email) return;
+
+      var originalText = btn.textContent;
+      btn.textContent = "...";
+      btn.disabled = true;
+      input.disabled = true;
+
+      var prevError = form.parentNode.querySelector(".newsletter-error");
+      if (prevError) prevError.remove();
+
+      try {
+        var _learnq = window._learnq || [];
+        _learnq.push(["identify", { "$email": email }]);
+        _learnq.push(["track", "Newsletter Signup", { source: "website" }]);
+        window._learnq = _learnq;
+        form.innerHTML = '<p class="newsletter-success">You\'re in! Check your inbox.</p>';
+      } catch (err) {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        input.disabled = false;
+        var errEl = document.createElement("p");
+        errEl.className = "newsletter-error";
+        errEl.textContent = "Something went wrong — try again.";
+        form.parentNode.insertBefore(errEl, form.nextSibling);
+      }
+    });
+  }
+
+  var ctaForm = document.getElementById("ctaNewsletterForm");
+  if (ctaForm) handleNewsletterSubmit(ctaForm);
+  var footerForm = document.getElementById("footerNewsletterForm");
+  if (footerForm) handleNewsletterSubmit(footerForm);
 })();
   </script>
 </body>
