@@ -358,7 +358,7 @@
       display: flex;
       gap: 0.75rem;
       justify-content: center;
-      margin-top: 0.75rem;
+      margin-top: 0;
     }
     .footer-socials a {
       display: grid;
@@ -654,27 +654,29 @@
     .site-footer {
       background: var(--footer-bg);
       color: #faf6f0;
-      padding: 3.5rem 1.5rem 2.5rem;
+      padding: clamp(2.5rem, 4vw, 3.25rem) 1.5rem 2rem;
     }
 
     .footer-inner {
       max-width: var(--max);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.05rem;
       align-items: center;
+      text-align: center;
     }
 
     .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 0.55rem;
     }
 
     .footer-logo {
-      height: 72px;
-      width: 72px;
+      height: clamp(86px, 8vw, 104px);
+      width: clamp(86px, 8vw, 104px);
       border-radius: 50%;
       object-fit: contain;
       filter: brightness(0) invert(1);
@@ -697,10 +699,9 @@
     .footer-right {
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      align-items: center;
+      gap: 0.95rem;
     }
-
-    .footer-newsletter {}
 
     .newsletter-label {
       font-size: 0.85rem;
@@ -762,6 +763,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.25rem 0.75rem;
+      justify-content: center;
       list-style: none;
       padding: 0;
       margin: 0;
@@ -785,12 +787,13 @@
     .footer-copy {
       font-size: 0.78rem;
       opacity: 0.3;
-      margin: 0;
+      margin: 0.2rem 0 0;
     }
 
     @media (max-width: 640px) {
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .site-footer { padding: 2.5rem 1.5rem 1.5rem; }
+      .site-footer { padding: 2.25rem 1.25rem 1.5rem; }
+      .footer-links { gap: 0.35rem 0.7rem; }
+      .footer-links li:not(:last-child)::after { margin-left: 0.7rem; }
     }
 
     /* ─── FEATURED POST ──────────────────────────────────────────── */
@@ -1502,28 +1505,20 @@
         <p class="footer-tagline">Solo travel. Real places. No filters.</p>
       </div>
       <div class="footer-right">
-      <div class="footer-newsletter">
-        <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
-        <form class="newsletter-form" id="footerNewsletterForm" action="https://manage.kmail-lists.com/subscriptions/subscribe" method="post" data-klaviyo-form data-klaviyo-public-key="VQW5sn" data-klaviyo-list-id="TaitBk">
-          <input type="hidden" name="g" value="TaitBk">
-          <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
-          <button type="submit" class="newsletter-btn">Subscribe</button>
-        </form>
-      </div>
-      <ul class="footer-links">
-        <li><a href="../majestic-travels-blog.html#stories">Stories</a></li>
-        <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
-        <li><a href="../majestic-travels-blog.html#about">About</a></li>
-        <li><a href="../rss.xml">RSS</a></li>
-      </ul>
-      <div class="footer-socials">
-        <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg></a>
-        <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg></a>
-        <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg></a>
-        <a href="mailto:info@majestic-travels.com" aria-label="Email Majestic Travels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6L12 13 2 6"/></svg></a>
-      </div>
-      <p class="footer-copy">&copy; 2026 Majestic Travels</p>
+        <ul class="footer-links">
+          <li><a href="../majestic-travels-blog.html#stories">Stories</a></li>
+          <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
+          <li><a href="../majestic-travels-blog.html#about">About</a></li>
+          <li><a href="../rss.xml">RSS</a></li>
+        </ul>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg></a>
+          <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg></a>
+          <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg></a>
+          <a href="mailto:info@majestic-travels.com" aria-label="Email Majestic Travels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6L12 13 2 6"/></svg></a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Majestic Travels</p>
       </div>
     </div>
   </footer>
@@ -1698,8 +1693,6 @@
       }
       var ctaForm = document.getElementById("ctaNewsletterForm");
       if (ctaForm) handleNewsletterSubmit(ctaForm);
-      var footerForm = document.getElementById("footerNewsletterForm");
-      if (footerForm) handleNewsletterSubmit(footerForm);
       document.querySelectorAll("img").forEach(function(image) {
         var markBroken = function() { image.classList.add("is-broken"); };
         image.addEventListener("error", markBroken, { once: true });
