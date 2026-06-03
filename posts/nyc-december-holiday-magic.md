@@ -6,8 +6,8 @@ tags: "New York, December, Christmas, Holiday"
 readTime: "15 min"
 excerpt: "New York City is at its most magical in December, from the Rockefeller tree to Dyker Heights, with practical tips on how to do it right."
 brief: "Everything you need to experience NYC's holiday season, from the Rockefeller tree to Dyker Heights, without the rookie mistakes."
-image: "public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/Jose%20PerezBauer-GriffinGC%20Images%20via%20Getty%20Images.webp"
-imageAlt: "New York City streets decorated for Christmas during the holiday season. Photo: Jose Perez / Bauer-Griffin / GC Images via Getty Images"
+image: "public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/rockefeller%20tree.jpg"
+imageAlt: "Rockefeller Center Christmas tree in New York City"
 keywords: "nyc december christmas holiday rockefeller tree saks light show dyker heights rockettes nutcracker bryant park"
 ---
 
@@ -15,7 +15,7 @@ December is when New York City earns it. I've been here in every season, and not
 
 I've spent a lot of Decembers in New York. Each time I land at JFK and take the subway in, I fully expect to be used to it by now. I'm not. There's something about seeing Christmas lights reflected in puddles on 5th Avenue at 11 PM, surrounded by people who all seem to have somewhere important to be, that still gets me every time. And honestly? It kind of always will.
 
-![New York City, December.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc01_7e78e918-32b1-4e49-b3c0-7a9ef5d8083b.jpg)
+![Brooklyn Heights during a winter New York trip.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/brooklyn%20heights%20.jpg)
 
 ## The must-dos: December edition
 
@@ -31,13 +31,13 @@ Standing under those 50,000 lights on a 75-foot Norway Spruce, with the Promethe
 
 The ice skating rink is pricey and usually packed, but skating beneath the tree with art deco architecture all around you is a specific kind of New York experience. If you don't skate, watch from the rail with a hot chocolate. The joy on people's faces doesn't get old.
 
-![Midtown at Christmas.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc02.jpg)
+![Rockefeller Center Christmas tree.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/rockefeller%20tree.jpg)
 
 ### Saks Fifth Avenue light show
 
 Right across from Rockefeller Center, Saks Fifth Avenue turns its entire facade into a synchronized light show every evening during the holiday season, typically every 10 minutes from around 5 PM to 11 PM. New theme every year, impressive enough that crowds form on the sidewalk across the street just to watch. It's free. Worth combining with the Rockefeller tree for one long evening in midtown.
 
-![NYC at night during the holidays.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc03.jpg)
+![Holiday decorations around Midtown Manhattan.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc-decoration.jpg)
 
 ### Dyker Heights Christmas lights: Brooklyn's best-kept secret
 
@@ -47,7 +47,7 @@ The best streets are 11th, 12th, and 13th Avenues between 83rd and 86th Streets.
 
 Take the D train to 79th Street and walk, or find one of the many bus tours running from Manhattan. Give yourself at least two hours. You'll use all of it.
 
-![Holiday decorations, NYC.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc_32_of_40_1.jpg)
+![Dyker Heights Christmas lights in Brooklyn.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/Dyker%20Heights%20Christmas%20Lights.webp)
 
 ### The Rockettes Christmas Spectacular
 
@@ -57,11 +57,15 @@ The finale where the wooden soldiers fall in perfect synchronization is iconic f
 
 Book ahead. December dates sell out fast.
 
-![New York City, winter.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc_6_of_40_1.jpg)
+![Radio City Hall decorated for the holidays.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/radio%20city%20hall%20decorations.jpg)
+
+![The Rockettes at Radio City Music Hall. Photo: Jose Perez / Bauer-Griffin / GC Images via Getty Images.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/the%20rockettes%20-Jose%20PerezBauer-GriffinGC%20Images%20via%20Getty%20Images.webp)
 
 ### The Nutcracker Ballet
 
 The New York City Ballet's production at Lincoln Center is the standard everyone else is measured against. Tchaikovsky live, serious choreography, gorgeous design. Even if ballet isn't your thing, the music alone tends to convert people.
+
+![A Nutcracker holiday display in New York City.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nutcracker.jpg)
 
 ### Bryant Park Winter Village
 
@@ -69,13 +73,13 @@ Bryant Park sets up over 170 vendor stalls from November through January, sellin
 
 Most of it costs nothing to walk through. Grab something hot from one of the vendors and go slow.
 
-![Bryant Park Winter Village.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/bryantpark.jpg)
+![Bryant Park ice skating and winter village.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/Bryant%20Park%20ice%20skaing.jpg)
 
 ### Holiday window displays on Fifth Avenue
 
 The department store windows along Fifth Avenue have been a Christmas tradition for over a century. Macy's, Bergdorf Goodman, Saks, Tiffany and others put months of work into theatrical displays that are genuinely worth stopping for. Start at Macy's on 34th Street and walk north toward Central Park. Go in the evening when the windows are lit and the avenue is at full brightness.
 
-![Fifth Avenue during the holidays.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc04.webp)
+![Holiday window display on Fifth Avenue.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/Holiday%20Window%20.jpg)
 
 ### Central Park in winter
 
@@ -83,15 +87,15 @@ If you're there after a snowfall, go immediately. Bare trees dusted in white, th
 
 Without snow it's still worth a long walk. Bundle up, get a hot chocolate from a cart, and take your time.
 
-![Central Park in December.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/juliana-malta-NH7oHjePWUs-unsplash_1.webp)
-
 ## More December spots
 
 ### Times Square
 
 Times Square in December is Times Square turned up. Every screen has something Christmas-related on it, the stores go full holiday, and the crowds are somehow even more enthusiastic than usual. The Disney Store, M&M's Store, and Hershey's all lean into it hard. Is it a lot? Yes. Is it also fun? Also yes.
 
-![New York City in December.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc09.jpg)
+![Times Square during the holiday season.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/Times%20Square.webp)
+
+![Times Square glowing at night.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/Times%20Square2.jpg)
 
 ### Grand Central Terminal
 
@@ -100,8 +104,6 @@ Grand Central's main concourse gets a massive Christmas tree in the center and a
 ### St. Patrick's Cathedral
 
 Beautiful year-round, but the Christmas decorations here are elegant without being overdone, the music is genuinely good, and sitting in the pews for a few minutes while the organ plays is a welcome break from the street chaos outside. No charge to enter.
-
-![New York City, December.](public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/nyc10.jpg)
 
 ## Practical notes for December
 

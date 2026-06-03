@@ -403,6 +403,7 @@ ${tagMeta}
         <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg></a>
         <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg></a>
         <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg></a>
+        <a href="mailto:info@majestic-travels.com" aria-label="Email Majestic Travels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6L12 13 2 6"/></svg></a>
       </div>
       <div class="nav-actions">
         <button class="theme-toggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
@@ -417,6 +418,7 @@ ${tagMeta}
         <a href="../majestic-travels-blog.html#stories">Stories</a>
         <a href="../majestic-travels-blog.html#destinations">Destinations</a>
         <a href="../majestic-travels-blog.html#about">About</a>
+        <a href="mailto:info@majestic-travels.com">Email</a>
       </div>
     </div>
   </nav>
@@ -468,6 +470,10 @@ ${tagMeta}
 ${markdownToHtml(post.body)}
           </div>
           <p class="article-signoff">Saved in the Majestic Travels notebook on ${escapeHtml(dateLabel(post.date))}.</p>
+          <aside class="affiliate-callout" aria-label="Travel connectivity tip">
+            <span>Before you land</span>
+            <p>Need data abroad? Use referral code <strong>ADRIEN9940</strong> when signing up with <a href="https://www.airalo.com/" target="_blank" rel="noopener">Airalo</a> to get a discount on your first eSIM. Download it before you leave home, activate it when you land, and you are ready to explore from the moment you arrive.</p>
+          </aside>
         </div>
       </div>
       <nav class="article-nav" aria-label="Article navigation">
@@ -519,6 +525,7 @@ ${markdownToHtml(post.body)}
         <a href="https://www.tiktok.com/@your_majestic_travels" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.98a8.2 8.2 0 004.76 1.52V7.05a4.84 4.84 0 01-1-.36z"/></svg></a>
         <a href="https://ko-fi.com/majestictravels" target="_blank" rel="noopener" aria-label="Ko-fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg></a>
         <a href="https://majestictravels.gumroad.com/" target="_blank" rel="noopener" aria-label="Gumroad"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm4.656 16.104c-1.326 1.326-3.156 2.04-5.076 2.04-1.848 0-3.636-.684-5.016-1.944l1.14-1.14c1.08 1.008 2.46 1.56 3.876 1.56 1.488 0 2.904-.564 3.948-1.608s1.608-2.46 1.608-3.948-.564-2.904-1.608-3.948-2.46-1.608-3.948-1.608c-2.868 0-5.28 2.16-5.52 5.016h3.504L5.58 15.504 1.596 11.52h3.024c.252-4.08 3.636-7.32 7.8-7.32 2.148 0 4.068.828 5.544 2.304a7.785 7.785 0 012.304 5.544c-.012 2.076-.828 3.96-2.304 5.436l-.348-.384.036.048.004-.044z"/></svg></a>
+        <a href="mailto:info@majestic-travels.com" aria-label="Email Majestic Travels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6L12 13 2 6"/></svg></a>
       </div>
       <p class="footer-copy">&copy; 2026 Majestic Travels</p>
       </div>
@@ -613,8 +620,56 @@ ${markdownToHtml(post.body)}
         });
       }
 
+      function submitHostedKlaviyoForm(form) {
+        return new Promise(function(resolve, reject) {
+          var listInput = form.querySelector('input[name="g"]');
+          var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
+
+          if (!listId) {
+            reject(new Error("Newsletter is not configured yet."));
+            return;
+          }
+
+          if (listInput) listInput.value = listId;
+
+          var iframe = document.createElement("iframe");
+          iframe.name = "klaviyo_signup_" + Date.now();
+          iframe.hidden = true;
+          iframe.setAttribute("title", "Newsletter signup");
+          document.body.appendChild(iframe);
+
+          var previousTarget = form.target;
+          var previousAction = form.action;
+          form.target = iframe.name;
+          form.action = "https://manage.kmail-lists.com/subscriptions/subscribe";
+
+          var finished = false;
+          function finish() {
+            if (finished) return;
+            finished = true;
+            form.target = previousTarget;
+            form.action = previousAction;
+            setTimeout(function() {
+              iframe.remove();
+            }, 1000);
+            resolve();
+          }
+
+          iframe.addEventListener("load", finish, { once: true });
+          HTMLFormElement.prototype.submit.call(form);
+          setTimeout(finish, 3200);
+        });
+      }
+
+      function isNetworkFailure(error) {
+        return error instanceof TypeError || /fetch|network|load failed/i.test(error && error.message || "");
+      }
+
       function subscribeWithKlaviyo(form, email) {
-        return submitClientKlaviyoSubscription(form, email);
+        return submitClientKlaviyoSubscription(form, email).catch(function(error) {
+          if (isNetworkFailure(error)) return submitHostedKlaviyoForm(form);
+          throw error;
+        });
       }
 
       function handleNewsletterSubmit(form) {
