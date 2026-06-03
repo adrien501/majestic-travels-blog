@@ -2,7 +2,7 @@
 title: "The Ultimate 5-Day New York City Itinerary for December (Holiday Magic & Hidden Gems)"
 date: "2026-01-22"
 category: "Winter Itinerary"
-tags: "New York, Itinerary, December, Holiday"
+tags: "Guide, New York, Itinerary, December, Holiday"
 readTime: "8 min"
 excerpt: "Twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — a 5-day December plan filled with iconic spots, local tips, and hidden gems."
 brief: "Structure this as morning anchor, afternoon wander, evening payoff, and one flexible backup per day."
@@ -11,77 +11,65 @@ imageAlt: "Holiday lights glowing on a city street at night"
 keywords: "december new york itinerary christmas holiday central park rockefeller 5 day guide"
 ---
 
-New York City during the holidays is pure magic. With twinkling lights, skating rinks under skyscrapers, and the smell of roasted chestnuts in the air — this 5-day itinerary gives you the perfect December experience filled with iconic spots, local tips, and hidden gems. Whether you're planning a romantic escape, a family adventure, or your first time in the Big Apple, this curated itinerary ensures you capture the best of the city's holiday magic without the overwhelm.
+Five days in December NYC. Here's how I'd structure it if I were doing it again: morning anchor, afternoon wander, evening payoff.
 
-**At a Glance**
-- **Travel Dates:** December 20–25
-- **Trip Length:** 5 days / 4 nights
-- **Ideal For:** Families, couples, first-time visitors
-- **Vibe:** Holiday markets, iconic views, cozy cafés, cultural gems
+Dates: December 20 to 25, five days, four nights. Good for families, couples, or first-timers. Holiday markets, iconic views, a few quieter moments built in.
 
-## Day 1: Downtown and Holiday Vibes
+## Day 1: downtown and the harbor
 
-- **Morning:** Free Staten Island Ferry past Statue of Liberty, then explore Battery Park, SeaGlass Carousel, and the Charging Bull
-- **Midday:** Reflect at the 9/11 Memorial, explore the Oculus, and take in city views from One World Observatory
-- **Afternoon:** Visit Grand Central Terminal and Winter Village at Bryant Park for ice skating and shopping
-- **Evening:** Try Carmine's or Ellen's Stardust Diner — or catch the Radio City Christmas Spectacular for peak holiday vibes
+- Morning: Free Staten Island Ferry (goes right past the Statue of Liberty), then Battery Park, the SeaGlass Carousel, and the Charging Bull
+- Midday: 9/11 Memorial, the Oculus, and One World Observatory for city views
+- Afternoon: Grand Central Terminal, then Bryant Park's Winter Village for ice skating and market browsing
+- Evening: Carmine's or Ellen's Stardust Diner, or catch the Radio City Christmas Spectacular
 
-## Day 2: Midtown Magic and Fifth Avenue
+## Day 2: midtown and Fifth Avenue
 
-- **Morning:** Visit FAO Schwarz and marvel at Fifth Avenue's famous holiday window displays
-- **Lunch:** Serendipity 3 (book ahead), The Halal Guys, or The Plaza Food Hall
-- **Afternoon:** Summit One Vanderbilt for breathtaking views, then explore Hudson Yards' festive markets
-- **Evening:** Dyker Heights Christmas Lights tour in Brooklyn (the most extravagant holiday displays in NYC)
+- Morning: FAO Schwarz, then walk Fifth Avenue for the holiday window displays
+- Lunch: Serendipity 3 if you booked ahead, otherwise The Halal Guys or The Plaza Food Hall
+- Afternoon: Summit One Vanderbilt for the views, then Hudson Yards
+- Evening: Dyker Heights Christmas Lights in Brooklyn. Most tourists miss these, which is a shame
 
-## Day 3: Museums, Markets and Broadway
+## Day 3: museums, markets and Broadway
 
-- **Morning:** Intrepid Sea, Air and Space Museum followed by a walk through Little Island
-- **Lunch:** Chelsea Market favorites — Los Tacos No.1 or Very Fresh Noodles
-- **Afternoon:** Walk the High Line or take the East River Ferry to DUMBO for skyline views
-- **Evening:** Broadway show (Aladdin, Lion King or Harry Potter) or late-night pizza at Pizza Suprema
+- Morning: Intrepid Sea, Air and Space Museum, then a walk through Little Island
+- Lunch: Chelsea Market. Los Tacos No.1 or Very Fresh Noodles
+- Afternoon: The High Line, or take the East River Ferry to DUMBO for skyline views
+- Evening: A Broadway show, or late-night pizza at Pizza Suprema
 
-## Day 4: Central Park and Cozy Downtown
+## Day 4: Central Park and downtown
 
-- **Morning:** Central Park highlights — Bethesda Terrace, Alice in Wonderland statue, and Belvedere Castle
-- **Midday:** Skating at Wollman Rink or visit Central Park Zoo. Lunch at Shake Shack or Eisenberg's Diner
-- **Afternoon:** Flatiron Building and Union Square Holiday Market or browse Strand Bookstore
-- **Evening:** Washington Square Park and dinner at John's of Bleecker Street (legendary coal-fired pizza)
+- Morning: Central Park. Bethesda Terrace, the Alice in Wonderland statue, Belvedere Castle
+- Midday: Wollman Rink or the Central Park Zoo. Lunch at Shake Shack or Eisenberg's Diner
+- Afternoon: The Flatiron Building and Union Square Holiday Market, or browse Strand Bookstore
+- Evening: Washington Square Park and dinner at John's of Bleecker Street
 
-## Day 5: Liberty Island to Empire Views
+## Day 5: Liberty Island to the Empire State
 
-- **Morning:** Statue of Liberty pedestal access and museum (book tickets in advance)
-- **Midday:** Lunch at Ellen's Stardust Diner (singing waitstaff!)
-- **Afternoon:** Roosevelt Island tram and Four Freedoms Park for unique skyline perspectives
-- **Evening:** Empire State Building observation deck at sunset, dessert at Junior's
+- Morning: Statue of Liberty pedestal access and museum. Book tickets well in advance
+- Midday: Ellen's Stardust Diner (the waitstaff sings, it's genuinely fun)
+- Afternoon: Roosevelt Island tram and Four Freedoms Park for a different angle on the skyline
+- Evening: Empire State Building observation deck at sunset, then dessert at Junior's
 
-## Where to Stay: Hotel Hendricks
+![Hotel Hendricks New York City](public/pics/NYC/nyc-december-itinerary/hotelhendricks.webp "Hotel Hendricks, midtown Manhattan.")
 
-This centrally located boutique hotel offers the perfect blend of comfort and style during the busy holiday season. Its midtown location puts you within walking distance of Rockefeller Center, Times Square, and Fifth Avenue shopping.
+## Where to stay: Hotel Hendricks
 
-## Pro Tips for NYC in December
+I stayed at [Hotel Hendricks](https://www.hotelhendricksny.com). The midtown location works well for this itinerary: Rockefeller Center, Times Square, and Fifth Avenue are all walkable. The rooftop has a close-up view of the Empire State Building that's genuinely hard to beat.
 
-**Apps to Download**
-- Citymapper — best transit navigation
-- Too Good To Go — discounted food
-- TodayTix — Broadway ticket deals
+## Apps and gear
 
-**Essentials to Pack**
-- Thermal layers and waterproof boots
-- Portable charger and eSIM (Airalo)
-- Printed itinerary and passport copies
+Download Citymapper for transit, TodayTix for Broadway ticket deals, and Too Good To Go for discounted food. Pack thermal layers, waterproof boots, and a portable charger. A printed itinerary is worth having when your phone battery dies in the cold.
 
-## Must-Try Winter Eats and Drinks
+## Winter eats worth knowing
 
-- **Joe's Pizza:** Classic $3 New York slice that never disappoints
-- **Wafels & Dinges:** Belgian street waffles at Bryant Park's Winter Village
-- **Rolf's Restaurant:** The most over-the-top Christmas décor in NYC (reservations essential)
-- **Devoción:** Rich Colombian-style peppermint hot chocolate
-- **Levain Bakery:** Warm, gooey cookies perfect for cold days
+- Joe's Pizza: $3 a slice, no notes
+- Wafels & Dinges: Belgian street waffles at Bryant Park's Winter Village
+- Rolf's Restaurant: The most decorated Christmas bar in NYC. Reserve ahead or forget it
+- Devoción: Colombian-style peppermint hot chocolate, the thick kind
+- Levain Bakery: The warm cookies are as good as everyone says
 
-## Optional Add-On Days
+## Optional extra days
 
-- **Harlem Soul:** The Met Cloisters, gospel brunch at Sylvia's, and Sunday concert at Abyssinian Baptist Church
-- **Queens Adventure:** Museum of the Moving Image, Astoria's diverse food scene
-- **Brooklyn Escape:** Prospect Park skating, Brooklyn Botanic Garden, and holiday lights at Borough Hall
-
-Staying in NYC? Consider [Hotel Hendricks](https://www.hotelhendricksny.com) for a stylish and central stay.
+- Harlem: The Met Cloisters, gospel brunch at Sylvia's, Sunday concert at Abyssinian Baptist Church
+- Queens: Museum of the Moving Image, Astoria's food scene
+- Brooklyn: Prospect Park skating, Brooklyn Botanic Garden, holiday lights near Borough Hall

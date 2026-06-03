@@ -122,13 +122,14 @@ function markdownToHtml(markdown) {
       return;
     }
 
-    const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    const imgMatch = trimmed.match(/^!\[([^\]]*)\]\((.*?)(?:\s+["']([^"']+)["'])?\)$/);
     if (imgMatch) {
       flushParagraph();
       flushList();
       const alt = escapeHtml(imgMatch[1]);
       const src = relativeFromBlog(imgMatch[2]);
-      html.push(`<figure class="article-photo"><img src="${src}" alt="${alt}" loading="lazy" decoding="async"><figcaption>${alt}</figcaption></figure>`);
+      const caption = escapeHtml(imgMatch[3] || imgMatch[1]);
+      html.push(`<figure class="article-photo"><img src="${src}" alt="${alt}" loading="lazy" decoding="async"><figcaption>${caption}</figcaption></figure>`);
       return;
     }
 
@@ -801,6 +802,7 @@ function updateFeatured(home, posts) {
 }
 
 function writeLaunchFiles(posts) {
+  const lastBuildDate = posts[0] ? rssDate(posts[0].date) : new Date().toUTCString();
   const urls = [
     { loc: `${SITE_URL}/`, changefreq: "weekly", priority: "1.0" },
     ...posts.map((post) => ({
@@ -834,7 +836,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
     <link>${SITE_URL}/</link>
     <description>Slow travel stories, solo guides, and field notes by Adrien.</description>
     <language>en</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
 ${posts.map((post) => `    <item>
       <title>${escapeHtml(post.title)}</title>

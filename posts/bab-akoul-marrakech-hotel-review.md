@@ -2,7 +2,7 @@
 title: "4 Nights at Bab Akoul: Private Villas, Late-Night Swims, and the Best Couscous in Marrakech"
 date: "2026-05-21"
 category: "Hotel Review"
-tags: "Marrakech, Morocco, Hotel, Bab Akoul"
+tags: "Field Notes, Marrakech, Morocco, Hotel, Bab Akoul"
 readTime: "10 min"
 excerpt: "We stayed at two Bab Akoul properties outside Marrakech: a private villa with a pool you won't want to leave, and a livelier resort with friendly staff and a 15-year-old cat. Here's what it's really like."
 brief: "An honest diary of four nights across Bab Akoul Atlas and Bab Akoul Palmeraie. The highs, the food, the swims, and the things nobody tells you."

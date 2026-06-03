@@ -2,7 +2,7 @@
 title: "December in NYC: The Ultimate Holiday Magic Guide"
 date: "2026-11-15"
 category: "Holiday Guide"
-tags: "New York, December, Christmas, Holiday"
+tags: "Guide, New York, December, Christmas, Holiday"
 readTime: "15 min"
 excerpt: "New York City is at its most magical in December, from the Rockefeller tree to Dyker Heights, with practical tips on how to do it right."
 brief: "Everything you need to experience NYC's holiday season, from the Rockefeller tree to Dyker Heights, without the rookie mistakes."
