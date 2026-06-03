@@ -78,6 +78,9 @@ function main() {
     copyDir(picsSource, path.join(DIST, "public", "pics"), [".dng"]);
   }
 
+  // Tell Cloudflare Pages to skip _worker.js if it ever lands in dist
+  fs.writeFileSync(path.join(DIST, ".assetsignore"), "_worker.js\n", "utf8");
+
   const outputFiles = walk(DIST);
   const totalBytes = outputFiles.reduce((sum, file) => sum + fs.statSync(file).size, 0);
 
