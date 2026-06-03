@@ -1640,13 +1640,6 @@ window.toggleTheme = function() {
   }
 
   // Klaviyo newsletter forms
-  function newsletterErrorMessage(body) {
-    if (body && body.error) {
-      return body.error;
-    }
-    return "Something went wrong — try again.";
-  }
-
   function submitHostedKlaviyoForm(form) {
     return new Promise(function(resolve, reject) {
       var listInput = form.querySelector('input[name="g"]');
@@ -1686,30 +1679,7 @@ window.toggleTheme = function() {
   }
 
   function subscribeWithKlaviyo(form, email) {
-    return fetch("/api/subscribe", {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({
-        email: email,
-        source: window.location.pathname || "/"
-      })
-    }).then(function(response) {
-      if (response.ok) return;
-      if (response.status === 404 || response.status === 405) {
-        return submitHostedKlaviyoForm(form);
-      }
-      return response.json().catch(function() { return null; }).then(function(body) {
-        throw new Error(newsletterErrorMessage(body));
-      });
-    }).catch(function(error) {
-      if (error && error.message === "Newsletter is not configured yet.") {
-        throw error;
-      }
-      return submitHostedKlaviyoForm(form);
-    });
+    return submitHostedKlaviyoForm(form);
   }
 
   function handleNewsletterSubmit(form) {
