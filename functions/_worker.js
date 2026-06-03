@@ -30,11 +30,15 @@ function klaviyoErrorMessage(body) {
   return "Klaviyo rejected the subscription.";
 }
 
-export async function onRequestOptions() {
-  return new Response(null, { status: 204 });
-}
+async function subscribe(request, env) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, { status: 204 });
+  }
 
-export async function onRequestPost({ request, env }) {
+  if (request.method !== "POST") {
+    return json({ error: "Method not allowed." }, { status: 405 });
+  }
+
   const body = await readBody(request);
   const email = String(body.email || "").trim();
   const source = String(body.source || "Majestic Travels newsletter").slice(0, 120);
@@ -105,3 +109,14 @@ export async function onRequestPost({ request, env }) {
 
   return json({ error: klaviyoErrorMessage(errorBody) }, { status: response.status || 502 });
 }
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname === "/api/subscribe") {
+      return subscribe(request, env);
+    }
+
+    return env.ASSETS.fetch(request);
+  }
+};
