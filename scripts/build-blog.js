@@ -206,11 +206,13 @@ function getKlaviyoConfig(home) {
 
 function updateKlaviyoConfig(home, config) {
   const publicKey = escapeHtml(config.publicKey || "");
+  const listId = escapeHtml(config.listId || "");
 
   return home
     .replace(/klaviyo\.js\?company_id=[^"]*/g, `klaviyo.js?company_id=${encodeURIComponent(config.publicKey || "")}`)
     .replace(/data-klaviyo-public-key="[^"]*"/g, `data-klaviyo-public-key="${publicKey}"`)
-    .replace(/\sdata-klaviyo-list-id="[^"]*"/g, "");
+    .replace(/data-klaviyo-list-id="[^"]*"/g, `data-klaviyo-list-id="${listId}"`)
+    .replace(/(<input type="hidden" name="g" value=")[^"]*(")/g, `$1${listId}$2`);
 }
 
 const DESTINATION_TAGS = {
@@ -482,7 +484,8 @@ ${markdownToHtml(post.body)}
     <div class="newsletter-section-inner">
       <h2>Get exclusive itineraries &amp; travel stories</h2>
       <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm" action="/api/subscribe" method="post" data-klaviyo-form>
+      <form class="newsletter-form" id="ctaNewsletterForm" action="https://manage.kmail-lists.com/subscriptions/subscribe" method="post" data-klaviyo-form data-klaviyo-list-id="${escapeHtml(klaviyo.listId || "")}">
+        <input type="hidden" name="g" value="${escapeHtml(klaviyo.listId || "")}">
         <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
@@ -499,7 +502,8 @@ ${markdownToHtml(post.body)}
       <div class="footer-right">
       <div class="footer-newsletter">
         <p class="newsletter-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg> Stay in the loop</p>
-        <form class="newsletter-form" id="footerNewsletterForm" action="/api/subscribe" method="post" data-klaviyo-form>
+        <form class="newsletter-form" id="footerNewsletterForm" action="https://manage.kmail-lists.com/subscriptions/subscribe" method="post" data-klaviyo-form data-klaviyo-list-id="${escapeHtml(klaviyo.listId || "")}">
+          <input type="hidden" name="g" value="${escapeHtml(klaviyo.listId || "")}">
           <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
           <button type="submit" class="newsletter-btn">Subscribe</button>
         </form>
@@ -538,8 +542,46 @@ ${markdownToHtml(post.body)}
         return "Something went wrong — try again.";
       }
 
+      function submitHostedKlaviyoForm(form) {
+        return new Promise(function(resolve, reject) {
+          var listInput = form.querySelector('input[name="g"]');
+          var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
+
+          if (!listId) {
+            reject(new Error("Newsletter is not configured yet."));
+            return;
+          }
+
+          if (listInput) listInput.value = listId;
+
+          var iframe = document.createElement("iframe");
+          iframe.name = "klaviyo_signup_" + Date.now();
+          iframe.hidden = true;
+          iframe.setAttribute("title", "Newsletter signup");
+          document.body.appendChild(iframe);
+
+          var previousTarget = form.target;
+          form.target = iframe.name;
+
+          var finished = false;
+          function finish() {
+            if (finished) return;
+            finished = true;
+            form.target = previousTarget;
+            setTimeout(function() {
+              iframe.remove();
+            }, 1000);
+            resolve();
+          }
+
+          iframe.addEventListener("load", finish, { once: true });
+          HTMLFormElement.prototype.submit.call(form);
+          setTimeout(finish, 2600);
+        });
+      }
+
       function subscribeWithKlaviyo(form, email) {
-        return fetch(form.action || "/api/subscribe", {
+        return fetch("/api/subscribe", {
           method: "POST",
           headers: {
             accept: "application/json",
@@ -551,9 +593,17 @@ ${markdownToHtml(post.body)}
           })
         }).then(function(response) {
           if (response.ok) return;
+          if (response.status === 404 || response.status === 405) {
+            return submitHostedKlaviyoForm(form);
+          }
           return response.json().catch(function() { return null; }).then(function(body) {
             throw new Error(newsletterErrorMessage(body));
           });
+        }).catch(function(error) {
+          if (error && error.message === "Newsletter is not configured yet.") {
+            throw error;
+          }
+          return submitHostedKlaviyoForm(form);
         });
       }
 
@@ -567,7 +617,6 @@ ${markdownToHtml(post.body)}
           var originalText = btn.textContent;
           btn.textContent = "...";
           btn.disabled = true;
-          input.disabled = true;
           var prevError = form.parentNode.querySelector(".newsletter-error");
           if (prevError) prevError.remove();
           subscribeWithKlaviyo(form, email).then(function() {
@@ -579,7 +628,6 @@ ${markdownToHtml(post.body)}
           }).catch(function(err) {
             btn.textContent = originalText;
             btn.disabled = false;
-            input.disabled = false;
             var errEl = document.createElement("p");
             errEl.className = "newsletter-error";
             errEl.textContent = err.message || "Something went wrong — try again.";
