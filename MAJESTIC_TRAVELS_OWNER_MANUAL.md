@@ -168,6 +168,13 @@ Accessible description for the cover image.
 `keywords`
 Extra search words used by the homepage search/filter data.
 
+`affiliate`
+Optional. Set this to `"false"` if a specific article should not show the travel connectivity / Airalo callout below the signoff.
+
+```md
+affiliate: "false"
+```
+
 ## Supported Markdown
 
 The generator supports this intentionally small Markdown set:
@@ -248,6 +255,54 @@ Edit `scripts/prepare-publish.js`.
 
 Change validation rules:
 Edit `scripts/check-blog.js`.
+
+## If You Want To Copy A Blog HTML File
+
+Short version: copy the Markdown post instead, not the generated HTML, if you want a normal blog post.
+
+Good path for a real new post:
+
+```text
+copy posts/similar-post.md -> posts/new-post-slug.md
+edit title/date/category/tags/image/imageAlt/body
+run npm run build
+```
+
+Why: `blog/*.html` is generated. If you copy `blog/nyc-10-day-guide.html` and edit that copy directly, the build system will not treat it as a real post unless there is a matching Markdown source in `posts/`.
+
+Also, `scripts/check-blog.js` expects the number of `posts/*.md` files to match the number of `blog/*.html` article files. If you add an extra HTML file inside `blog/` without a matching Markdown post, `npm run build` or `npm run check:blog` can fail.
+
+Safe uses for copied HTML:
+
+- Temporary visual experiment: copy it outside `blog/`, for example into `experiments/`, and do not deploy it.
+- Template exploration: copy the HTML, inspect the structure, then move the real change into `scripts/build-blog.js` or `posts/*.md`.
+- A permanent custom standalone page: put it somewhere intentionally, then update `scripts/check-blog.js` and `scripts/prepare-publish.js` so the build knows that page is allowed.
+
+If you want a post that follows the same template as the existing blog, create or copy a Markdown post. The generator will produce the matching HTML for you.
+
+## Changing The Featured Post
+
+The featured post is currently automatic. `scripts/build-blog.js` sorts all Markdown posts by `date` descending, then `updateFeatured()` uses the newest post:
+
+```js
+const post = posts[0];
+```
+
+So the easiest way to change the featured post is to make the desired post the newest by date in its frontmatter:
+
+```md
+date: "2026-06-03"
+```
+
+If you want manual control instead, add a frontmatter field such as:
+
+```md
+featured: "true"
+```
+
+Then update `loadPosts()` and `updateFeatured()` in `scripts/build-blog.js` so the generator chooses the post with `featured: "true"` before falling back to the newest post. If you do this, make sure only one post has `featured: "true"` unless you intentionally want the first matching one to win.
+
+Do not hand-edit the featured HTML directly in `majestic-travels-blog.html`. The next build can replace it.
 
 ## Generated Files You Should Usually Commit
 

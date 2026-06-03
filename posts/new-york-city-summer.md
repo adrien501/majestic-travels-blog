@@ -6,9 +6,10 @@ tags: "Essay, New York, City guide, Summer"
 readTime: "12 min"
 excerpt: "The way golden light bounces off skyscrapers at sunset, the hum of sidewalk chatter mixing with distant jazz, the smell of hot pretzels and sudden rain on pavement. It's alive. It pulses. And if you let it, it'll rewrite your soul."
 brief: "A hybrid love letter and practical neighborhood route. Sensory detail first, checklist second."
-image: "https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=1200&q=85"
-imageAlt: "New York City skyline at dusk"
+image: "public/pics/NYC/nyc/liberty-hero.jpg"
+imageAlt: "Statue of Liberty with Manhattan skyline in the background"
 keywords: "new york city summer guide times square central park brooklyn bridge high line rooftop"
+affiliate: "false"
 ---
 
 There's something about New York in the summer: the way golden light bounces off skyscrapers at sunset, the hum of sidewalk chatter mixing with distant jazz from somewhere in the park, the smell of hot pretzels and subway grates and sudden rain on pavement.
@@ -92,5 +93,3 @@ This city doesn't care if you're ready for it. It will exhaust you and overwhelm
 Maybe it's the Staten Island Ferry gliding past the Statue of Liberty at midnight. Maybe it's a jazz trio in Washington Square Park. Or just a fire escape, a slice of pizza, the sky going pink over the rooftops.
 
 New York doesn't need you to love it. But by the time you leave, you will.
-
-If you're not from the U.S., consider an e-SIM. **[Airalo.com](https://www.airalo.com)** has been very reliable, and with code **'ADRIEN9940'** you get USD $3 credit when signing up.

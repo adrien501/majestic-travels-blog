@@ -292,6 +292,11 @@ function articleHtml(post, css, context = {}) {
     keywords: allTags.join(", "),
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }
   };
+  const affiliateCallout = post.affiliate === false ? "" : `          <aside class="affiliate-callout" aria-label="Travel connectivity tip">
+            <span>Before you land</span>
+            <p>Need data abroad? Use referral code <strong>ADRIEN9940</strong> when signing up with <a href="https://www.airalo.com/" target="_blank" rel="noopener">Airalo</a> to get a discount on your first eSIM. Download it before you leave home, activate it when you land, and you are ready to explore from the moment you arrive.</p>
+          </aside>
+`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -471,10 +476,7 @@ ${tagMeta}
 ${markdownToHtml(post.body)}
           </div>
           <p class="article-signoff">Saved in the Majestic Travels notebook on ${escapeHtml(dateLabel(post.date))}.</p>
-          <aside class="affiliate-callout" aria-label="Travel connectivity tip">
-            <span>Before you land</span>
-            <p>Need data abroad? Use referral code <strong>ADRIEN9940</strong> when signing up with <a href="https://www.airalo.com/" target="_blank" rel="noopener">Airalo</a> to get a discount on your first eSIM. Download it before you leave home, activate it when you land, and you are ready to explore from the moment you arrive.</p>
-          </aside>
+${affiliateCallout}
         </div>
       </div>
       <nav class="article-nav" aria-label="Article navigation">
@@ -737,6 +739,7 @@ function loadPosts() {
         image: meta.image || "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=85",
         imageAlt: meta.imageAlt || meta.title || "Travel photograph",
         keywords: meta.keywords || "",
+        affiliate: !["false", "no", "0"].includes(String(meta.affiliate || "").toLowerCase()),
         body,
         url: `blog/${slug}.html`
       };

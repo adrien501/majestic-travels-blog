@@ -6,8 +6,8 @@ tags: "Guide, New York, City guide, Brooklyn, Itinerary"
 readTime: "18 min"
 excerpt: "Everything learned from countless NYC trips — hidden gems discovered at dawn, the iconic sights done right, and every lesson from the hard way so you do not have to repeat the mistakes."
 brief: "The most complete NYC resource on the blog: iconic sights, Brooklyn neighborhoods, day trips, practical tips, and honest takes."
-image: "https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=1200&q=85"
-imageAlt: "New York City skyline at night from across the water"
+image: "public/pics/NYC/nyc/manhattan view with 1wtc at night.jpg"
+imageAlt: "Lower Manhattan skyline with One World Trade Center at night"
 keywords: "nyc 10 day guide new york brooklyn dumbo williamsburg central park high line roosevelt island tipping guide"
 ---
 
@@ -23,9 +23,13 @@ Tipping culture in New York is serious. Plan on 18 to 20 percent at restaurants,
 
 Seeing Lady Liberty in person is a different thing from seeing it on a screen. Start at The Battery and catch the ferry there. The free Staten Island Ferry departs every 30 minutes, needs no tickets or reservations, and passes right by the Statue of Liberty. Outstanding views of the Manhattan skyline, the statue, and the harbor, and it costs nothing. Get there early in the morning if you want photos without a crowd.
 
+![Manhattan view from the Staten Island Ferry](public/pics/NYC/nyc/ferry manhattan view.jpg "The free ferry gives you one of the best Manhattan views in the city.")
+
 ### Times Square
 
 I'll be honest: Times Square overwhelms me every single time. The lights, the crowds, the noise. Go at night when the billboards are fully lit and the whole square is pulsing. Yes, it's chaotic. That's the point. Grab a spot on the red steps, watch the people, and just be in it for a bit.
+
+![Times Square in New York City](public/pics/NYC/nyc/times square.jpg "Times Square is a lot. Go anyway.")
 
 ### Empire State Building and the best views
 
@@ -38,6 +42,8 @@ Westlight in Williamsburg offers a Brooklyn perspective of Manhattan at night wi
 ### Rockefeller Center
 
 Give this a few hours. The golden Prometheus statue, the plaza, the ice skating rink in winter. St. Patrick's Cathedral is directly across the street: walking from the plaza into that neo-Gothic space feels like a different city entirely. The stained glass, the vaulted ceilings, the quiet. It's free. The Atlas statue a short walk away is another one worth stopping for.
+
+![Grand Central Terminal in New York City](public/pics/NYC/nyc/grand central terminal .jpg "Grand Central Terminal, always worth walking through slowly.")
 
 ### Wall Street and the Charging Bull
 
@@ -58,6 +64,8 @@ Walk the promenade, find a bench, and sit with it. The skyline changes constantl
 ### Brooklyn Heights Promenade
 
 An elevated walkway above the harbor with the financial district, the Brooklyn Bridge, and the Statue of Liberty all in view at once. Bring a coffee and take your time.
+
+![Lower Manhattan skyline with One World Trade Center at night](public/pics/NYC/nyc/manhattan view with 1wtc at night.jpg "Lower Manhattan after dark.")
 
 ### Williamsburg and Domino Park
 
@@ -110,6 +118,12 @@ Catch a show. The Lion King's staging is something to see. The TKTS booth in Tim
 ## Day trips
 
 Liberty State Park in New Jersey has Manhattan skyline views and the Empty Sky Memorial, dedicated to the New Jersey victims of 9/11. Two stainless steel walls frame the skyline with the Freedom Tower visible through the gap. Moving, and much less crowded than lower Manhattan. Coney Island is worth a quick visit for the Nathan's Famous hot dogs and the Wonder Wheel, which has been spinning since 1920, but I wouldn't prioritize it over other options.
+
+![9/11 Memorial in Lower Manhattan](public/pics/NYC/nyc/memorial.jpg "The 9/11 Memorial is one of the places where the city goes quiet.")
+
+![The Oculus near the World Trade Center](public/pics/NYC/nyc/the oculus.jpg "The Oculus, bright and strange beside the memorial.")
+
+![Paley Park in Midtown Manhattan](public/pics/NYC/nyc/paley park.jpg "Paley Park is one of the best tiny escapes in Midtown.")
 
 ## Practical notes
 
