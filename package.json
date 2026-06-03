@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "build": "npm run prepare:publish",
     "build:blog": "node scripts/build-blog.js",
     "new:post": "node scripts/new-post.js",
     "check:blog": "node scripts/check-blog.js",
