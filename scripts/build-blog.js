@@ -191,18 +191,25 @@ function htmlAttrValue(html, attrName) {
   return match ? match[1] : "";
 }
 
-function getKlaviyoConfig(home) {
+const DEFAULT_BUTTONDOWN_USERNAME = "majestictravels";
+
+function getNewsletterConfig(home) {
   return {
-    listId: process.env.KLAVIYO_LIST_ID || htmlAttrValue(home, "data-klaviyo-list-id")
+    username: process.env.BUTTONDOWN_USERNAME || htmlAttrValue(home, "data-buttondown-username") || DEFAULT_BUTTONDOWN_USERNAME
   };
 }
 
-function updateKlaviyoConfig(home, config) {
-  const listId = escapeHtml(config.listId || "");
+function buttondownAction(username) {
+  return `https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(username || DEFAULT_BUTTONDOWN_USERNAME)}`;
+}
+
+function updateNewsletterConfig(home, config) {
+  const username = escapeHtml(config.username || DEFAULT_BUTTONDOWN_USERNAME);
+  const action = buttondownAction(config.username || DEFAULT_BUTTONDOWN_USERNAME);
 
   return home
-    .replace(/data-klaviyo-list-id="[^"]*"/g, `data-klaviyo-list-id="${listId}"`)
-    .replace(/(<input type="hidden" name="g" value=")[^"]*(")/g, `$1${listId}$2`);
+    .replace(/action="https:\/\/buttondown\.com\/api\/emails\/embed-subscribe\/[^"]*"/g, `action="${action}"`)
+    .replace(/data-buttondown-username="[^"]*"/g, `data-buttondown-username="${username}"`);
 }
 
 const DESTINATION_TAGS = {
@@ -251,7 +258,7 @@ function articleHtml(post, css, context = {}) {
   const articleImage = relativeFromBlog(post.image);
   const newerPost = posts[index - 1];
   const olderPost = posts[index + 1];
-  const klaviyo = context.klaviyo || {};
+  const newsletter = context.newsletter || {};
   const allTags = [...post.tags, post.categoryLabel].filter(Boolean);
   const tagMeta = post.tags.map((tag) => `  <meta property="article:tag" content="${escapeHtml(tag)}">`).join("\n");
   const relatedLink = (label, targetPost, fallbackHref, fallbackTitle) => {
@@ -482,8 +489,8 @@ ${affiliateCallout}
     <div class="newsletter-section-inner">
       <h2>Get exclusive itineraries &amp; travel stories</h2>
       <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm" action="/api/newsletter" method="post" data-klaviyo-form data-klaviyo-list-id="${escapeHtml(klaviyo.listId || "")}">
-        <input type="hidden" name="g" value="${escapeHtml(klaviyo.listId || "")}">
+      <form class="newsletter-form" id="ctaNewsletterForm" action="${buttondownAction(newsletter.username)}" method="post" data-buttondown-form data-buttondown-username="${escapeHtml(newsletter.username || DEFAULT_BUTTONDOWN_USERNAME)}">
+        <input type="hidden" name="embed" value="1">
         <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
@@ -525,59 +532,6 @@ ${affiliateCallout}
       if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
     };
     (function() {
-      function subscribeToNewsletter(form, email) {
-        var listInput = form.querySelector('input[name="g"]');
-        var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
-
-        return fetch("/api/newsletter", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json"
-          },
-          body: JSON.stringify({
-            email: email,
-            listId: listId
-          })
-        }).then(function(response) {
-          return response.json().catch(function() {
-            return {};
-          }).then(function(data) {
-            if (response.ok) return data;
-            throw new Error(data.error || "Newsletter signup failed. Please try again.");
-          });
-        });
-      }
-
-      function handleNewsletterSubmit(form) {
-        form.addEventListener("submit", function(e) {
-          e.preventDefault();
-          var input = form.querySelector("input[type='email']");
-          var btn = form.querySelector("button[type='submit']");
-          var email = input.value.trim();
-          if (!email || !input.reportValidity()) return;
-          var originalText = btn.textContent;
-          btn.textContent = "...";
-          btn.disabled = true;
-          var prevError = form.parentNode.querySelector(".newsletter-error");
-          if (prevError) prevError.remove();
-          subscribeToNewsletter(form, email).then(function() {
-            if (typeof window._learnq !== "undefined") {
-              window._learnq.push(["identify", { "$email": email }]);
-              window._learnq.push(["track", "Newsletter Signup", { source: "website" }]);
-            }
-            form.innerHTML = '<p class="newsletter-success">You\\'re in! Check your inbox to confirm.</p>';
-          }).catch(function(err) {
-            btn.textContent = originalText;
-            btn.disabled = false;
-            var errEl = document.createElement("p");
-            errEl.className = "newsletter-error";
-            errEl.textContent = err.message || "Something went wrong — try again.";
-            form.parentNode.insertBefore(errEl, form.nextSibling);
-          });
-        });
-      }
-      var ctaForm = document.getElementById("ctaNewsletterForm");
-      if (ctaForm) handleNewsletterSubmit(ctaForm);
       document.querySelectorAll("img").forEach(function(image) {
         var markBroken = function() { image.classList.add("is-broken"); };
         image.addEventListener("error", markBroken, { once: true });
@@ -736,12 +690,12 @@ function main() {
   if (!posts.length) throw new Error("No Markdown posts found in posts/.");
 
   const { css } = getHomeParts(home);
-  const klaviyo = getKlaviyoConfig(home);
+  const newsletter = getNewsletterConfig(home);
   fs.mkdirSync(BLOG_DIR, { recursive: true });
   posts.forEach((post, index) => {
-    write(path.join(BLOG_DIR, `${post.slug}.html`), articleHtml(post, css, { index, posts, klaviyo }));
+    write(path.join(BLOG_DIR, `${post.slug}.html`), articleHtml(post, css, { index, posts, newsletter }));
   });
-  write(HOME_FILE, updateKlaviyoConfig(updateFeatured(updateHome(home, posts), posts), klaviyo));
+  write(HOME_FILE, updateNewsletterConfig(updateFeatured(updateHome(home, posts), posts), newsletter));
   writeLaunchFiles(posts);
 
   console.log(`Built ${posts.length} posts.`);

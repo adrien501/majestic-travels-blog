@@ -4,7 +4,6 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 const PUBLIC_SITE = path.join(ROOT, "public", "site");
-const NEWSLETTER_WORKER = path.join(ROOT, "scripts", "newsletter-worker.js");
 // Brand PNGs referenced directly in HTML (nav logo, hero wordmark, about photo placeholder)
 const BRAND_PNGS = [
   "public/logo_cleanedup_centered_transparant-01.png",
@@ -72,7 +71,6 @@ function main() {
   copyDir(path.join(ROOT, "blog"), path.join(DIST, "blog"));
   copyDir(PUBLIC_SITE, path.join(DIST, "public", "site"));
   BRAND_PNGS.forEach((p) => copyFile(p, p));
-  fs.copyFileSync(NEWSLETTER_WORKER, path.join(DIST, "_worker.js"));
 
   // Copy destination photos (skip raw camera files like .dng)
   const picsSource = path.join(ROOT, "public", "pics");
