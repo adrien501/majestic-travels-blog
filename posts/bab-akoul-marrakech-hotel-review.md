@@ -64,7 +64,7 @@ The couscous on our first night at Atlas was the best I've ever had. Not exagger
 
 ![Traditional Moroccan couscous at Bab Akoul Atlas](public/pics/marrakech/couscous.jpg "That couscous.")
 
-The rest of the food was more varied. Breakfast was solid every day. Dinner is a set menu, and it's worth asking in advance if you'd prefer something specific. The chicken dish was good. The mini spring rolls at Palmeraie were a nice find. Some evenings the menu didn't land for us as well as others, and the almond sablee for dessert, while perfectly fine, wasn't the highlight.
+The rest of the food was more varied. Breakfast was solid every day. Dinner is a set menu, and it's worth asking in advance if you'd prefer something specific. The chicken dish was good. The mini spring rolls at Palmeraie were a nice find. Some evenings the menu didn't land for us as well as others, and the almond sable for dessert, while perfectly fine, wasn't the highlight.
 
 The kitchen clearly has range (that couscous proves it), but if you're staying multiple nights, requesting dishes ahead makes a real difference. We did on day four and the meal was excellent.
 
@@ -93,7 +93,7 @@ A driver picked us up at five. Airport by 5:40, plane at 8:18, landed in Belgium
 - Each property has at least one pool. Medina will have a heated pool
 - WiFi was limited when we stayed (lobby only at Atlas, better at Palmeraie)
 - Atlas if you want total privacy. Palmeraie if you like being around other guests. Medina for city explorers who still want a retreat
-- Book: [Bab Akoul Atlas on Booking.com](https://www.booking.com/hotel/ma/dar-basma-marrakech.fr.html) · [Bab Akoul Palmeraie on Booking.com](https://www.booking.com/hotel/ma/bab-akoul.fr.html)
+- Book: [Bab Akoul Atlas on Booking.com](https://www.booking.com/hotel/ma/dar-basma-marrakech.fr.html) and [Bab Akoul Palmeraie on Booking.com](https://www.booking.com/hotel/ma/bab-akoul.fr.html)
 - My take: start at Palmeraie, finish at Atlas. Save the quiet for last
 
 > If you've been to Bab Akoul or you're thinking about going, I'd like to hear how it went. The place is still pretty much under the radar, which is part of why I liked it.

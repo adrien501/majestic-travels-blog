@@ -75,9 +75,9 @@ Cloudflare Pages settings (set once, never touch again):
 - **Branch:** `main`
 
 Newsletter settings:
-- Add `KLAVIYO_PUBLIC_API_KEY` in Cloudflare Pages environment variables. This is Klaviyo's public API key / site ID, not a private key.
+- Add `KLAVIYO_PRIVATE_API_KEY` in Cloudflare Pages environment variables. It needs `lists:write`, `profiles:write`, and `subscriptions:write` scopes.
 - Add `KLAVIYO_LIST_ID` in Cloudflare Pages environment variables. This is the Klaviyo list new subscribers should join.
-- Never put a Klaviyo private API key in this static site or in GitHub.
+- Never put a Klaviyo private API key in static HTML or in GitHub.
 
 ---
 

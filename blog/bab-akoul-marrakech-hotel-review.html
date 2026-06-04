@@ -1313,7 +1313,7 @@
     [data-theme="dark"] .article-body blockquote { background: var(--cream-deep); box-shadow: none; }
   </style>
   <script>
-  (function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#1a1917':'#2c2a26'})();
+  (function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#1a1917':'#2c2a26'})();
   </script>
 </head>
 <body id="top">
@@ -1424,7 +1424,7 @@
 <h2>The food</h2>
 <p>The couscous on our first night at Atlas was the best I've ever had. Not exaggerating. When we came back to Atlas on day four, we specifically asked for it again. Just as good the second time.</p>
 <figure class="article-photo"><img src="../public/pics/marrakech/couscous.jpg" alt="Traditional Moroccan couscous at Bab Akoul Atlas" loading="lazy" decoding="async"><figcaption>That couscous.</figcaption></figure>
-<p>The rest of the food was more varied. Breakfast was solid every day. Dinner is a set menu, and it's worth asking in advance if you'd prefer something specific. The chicken dish was good. The mini spring rolls at Palmeraie were a nice find. Some evenings the menu didn't land for us as well as others, and the almond sablee for dessert, while perfectly fine, wasn't the highlight.</p>
+<p>The rest of the food was more varied. Breakfast was solid every day. Dinner is a set menu, and it's worth asking in advance if you'd prefer something specific. The chicken dish was good. The mini spring rolls at Palmeraie were a nice find. Some evenings the menu didn't land for us as well as others, and the almond sable for dessert, while perfectly fine, wasn't the highlight.</p>
 <p>The kitchen clearly has range (that couscous proves it), but if you're staying multiple nights, requesting dishes ahead makes a real difference. We did on day four and the meal was excellent.</p>
 <h2>Golden hour and late-night dives</h2>
 <p>The thing I'll remember most is the ritual. Every evening the sun would drop behind the palm trees and the pool turned into this mirror of gold and silhouettes. I'd swim, watch the light shift, then shower and find a quiet corner somewhere.</p>
@@ -1435,7 +1435,7 @@
 <figure class="article-photo"><img src="../public/pics/marrakech/marrakech-sunset-palms.jpg" alt="Palm trees silhouetted against a golden Marrakech sunset" loading="lazy" decoding="async"><figcaption>Palm trees at dusk.</figcaption></figure>
 <p>A driver picked us up at five. Airport by 5:40, plane at 8:18, landed in Belgium at 11:45. And just like that, the quiet was over.</p>
 <h2>Practical info</h2>
-<ul><li><a href="https://www.bab-akoul.com/" target="_blank" rel="noopener">Bab Akoul</a> has three locations near Marrakech. Atlas is intimate, private villas surrounded by olive groves. Palmeraie is a larger resort with more of a social atmosphere. Medina is right in the center of Marrakech, good if you want to explore the souks and still come back somewhere quiet. Medina wasn't operational yet when we visited (May 2026)</li><li>A driver picks you up at Marrakech airport. About 45 minutes to the properties</li><li>Breakfast included daily. Moroccan crepes, bread, confiture, honey, and eggs</li><li>Dinner is a set menu of the day. You can request specific dishes in advance</li><li>Each property has at least one pool. Medina will have a heated pool</li><li>WiFi was limited when we stayed (lobby only at Atlas, better at Palmeraie)</li><li>Atlas if you want total privacy. Palmeraie if you like being around other guests. Medina for city explorers who still want a retreat</li><li>Book: <a href="https://www.booking.com/hotel/ma/dar-basma-marrakech.fr.html" target="_blank" rel="noopener">Bab Akoul Atlas on Booking.com</a> · <a href="https://www.booking.com/hotel/ma/bab-akoul.fr.html" target="_blank" rel="noopener">Bab Akoul Palmeraie on Booking.com</a></li><li>My take: start at Palmeraie, finish at Atlas. Save the quiet for last</li></ul>
+<ul><li><a href="https://www.bab-akoul.com/" target="_blank" rel="noopener">Bab Akoul</a> has three locations near Marrakech. Atlas is intimate, private villas surrounded by olive groves. Palmeraie is a larger resort with more of a social atmosphere. Medina is right in the center of Marrakech, good if you want to explore the souks and still come back somewhere quiet. Medina wasn't operational yet when we visited (May 2026)</li><li>A driver picks you up at Marrakech airport. About 45 minutes to the properties</li><li>Breakfast included daily. Moroccan crepes, bread, confiture, honey, and eggs</li><li>Dinner is a set menu of the day. You can request specific dishes in advance</li><li>Each property has at least one pool. Medina will have a heated pool</li><li>WiFi was limited when we stayed (lobby only at Atlas, better at Palmeraie)</li><li>Atlas if you want total privacy. Palmeraie if you like being around other guests. Medina for city explorers who still want a retreat</li><li>Book: <a href="https://www.booking.com/hotel/ma/dar-basma-marrakech.fr.html" target="_blank" rel="noopener">Bab Akoul Atlas on Booking.com</a> and <a href="https://www.booking.com/hotel/ma/bab-akoul.fr.html" target="_blank" rel="noopener">Bab Akoul Palmeraie on Booking.com</a></li><li>My take: start at Palmeraie, finish at Atlas. Save the quiet for last</li></ul>
 <blockquote>If you've been to Bab Akoul or you're thinking about going, I'd like to hear how it went. The place is still pretty much under the radar, which is part of why I liked it.</blockquote>
           </div>
           <p class="article-signoff">Saved in the Majestic Travels notebook on May 21, 2026.</p>
@@ -1466,7 +1466,7 @@
     <div class="newsletter-section-inner">
       <h2>Get exclusive itineraries &amp; travel stories</h2>
       <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm" action="https://manage.kmail-lists.com/subscriptions/subscribe" method="post" data-klaviyo-form data-klaviyo-public-key="VQW5sn" data-klaviyo-list-id="TaitBk">
+      <form class="newsletter-form" id="ctaNewsletterForm" action="/api/newsletter" method="post" data-klaviyo-form data-klaviyo-list-id="TaitBk">
         <input type="hidden" name="g" value="TaitBk">
         <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
@@ -1509,146 +1509,26 @@
       if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
     };
     (function() {
-      function parseKlaviyoError(data) {
-        if (data && data.errors && data.errors.length) {
-          return data.errors.map(function(error) {
-            return error.detail || error.title;
-          }).filter(Boolean).join(" ");
-        }
-        return "";
-      }
-
-      function ensureKlaviyoListInput(form, listId) {
-        var listInput = form.querySelector('input[name="g"]');
-        if (!listInput) {
-          listInput = document.createElement("input");
-          listInput.type = "hidden";
-          listInput.name = "g";
-          form.insertBefore(listInput, form.firstChild);
-        }
-        listInput.value = listId;
-        return listInput;
-      }
-
-      function submitClientKlaviyoSubscription(form, email) {
+      function subscribeToNewsletter(form, email) {
         var listInput = form.querySelector('input[name="g"]');
         var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
-        var publicKey = form.dataset.klaviyoPublicKey || "";
 
-        if (!publicKey || !listId) {
-          return Promise.reject(new Error("Newsletter is not configured yet."));
-        }
-
-        ensureKlaviyoListInput(form, listId);
-
-        return fetch("https://a.klaviyo.com/client/subscriptions?company_id=" + encodeURIComponent(publicKey), {
+        return fetch("/api/newsletter", {
           method: "POST",
           headers: {
-            "accept": "application/vnd.api+json",
-            "content-type": "application/vnd.api+json",
-            "revision": "2025-01-15"
+            "content-type": "application/json"
           },
           body: JSON.stringify({
-            data: {
-              type: "subscription",
-              attributes: {
-                custom_source: "Majestic Travels newsletter",
-                profile: {
-                  data: {
-                    type: "profile",
-                    attributes: {
-                      email: email,
-                      subscriptions: {
-                        email: {
-                          marketing: {
-                            consent: "SUBSCRIBED"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              relationships: {
-                list: {
-                  data: {
-                    type: "list",
-                    id: listId
-                  }
-                }
-              }
-            }
+            email: email,
+            listId: listId
           })
         }).then(function(response) {
-          if (response.ok) return;
           return response.json().catch(function() {
-            return null;
+            return {};
           }).then(function(data) {
-            throw new Error(parseKlaviyoError(data) || "Klaviyo rejected this signup.");
+            if (response.ok) return data;
+            throw new Error(data.error || "Newsletter signup failed. Please try again.");
           });
-        });
-      }
-
-      function submitHostedKlaviyoForm(form) {
-        return new Promise(function(resolve, reject) {
-          var listInput = form.querySelector('input[name="g"]');
-          var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
-
-          if (!listId) {
-            reject(new Error("Newsletter is not configured yet."));
-            return;
-          }
-
-          ensureKlaviyoListInput(form, listId);
-
-          var iframe = document.createElement("iframe");
-          iframe.name = "klaviyo_signup_" + Date.now();
-          iframe.hidden = true;
-          iframe.setAttribute("title", "Newsletter signup");
-          document.body.appendChild(iframe);
-
-          var previousTarget = form.target;
-          var previousAction = form.action;
-          form.target = iframe.name;
-          form.action = "https://manage.kmail-lists.com/subscriptions/subscribe";
-
-          var finished = false;
-          var timeoutId = setTimeout(function() {
-            if (finished) return;
-            finished = true;
-            cleanup();
-            reject(new Error("Klaviyo signup did not respond."));
-          }, 5000);
-
-          function cleanup() {
-            form.target = previousTarget;
-            form.action = previousAction;
-            setTimeout(function() {
-              iframe.remove();
-            }, 1000);
-          }
-
-          function finish() {
-            if (finished) return;
-            finished = true;
-            clearTimeout(timeoutId);
-            cleanup();
-            resolve();
-          }
-
-          iframe.addEventListener("load", finish, { once: true });
-          HTMLFormElement.prototype.submit.call(form);
-        });
-      }
-
-      function isNetworkFailure(error) {
-        return error instanceof TypeError || /fetch|network|load failed/i.test(error && error.message || "");
-      }
-
-      function subscribeWithKlaviyo(form, email) {
-        return submitClientKlaviyoSubscription(form, email).catch(function(error) {
-          console.warn("Client API error, falling back to hosted form:", error);
-          return submitHostedKlaviyoForm(form);
         });
       }
 
@@ -1664,7 +1544,7 @@
           btn.disabled = true;
           var prevError = form.parentNode.querySelector(".newsletter-error");
           if (prevError) prevError.remove();
-          subscribeWithKlaviyo(form, email).then(function() {
+          subscribeToNewsletter(form, email).then(function() {
             if (typeof window._learnq !== "undefined") {
               window._learnq.push(["identify", { "$email": email }]);
               window._learnq.push(["track", "Newsletter Signup", { source: "website" }]);
