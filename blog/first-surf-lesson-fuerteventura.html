@@ -30,28 +30,63 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,50..100,0..1&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "My First Time Surfing in Fuerteventura and OTRO MODO Surf School",
-  "description": "Some people go to the Canary Islands for the sun. I went to learn how to surf. What I didn't expect was how much it would teach me about trust — in the ocean, in my body, and in the unknown.",
-  "image": [
-    "https://majestic-travels.com/public/pics/fuerteventura/first-surf-lesson-fuerteventura/la%20pared%20beach%20and%20surfplanks.jpg"
-  ],
-  "datePublished": "2026-02-28",
-  "dateModified": "2026-02-28",
-  "author": {
-    "@type": "Person",
-    "name": "Adrien"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Majestic Travels"
-  },
-  "articleSection": "Travel Journal",
-  "keywords": "Field Notes, Surf, Solo travel, Fuerteventura, Travel Journal",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html"
-  }
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html#blogposting",
+      "headline": "My First Time Surfing in Fuerteventura and OTRO MODO Surf School",
+      "description": "Some people go to the Canary Islands for the sun. I went to learn how to surf. What I didn't expect was how much it would teach me about trust — in the ocean, in my body, and in the unknown.",
+      "image": [
+        "https://majestic-travels.com/public/pics/fuerteventura/first-surf-lesson-fuerteventura/la%20pared%20beach%20and%20surfplanks.jpg"
+      ],
+      "datePublished": "2026-02-28",
+      "dateModified": "2026-02-28",
+      "author": {
+        "@type": "Person",
+        "@id": "https://majestic-travels.com/#adrien",
+        "name": "Adrien"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://majestic-travels.com/#organization",
+        "name": "Majestic Travels",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://majestic-travels.com/public/site/brand-logo.png"
+        }
+      },
+      "articleSection": "Travel Journal",
+      "keywords": "Field Notes, Surf, Solo travel, Fuerteventura, Travel Journal",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://majestic-travels.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Stories",
+          "item": "https://majestic-travels.com/#stories"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "My First Time Surfing in Fuerteventura and OTRO MODO Surf School",
+          "item": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html"
+        }
+      ]
+    }
+  ]
 }</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -1478,6 +1513,7 @@
           <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
           <li><a href="../majestic-travels-blog.html#about">About</a></li>
           <li><a href="../rss.xml">RSS</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
         </ul>
         <div class="footer-socials">
           <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>

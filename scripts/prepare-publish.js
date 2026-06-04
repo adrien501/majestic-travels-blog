@@ -14,6 +14,7 @@ const BRAND_PNGS = [
 const files = [
   ["majestic-travels-blog.html", "index.html"],
   ["majestic-travels-blog.html", "majestic-travels-blog.html"],
+  ["sitemap.html", "sitemap.html"],
   ["sitemap.xml", "sitemap.xml"],
   ["robots.txt", "robots.txt"],
   ["rss.xml", "rss.xml"]

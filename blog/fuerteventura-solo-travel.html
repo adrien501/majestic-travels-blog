@@ -30,28 +30,63 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,50..100,0..1&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "I Went to Fuerteventura to Escape and Found Myself Again",
-  "description": "Not here for parties or nightlife — just a desperate need to breathe. A story about burnout, surfing, hidden beaches, and the version of yourself buried between stress and boredom.",
-  "image": [
-    "https://majestic-travels.com/public/site/fuerteventura-atlantic.jpg"
-  ],
-  "datePublished": "2026-04-18",
-  "dateModified": "2026-04-18",
-  "author": {
-    "@type": "Person",
-    "name": "Adrien"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Majestic Travels"
-  },
-  "articleSection": "Personal Journey",
-  "keywords": "Essay, Solo travel, Fuerteventura, Wellness, Personal Journey",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html"
-  }
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html#blogposting",
+      "headline": "I Went to Fuerteventura to Escape and Found Myself Again",
+      "description": "Not here for parties or nightlife — just a desperate need to breathe. A story about burnout, surfing, hidden beaches, and the version of yourself buried between stress and boredom.",
+      "image": [
+        "https://majestic-travels.com/public/site/fuerteventura-atlantic.jpg"
+      ],
+      "datePublished": "2026-04-18",
+      "dateModified": "2026-04-18",
+      "author": {
+        "@type": "Person",
+        "@id": "https://majestic-travels.com/#adrien",
+        "name": "Adrien"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://majestic-travels.com/#organization",
+        "name": "Majestic Travels",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://majestic-travels.com/public/site/brand-logo.png"
+        }
+      },
+      "articleSection": "Personal Journey",
+      "keywords": "Essay, Solo travel, Fuerteventura, Wellness, Personal Journey",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://majestic-travels.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Stories",
+          "item": "https://majestic-travels.com/#stories"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "I Went to Fuerteventura to Escape and Found Myself Again",
+          "item": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html"
+        }
+      ]
+    }
+  ]
 }</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -1475,6 +1510,7 @@
           <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
           <li><a href="../majestic-travels-blog.html#about">About</a></li>
           <li><a href="../rss.xml">RSS</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
         </ul>
         <div class="footer-socials">
           <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>

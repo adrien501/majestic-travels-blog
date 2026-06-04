@@ -6,6 +6,7 @@ const HOME_FILE = path.join(ROOT, "majestic-travels-blog.html");
 const BLOG_DIR = path.join(ROOT, "blog");
 const POSTS_DIR = path.join(ROOT, "posts");
 const SITEMAP_FILE = path.join(ROOT, "sitemap.xml");
+const HTML_SITEMAP_FILE = path.join(ROOT, "sitemap.html");
 const ROBOTS_FILE = path.join(ROOT, "robots.txt");
 const RSS_FILE = path.join(ROOT, "rss.xml");
 const SITE_URL = (process.env.SITE_URL || "https://majestic-travels.com").replace(/\/+$/, "");
@@ -30,6 +31,7 @@ function countMatches(value, pattern) {
 
 function htmlFiles() {
   const files = [HOME_FILE];
+  if (fs.existsSync(HTML_SITEMAP_FILE)) files.push(HTML_SITEMAP_FILE);
   if (fs.existsSync(BLOG_DIR)) {
     files.push(
       ...fs.readdirSync(BLOG_DIR)
@@ -194,9 +196,13 @@ function checkLaunchFiles(postCount, articleCount) {
   } else {
     const sitemap = read(SITEMAP_FILE);
     const urlCount = countMatches(sitemap, /<url>/g);
-    if (urlCount !== postCount + 1) {
-      fail(`sitemap.xml should contain ${postCount + 1} URLs, found ${urlCount}.`);
+    if (urlCount !== postCount + 2) {
+      fail(`sitemap.xml should contain ${postCount + 2} URLs, found ${urlCount}.`);
     }
+  }
+
+  if (!fs.existsSync(HTML_SITEMAP_FILE)) {
+    fail("sitemap.html is missing.");
   }
 
   if (!fs.existsSync(ROBOTS_FILE)) {
@@ -244,7 +250,7 @@ function main() {
 
   pages.forEach((filePath) => checkHtmlPage(filePath, cache));
   checkPosts(posts);
-  checkLaunchFiles(posts.length, pages.length - 1);
+  checkLaunchFiles(posts.length, pages.length - 2);
 
   if (fs.existsSync(HOME_FILE)) {
     checkHomepage(cache.get(HOME_FILE) || read(HOME_FILE), posts.length);

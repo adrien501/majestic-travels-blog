@@ -6,6 +6,7 @@ const HOME_FILE = path.join(ROOT, "majestic-travels-blog.html");
 const POSTS_DIR = path.join(ROOT, "posts");
 const BLOG_DIR = path.join(ROOT, "blog");
 const SITEMAP_FILE = path.join(ROOT, "sitemap.xml");
+const HTML_SITEMAP_FILE = path.join(ROOT, "sitemap.html");
 const ROBOTS_FILE = path.join(ROOT, "robots.txt");
 const RSS_FILE = path.join(ROOT, "rss.xml");
 const SITE_URL = (process.env.SITE_URL || "https://majestic-travels.com").replace(/\/+$/, "");
@@ -193,6 +194,85 @@ function sitemapUrl(urlPath = "") {
   return encodeURI(absoluteUrl(urlPath)).replace(/%25([0-9A-Fa-f]{2})/g, "%$1");
 }
 
+function destinationGroups(posts) {
+  const groups = new Map();
+  posts.forEach((post) => {
+    const destinations = getDestinations(post.tags).split(/\s+/).filter(Boolean);
+    destinations.forEach((destination) => {
+      if (!groups.has(destination)) groups.set(destination, []);
+      groups.get(destination).push(post);
+    });
+  });
+  return Array.from(groups.entries()).sort(([a], [b]) => a.localeCompare(b));
+}
+
+function siteSchema(posts) {
+  const homeUrl = `${SITE_URL}/`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${homeUrl}#organization`,
+        name: "Majestic Travels",
+        url: homeUrl,
+        logo: absoluteUrl("public/site/brand-logo.png"),
+        sameAs: [
+          "https://www.instagram.com/your_majestic_travels",
+          "https://www.tiktok.com/@your_majestic_travels",
+          "https://ko-fi.com/majestictravels",
+          "https://majestictravels.gumroad.com/"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": `${homeUrl}#adrien`,
+        name: "Adrien",
+        url: homeUrl,
+        image: absoluteUrl("public/site/profile-pic.jpg"),
+        worksFor: { "@id": `${homeUrl}#organization` }
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${homeUrl}#website`,
+        name: "Majestic Travels",
+        url: homeUrl,
+        publisher: { "@id": `${homeUrl}#organization` },
+        author: { "@id": `${homeUrl}#adrien` },
+        inLanguage: "en"
+      },
+      {
+        "@type": "Blog",
+        "@id": `${homeUrl}#blog`,
+        name: "Majestic Travels",
+        url: homeUrl,
+        description: "An editorial travel blog about slow travel, solo adventures, city guides, and honest field notes.",
+        publisher: { "@id": `${homeUrl}#organization` },
+        author: { "@id": `${homeUrl}#adrien` },
+        blogPost: posts.map((post) => ({
+          "@type": "BlogPosting",
+          "@id": `${absoluteUrl(`blog/${post.slug}.html`)}#blogposting`,
+          headline: post.title,
+          datePublished: post.date,
+          url: absoluteUrl(`blog/${post.slug}.html`),
+          author: { "@id": `${homeUrl}#adrien` }
+        }))
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${homeUrl}#latest-posts`,
+        name: "Latest Majestic Travels stories",
+        itemListElement: posts.map((post, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: absoluteUrl(`blog/${post.slug}.html`),
+          name: post.title
+        }))
+      }
+    ]
+  };
+}
+
 function getHomeParts(home) {
   const styleMatch = home.match(/<style>([\s\S]*?)<\/style>/);
   if (!styleMatch) throw new Error("Could not find homepage CSS.");
@@ -289,17 +369,36 @@ function articleHtml(post, css, context = {}) {
   };
   const schema = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    image: [imageUrl],
-    datePublished: post.date,
-    dateModified: post.date,
-    author: { "@type": "Person", name: "Adrien" },
-    publisher: { "@type": "Organization", name: "Majestic Travels" },
-    articleSection: post.categoryLabel,
-    keywords: allTags.join(", "),
-    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${articleUrl}#blogposting`,
+        headline: post.title,
+        description: post.excerpt,
+        image: [imageUrl],
+        datePublished: post.date,
+        dateModified: sitemapLastmod(post.date),
+        author: { "@type": "Person", "@id": `${SITE_URL}/#adrien`, name: "Adrien" },
+        publisher: {
+          "@type": "Organization",
+          "@id": `${SITE_URL}/#organization`,
+          name: "Majestic Travels",
+          logo: { "@type": "ImageObject", url: absoluteUrl("public/site/brand-logo.png") }
+        },
+        articleSection: post.categoryLabel,
+        keywords: allTags.join(", "),
+        mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${articleUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: "Stories", item: `${SITE_URL}/#stories` },
+          { "@type": "ListItem", position: 3, name: post.title, item: articleUrl }
+        ]
+      }
+    ]
   };
   const affiliateCallout = post.affiliate === false ? "" : `          <aside class="affiliate-callout" aria-label="Travel connectivity tip">
             <span>Before you land</span>
@@ -523,6 +622,7 @@ ${affiliateCallout}
           <li><a href="../majestic-travels-blog.html#destinations">Destinations</a></li>
           <li><a href="../majestic-travels-blog.html#about">About</a></li>
           <li><a href="../rss.xml">RSS</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
         </ul>
         <div class="footer-socials">
           <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
@@ -643,11 +743,146 @@ function updateFeatured(home, posts) {
   return home; // Neither found — skip silently
 }
 
+function updateHomeSchema(home, posts) {
+  const schema = `<script type="application/ld+json">\n${jsonLd(siteSchema(posts))}\n  </script>`;
+  return home.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, schema);
+}
+
+function sitemapPageHtml(posts, css) {
+  const groups = destinationGroups(posts);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sitemap | Majestic Travels</title>
+  <meta name="description" content="Browse every Majestic Travels story, destination collection, feed, and public page from one simple sitemap.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="${SITE_URL}/sitemap.html">
+  <link rel="alternate" type="application/rss+xml" title="Majestic Travels RSS" href="${SITE_URL}/rss.xml">
+  <link rel="icon" type="image/png" href="public/site/brand-logo.png">
+  <link rel="apple-touch-icon" href="public/site/brand-logo.png">
+  <meta name="theme-color" content="#2c2a26">
+  <script type="application/ld+json">${jsonLd({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Majestic Travels Sitemap",
+    url: `${SITE_URL}/sitemap.html`,
+    description: "A complete public index of Majestic Travels pages and stories.",
+    isPartOf: { "@id": `${SITE_URL}/#website` }
+  })}</script>
+  <style>${css}
+    .sitemap-page { padding: 64px 0 96px; }
+    .sitemap-shell { width: min(calc(100% - 44px), 1040px); margin: 0 auto; display: grid; gap: 34px; }
+    .sitemap-hero { display: grid; gap: 16px; max-width: 760px; }
+    .sitemap-hero h1 { font-size: clamp(3rem, 8vw, 6.6rem); line-height: 0.92; letter-spacing: 0; }
+    .sitemap-hero p { color: var(--ink-soft); font-size: 1.16rem; line-height: 1.58; max-width: 64ch; }
+    .sitemap-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .sitemap-section { border-top: 1.5px solid var(--line-strong); padding-top: 20px; display: grid; gap: 14px; }
+    .sitemap-section h2 { font-size: 1.85rem; }
+    .sitemap-list { display: grid; gap: 10px; list-style: none; padding: 0; }
+    .sitemap-list a { display: inline-flex; color: var(--ink); font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .sitemap-meta { color: var(--sandstone); font-size: 0.78rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; }
+    @media (max-width: 760px) { .sitemap-grid { grid-template-columns: 1fr; } .sitemap-page { padding-top: 42px; } }
+  </style>
+  <script>
+  (function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#1a1917':'#2c2a26'})();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#sitemap">Skip to sitemap</a>
+  <nav class="site-nav nav-solid" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="majestic-travels-blog.html" class="nav-brand">
+        <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="nav-logo">
+        <span class="nav-brand-name">Majestic Travels</span>
+      </a>
+      <ul class="nav-menu" role="list">
+        <li><a href="majestic-travels-blog.html#stories">Stories</a></li>
+        <li><a href="majestic-travels-blog.html#destinations">Destinations</a></li>
+        <li><a href="majestic-travels-blog.html#about">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <main class="sitemap-page" id="sitemap">
+    <div class="sitemap-shell">
+      <header class="sitemap-hero">
+        <span class="kicker">Site index</span>
+        <h1>Sitemap</h1>
+        <p>A simple index of every public Majestic Travels page, story, destination cluster, and feed.</p>
+      </header>
+      <div class="sitemap-grid">
+        <section class="sitemap-section" aria-labelledby="core-pages-heading">
+          <h2 id="core-pages-heading">Pages</h2>
+          <ul class="sitemap-list">
+            <li><a href="majestic-travels-blog.html">Home</a></li>
+            <li><a href="majestic-travels-blog.html#stories">Stories</a></li>
+            <li><a href="majestic-travels-blog.html#destinations">Destinations</a></li>
+            <li><a href="majestic-travels-blog.html#about">About</a></li>
+            <li><a href="rss.xml">RSS feed</a></li>
+            <li><a href="sitemap.xml">XML sitemap</a></li>
+          </ul>
+        </section>
+        <section class="sitemap-section" aria-labelledby="stories-heading">
+          <h2 id="stories-heading">Stories</h2>
+          <ul class="sitemap-list">
+${posts.map((post) => `            <li><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a><span class="sitemap-meta">${escapeHtml(post.categoryLabel)} &middot; ${escapeHtml(dateLabel(post.date))}</span></li>`).join("\n")}
+          </ul>
+        </section>
+${groups.map(([destination, entries]) => `        <section class="sitemap-section" aria-labelledby="${escapeHtml(destination)}-heading">
+          <h2 id="${escapeHtml(destination)}-heading">${escapeHtml(destination.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()))}</h2>
+          <ul class="sitemap-list">
+${entries.map((post) => `            <li><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></li>`).join("\n")}
+          </ul>
+        </section>`).join("\n")}
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="public/logo_cleanedup_centered_transparant-01.png" alt="Majestic Travels logo" class="footer-logo">
+        <span class="footer-name">Majestic Travels</span>
+        <p class="footer-tagline">Solo travel. Real places. No filters.</p>
+      </div>
+      <div class="footer-right">
+        <ul class="footer-links">
+          <li><a href="majestic-travels-blog.html#stories">Stories</a></li>
+          <li><a href="majestic-travels-blog.html#destinations">Destinations</a></li>
+          <li><a href="majestic-travels-blog.html#about">About</a></li>
+          <li><a href="rss.xml">RSS</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+        <p class="footer-copy">&copy; 2026 Majestic Travels</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    window.toggleTheme = function() {
+      var html = document.documentElement;
+      var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
+    };
+  </script>
+</body>
+</html>`;
+}
+
 function writeLaunchFiles(posts) {
   const buildDate = todayIsoDate();
   const lastBuildDate = posts[0] ? rssDate(posts[0].date) : new Date().toUTCString();
   const urls = [
     { loc: `${SITE_URL}/`, lastmod: buildDate, changefreq: "weekly", priority: "1.0" },
+    { loc: `${SITE_URL}/sitemap.html`, lastmod: buildDate, changefreq: "monthly", priority: "0.4" },
     ...posts.map((post) => ({
       loc: sitemapUrl(`blog/${post.slug}.html`),
       lastmod: sitemapLastmod(post.date, buildDate),
@@ -720,11 +955,12 @@ function main() {
   posts.forEach((post, index) => {
     write(path.join(BLOG_DIR, `${post.slug}.html`), articleHtml(post, css, { index, posts, newsletter }));
   });
-  write(HOME_FILE, updateNewsletterConfig(updateFeatured(updateHome(home, posts), posts), newsletter));
+  write(HOME_FILE, updateNewsletterConfig(updateHomeSchema(updateFeatured(updateHome(home, posts), posts), posts), newsletter));
+  write(HTML_SITEMAP_FILE, sitemapPageHtml(posts, css));
   writeLaunchFiles(posts);
 
   console.log(`Built ${posts.length} posts.`);
-  console.log(`Updated ${path.basename(HOME_FILE)}, blog/*.html, sitemap.xml, robots.txt, and rss.xml.`);
+  console.log(`Updated ${path.basename(HOME_FILE)}, blog/*.html, sitemap.html, sitemap.xml, robots.txt, and rss.xml.`);
 }
 
 main();

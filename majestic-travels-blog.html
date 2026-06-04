@@ -31,31 +31,181 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,50..100,0..1&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Majestic Travels",
-    "url": "https://majestic-travels.com/",
-    "description": "An editorial travel blog about slow travel, solo adventures, city guides, and honest field notes.",
-    "author": {
-      "@type": "Person",
-      "name": "Adrien"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://majestic-travels.com/#organization",
+      "name": "Majestic Travels",
+      "url": "https://majestic-travels.com/",
+      "logo": "https://majestic-travels.com/public/site/brand-logo.png",
+      "sameAs": [
+        "https://www.instagram.com/your_majestic_travels",
+        "https://www.tiktok.com/@your_majestic_travels",
+        "https://ko-fi.com/majestictravels",
+        "https://majestictravels.gumroad.com/"
+      ]
     },
-    "blogPost": [
-      {
-        "@type": "BlogPosting",
-        "headline": "Fuerteventura Solo Travel: Surfing, Silence, and Morro Jable",
-        "datePublished": "2026-04-18",
-        "author": { "@type": "Person", "name": "Adrien" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "New York City in Summer: A Love Letter to the Greatest City on Earth",
-        "datePublished": "2026-03-15",
-        "author": { "@type": "Person", "name": "Adrien" }
+    {
+      "@type": "Person",
+      "@id": "https://majestic-travels.com/#adrien",
+      "name": "Adrien",
+      "url": "https://majestic-travels.com/",
+      "image": "https://majestic-travels.com/public/site/profile-pic.jpg",
+      "worksFor": {
+        "@id": "https://majestic-travels.com/#organization"
       }
-    ]
-  }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://majestic-travels.com/#website",
+      "name": "Majestic Travels",
+      "url": "https://majestic-travels.com/",
+      "publisher": {
+        "@id": "https://majestic-travels.com/#organization"
+      },
+      "author": {
+        "@id": "https://majestic-travels.com/#adrien"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Blog",
+      "@id": "https://majestic-travels.com/#blog",
+      "name": "Majestic Travels",
+      "url": "https://majestic-travels.com/",
+      "description": "An editorial travel blog about slow travel, solo adventures, city guides, and honest field notes.",
+      "publisher": {
+        "@id": "https://majestic-travels.com/#organization"
+      },
+      "author": {
+        "@id": "https://majestic-travels.com/#adrien"
+      },
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://majestic-travels.com/blog/nyc-december-holiday-magic.html#blogposting",
+          "headline": "December in NYC: The Ultimate Holiday Magic Guide",
+          "datePublished": "2026-11-15",
+          "url": "https://majestic-travels.com/blog/nyc-december-holiday-magic.html",
+          "author": {
+            "@id": "https://majestic-travels.com/#adrien"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://majestic-travels.com/blog/bab-akoul-marrakech-hotel-review.html#blogposting",
+          "headline": "4 Nights at Bab Akoul: Private Villas, Late-Night Swims, and the Best Couscous in Marrakech",
+          "datePublished": "2026-05-21",
+          "url": "https://majestic-travels.com/blog/bab-akoul-marrakech-hotel-review.html",
+          "author": {
+            "@id": "https://majestic-travels.com/#adrien"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html#blogposting",
+          "headline": "I Went to Fuerteventura to Escape and Found Myself Again",
+          "datePublished": "2026-04-18",
+          "url": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html",
+          "author": {
+            "@id": "https://majestic-travels.com/#adrien"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://majestic-travels.com/blog/nyc-10-day-guide.html#blogposting",
+          "headline": "The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps",
+          "datePublished": "2026-04-01",
+          "url": "https://majestic-travels.com/blog/nyc-10-day-guide.html",
+          "author": {
+            "@id": "https://majestic-travels.com/#adrien"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://majestic-travels.com/blog/new-york-city-summer.html#blogposting",
+          "headline": "New York City in Summer: A Love Letter to the Greatest City on Earth",
+          "datePublished": "2026-03-15",
+          "url": "https://majestic-travels.com/blog/new-york-city-summer.html",
+          "author": {
+            "@id": "https://majestic-travels.com/#adrien"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html#blogposting",
+          "headline": "My First Time Surfing in Fuerteventura and OTRO MODO Surf School",
+          "datePublished": "2026-02-28",
+          "url": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html",
+          "author": {
+            "@id": "https://majestic-travels.com/#adrien"
+          }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://majestic-travels.com/blog/nyc-december-itinerary.html#blogposting",
+          "headline": "The Ultimate 5-Day New York City Itinerary for December (Holiday Magic & Hidden Gems)",
+          "datePublished": "2026-01-22",
+          "url": "https://majestic-travels.com/blog/nyc-december-itinerary.html",
+          "author": {
+            "@id": "https://majestic-travels.com/#adrien"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://majestic-travels.com/#latest-posts",
+      "name": "Latest Majestic Travels stories",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://majestic-travels.com/blog/nyc-december-holiday-magic.html",
+          "name": "December in NYC: The Ultimate Holiday Magic Guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://majestic-travels.com/blog/bab-akoul-marrakech-hotel-review.html",
+          "name": "4 Nights at Bab Akoul: Private Villas, Late-Night Swims, and the Best Couscous in Marrakech"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://majestic-travels.com/blog/fuerteventura-solo-travel.html",
+          "name": "I Went to Fuerteventura to Escape and Found Myself Again"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://majestic-travels.com/blog/nyc-10-day-guide.html",
+          "name": "The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "url": "https://majestic-travels.com/blog/new-york-city-summer.html",
+          "name": "New York City in Summer: A Love Letter to the Greatest City on Earth"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "url": "https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html",
+          "name": "My First Time Surfing in Fuerteventura and OTRO MODO Surf School"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "url": "https://majestic-travels.com/blog/nyc-december-itinerary.html",
+          "name": "The Ultimate 5-Day New York City Itinerary for December (Holiday Magic & Hidden Gems)"
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <script>
@@ -1514,6 +1664,7 @@
           <li><a href="#destinations">Destinations</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="rss.xml">RSS</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
         </ul>
         <div class="footer-socials">
           <a href="https://www.instagram.com/your_majestic_travels" target="_blank" rel="noopener" aria-label="Instagram">
