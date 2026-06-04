@@ -526,7 +526,6 @@ ${affiliateCallout}
       </div>
     </div>
   </footer>
-  <script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=${encodeURIComponent(klaviyo.publicKey || "")}"></script>
   <script>
     window.toggleTheme = function() {
       var html = document.documentElement;
@@ -537,16 +536,6 @@ ${affiliateCallout}
       if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
     };
     (function() {
-      function klaviyoPublicKeyFromPage() {
-        var script = document.querySelector('script[src*="static.klaviyo.com"][src*="company_id="]');
-        if (!script) return "";
-        try {
-          return new URL(script.src).searchParams.get("company_id") || "";
-        } catch (err) {
-          return "";
-        }
-      }
-
       function parseKlaviyoError(data) {
         if (data && data.errors && data.errors.length) {
           return data.errors.map(function(error) {
@@ -556,16 +545,28 @@ ${affiliateCallout}
         return "";
       }
 
+      function ensureKlaviyoListInput(form, listId) {
+        var listInput = form.querySelector('input[name="g"]');
+        if (!listInput) {
+          listInput = document.createElement("input");
+          listInput.type = "hidden";
+          listInput.name = "g";
+          form.insertBefore(listInput, form.firstChild);
+        }
+        listInput.value = listId;
+        return listInput;
+      }
+
       function submitClientKlaviyoSubscription(form, email) {
         var listInput = form.querySelector('input[name="g"]');
         var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
-        var publicKey = form.dataset.klaviyoPublicKey || klaviyoPublicKeyFromPage();
+        var publicKey = form.dataset.klaviyoPublicKey || "";
 
         if (!publicKey || !listId) {
           return Promise.reject(new Error("Newsletter is not configured yet."));
         }
 
-        if (listInput) listInput.value = listId;
+        ensureKlaviyoListInput(form, listId);
 
         return fetch("https://a.klaviyo.com/client/subscriptions?company_id=" + encodeURIComponent(publicKey), {
           method: "POST",
@@ -625,7 +626,7 @@ ${affiliateCallout}
             return;
           }
 
-          if (listInput) listInput.value = listId;
+          ensureKlaviyoListInput(form, listId);
 
           var iframe = document.createElement("iframe");
           iframe.name = "klaviyo_signup_" + Date.now();
@@ -639,20 +640,31 @@ ${affiliateCallout}
           form.action = "https://manage.kmail-lists.com/subscriptions/subscribe";
 
           var finished = false;
-          function finish() {
+          var timeoutId = setTimeout(function() {
             if (finished) return;
             finished = true;
+            cleanup();
+            reject(new Error("Klaviyo signup did not respond."));
+          }, 5000);
+
+          function cleanup() {
             form.target = previousTarget;
             form.action = previousAction;
             setTimeout(function() {
               iframe.remove();
             }, 1000);
+          }
+
+          function finish() {
+            if (finished) return;
+            finished = true;
+            clearTimeout(timeoutId);
+            cleanup();
             resolve();
           }
 
           iframe.addEventListener("load", finish, { once: true });
           HTMLFormElement.prototype.submit.call(form);
-          setTimeout(finish, 3200);
         });
       }
 
@@ -661,9 +673,11 @@ ${affiliateCallout}
       }
 
       function subscribeWithKlaviyo(form, email) {
-        return submitClientKlaviyoSubscription(form, email).catch(function(error) {
-          if (isNetworkFailure(error)) return submitHostedKlaviyoForm(form);
-          throw error;
+        return submitHostedKlaviyoForm(form).catch(function(hostedError) {
+          return submitClientKlaviyoSubscription(form, email).catch(function(clientError) {
+            if (isNetworkFailure(clientError)) throw hostedError;
+            throw clientError;
+          });
         });
       }
 
