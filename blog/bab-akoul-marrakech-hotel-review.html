@@ -1546,7 +1546,7 @@
           headers: {
             "accept": "application/vnd.api+json",
             "content-type": "application/vnd.api+json",
-            "revision": "2026-04-15"
+            "revision": "2025-01-15"
           },
           body: JSON.stringify({
             data: {
@@ -1647,8 +1647,8 @@
 
       function subscribeWithKlaviyo(form, email) {
         return submitClientKlaviyoSubscription(form, email).catch(function(error) {
-          if (isNetworkFailure(error)) return submitHostedKlaviyoForm(form);
-          throw error;
+          console.warn("Client API error, falling back to hosted form:", error);
+          return submitHostedKlaviyoForm(form);
         });
       }
 
@@ -1665,10 +1665,10 @@
           var prevError = form.parentNode.querySelector(".newsletter-error");
           if (prevError) prevError.remove();
           subscribeWithKlaviyo(form, email).then(function() {
-            var _learnq = window._learnq || [];
-            _learnq.push(["identify", { "$email": email }]);
-            _learnq.push(["track", "Newsletter Signup", { source: "website" }]);
-            window._learnq = _learnq;
+            if (typeof window._learnq !== "undefined") {
+              window._learnq.push(["identify", { "$email": email }]);
+              window._learnq.push(["track", "Newsletter Signup", { source: "website" }]);
+            }
             form.innerHTML = '<p class="newsletter-success">You\'re in! Check your inbox to confirm.</p>';
           }).catch(function(err) {
             btn.textContent = originalText;
