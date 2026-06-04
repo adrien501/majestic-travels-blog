@@ -741,6 +741,7 @@ function loadPosts() {
         image: meta.image || "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=85",
         imageAlt: meta.imageAlt || meta.title || "Travel photograph",
         keywords: meta.keywords || "",
+        featured: ["true", "yes", "1"].includes(String(meta.featured || "").toLowerCase()),
         affiliate: !["false", "no", "0"].includes(String(meta.affiliate || "").toLowerCase()),
         body,
         url: `blog/${slug}.html`
@@ -765,7 +766,7 @@ ${posts.map(cardHtml).join("\n\n")}
 }
 
 function updateFeatured(home, posts) {
-  const post = posts[0]; // most recent post (sorted descending by date)
+  const post = posts.find((entry) => entry.featured) || posts[0];
   const meta = [post.categoryLabel, post.readTime].filter(Boolean).join(" · ");
 
   const html = `<section class="featured-section" aria-label="Featured post">
