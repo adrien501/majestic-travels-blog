@@ -1,50 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://majestic-travels.com/</loc>
+    <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://majestic-travels.com/blog/nyc-december-holiday-magic.html</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://majestic-travels.com/public/pics/NYC/December%20in%20NYC%20The%20Ultimate%20Holiday%20Magic%20Guide/rockefeller%20tree.jpg</image:loc>
+      <image:title>December in NYC: The Ultimate Holiday Magic Guide</image:title>
+      <image:caption>Rockefeller Center Christmas tree in New York City</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://majestic-travels.com/blog/bab-akoul-marrakech-hotel-review.html</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://majestic-travels.com/public/pics/marrakech/marrakech-night-pool.jpg</image:loc>
+      <image:title>4 Nights at Bab Akoul: Private Villas, Late-Night Swims, and the Best Couscous in Marrakech</image:title>
+      <image:caption>Night view of the illuminated pool at Bab Akoul Atlas surrounded by tropical gardens</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://majestic-travels.com/blog/fuerteventura-solo-travel.html</loc>
     <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://majestic-travels.com/public/site/fuerteventura-atlantic.jpg</image:loc>
+      <image:title>I Went to Fuerteventura to Escape and Found Myself Again</image:title>
+      <image:caption>Volcanic coastline and calm Atlantic water in Fuerteventura</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://majestic-travels.com/blog/nyc-10-day-guide.html</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://majestic-travels.com/public/pics/NYC/nyc/manhattan%20view%20with%201wtc%20at%20night.jpg</image:loc>
+      <image:title>The Ultimate 10-Day NYC Guide: A Love Letter to the City That Never Sleeps</image:title>
+      <image:caption>Lower Manhattan skyline with One World Trade Center at night</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://majestic-travels.com/blog/new-york-city-summer.html</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://majestic-travels.com/public/pics/NYC/nyc/liberty-hero.jpg</image:loc>
+      <image:title>New York City in Summer: A Love Letter to the Greatest City on Earth</image:title>
+      <image:caption>Statue of Liberty with Manhattan skyline in the background</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://majestic-travels.com/blog/first-surf-lesson-fuerteventura.html</loc>
     <lastmod>2026-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://majestic-travels.com/public/pics/fuerteventura/first-surf-lesson-fuerteventura/la%20pared%20beach%20and%20surfplanks.jpg</image:loc>
+      <image:title>My First Time Surfing in Fuerteventura and OTRO MODO Surf School</image:title>
+      <image:caption>La Pared beach with surfboards lined up in Fuerteventura</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://majestic-travels.com/blog/nyc-december-itinerary.html</loc>
     <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://majestic-travels.com/public/pics/NYC/nyc/empire%20state%20building%20at%20night.jpg</image:loc>
+      <image:title>The Ultimate 5-Day New York City Itinerary for December (Holiday Magic &amp; Hidden Gems)</image:title>
+      <image:caption>Empire State Building glowing at night in New York City</image:caption>
+    </image:image>
   </url>
 </urlset>

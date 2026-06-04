@@ -180,6 +180,19 @@ function rssDate(dateValue) {
   return date.toUTCString();
 }
 
+function todayIsoDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function sitemapLastmod(dateValue, buildDate = todayIsoDate()) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateValue || "")) return buildDate;
+  return dateValue > buildDate ? buildDate : dateValue;
+}
+
+function sitemapUrl(urlPath = "") {
+  return encodeURI(absoluteUrl(urlPath)).replace(/%25([0-9A-Fa-f]{2})/g, "%$1");
+}
+
 function getHomeParts(home) {
   const styleMatch = home.match(/<style>([\s\S]*?)<\/style>/);
   if (!styleMatch) throw new Error("Could not find homepage CSS.");
@@ -631,23 +644,35 @@ function updateFeatured(home, posts) {
 }
 
 function writeLaunchFiles(posts) {
+  const buildDate = todayIsoDate();
   const lastBuildDate = posts[0] ? rssDate(posts[0].date) : new Date().toUTCString();
   const urls = [
-    { loc: `${SITE_URL}/`, changefreq: "weekly", priority: "1.0" },
+    { loc: `${SITE_URL}/`, lastmod: buildDate, changefreq: "weekly", priority: "1.0" },
     ...posts.map((post) => ({
-      loc: absoluteUrl(`blog/${post.slug}.html`),
-      lastmod: post.date,
+      loc: sitemapUrl(`blog/${post.slug}.html`),
+      lastmod: sitemapLastmod(post.date, buildDate),
       changefreq: "monthly",
-      priority: "0.8"
+      priority: "0.8",
+      image: {
+        loc: sitemapUrl(post.image),
+        title: post.title,
+        caption: post.imageAlt
+      }
     }))
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map((item) => `  <url>
     <loc>${escapeHtml(item.loc)}</loc>${item.lastmod ? `\n    <lastmod>${escapeHtml(item.lastmod)}</lastmod>` : ""}
     <changefreq>${item.changefreq}</changefreq>
-    <priority>${item.priority}</priority>
+    <priority>${item.priority}</priority>${item.image ? `
+    <image:image>
+      <image:loc>${escapeHtml(item.image.loc)}</image:loc>
+      <image:title>${escapeHtml(item.image.title)}</image:title>
+      <image:caption>${escapeHtml(item.image.caption)}</image:caption>
+    </image:image>` : ""}
   </url>`).join("\n")}
 </urlset>
 `;
