@@ -22,7 +22,7 @@ We stayed at two of the three Bab Akoul properties over four nights in May: Bab 
 
 A driver was waiting at Marrakech airport. After a 45-minute drive through dusty roads lined with palm trees and olive groves, we arrived at Bab Akoul Atlas. They welcomed us with Moroccan biscuits and mint tea, which was a nice touch.
 
-The property was something else. We had an entire villa to ourselves: private bedrooms, a living area, and African-inspired decor that felt warm without trying too hard. Earthy tones, woven baskets on the walls, "BAB" stitched into the towels.
+The property was something else. We had an entire villa to ourselves: private bedrooms, a living area, and African-inspired decor that felt warm without trying too hard. Earthy tones, woven baskets on the walls, "Bab Akoul" stitched into the towels and hats.
 
 ![Open living and kitchen area at Bab Akoul Atlas villa](public/pics/marrakech/atlas living-kitchen room .jpg "The living area at Atlas.")
 
@@ -32,11 +32,11 @@ And then there was the pool. Tropical plants everywhere, bougainvillea, and the 
 
 ![Pool at Bab Akoul Atlas with the Atlas Mountains visible in the background](public/pics/marrakech/marrakech-pool-atlas-mountains.jpg "Pool at Bab Akoul Atlas with the Atlas Mountains in the background.")
 
-Breakfast was always the same and always enough. Moroccan crepes, toast, confiture, honey, and an omelet if you asked. The kind of breakfast where you sit outside, hear nothing but birds, and realize you haven't checked your phone in hours.
+Breakfast was usually the same, with a few exceptions, and always enough. Moroccan crepes, toast, confiture, honey, and an omelet if you asked. The kind of breakfast where you sit outside, hear nothing but birds, and realize you haven't checked your phone in hours. Probably because you didn't have much connectivity anyway.
 
 ![Second bedroom at Bab Akoul Atlas](public/pics/marrakech/atlas room 2.jpg "Atlas, the second room.")
 
-Worth knowing: the WiFi at Atlas is limited to a weak signal near the lobby. For us that worked fine, but if you need to stay connected, plan for it. On our last day there, we walked outside the property to see the olive garden. The 39-degree heat had the Atlas Mountains wrapped in haze, but the rooftop terrace still had a good panorama. Worth imagining in winter with snow on the peaks.
+Worth knowing: the WiFi at Atlas is limited to a weak signal near the lobby. For us that worked fine, but if you need to stay connected, plan for it. You probably won't have the same issue for long, though, as they were already working on it while we were there. On our last day there, we walked outside the property to see the olive garden. The 39-degree heat had the Atlas Mountains wrapped in haze, but the rooftop terrace still had a good panorama. Worth imagining in winter with snow on the peaks.
 
 We also got a tour of a new wellness space under construction: showers, massage rooms, a hammam, a jacuzzi. Not open yet when we visited, but the interior was already impressive.
 
@@ -54,7 +54,7 @@ But Palmeraie had its own energy. The staff was genuinely warm, noticeably more 
 
 The lobby area in the evenings was a nice spot. Sofas, a fireplace, tables where you could sit and read or get some work done. One night, after my late swim, I parked myself on the sofa in front of the fire with my book. That's when the cat showed up.
 
-A tiny white cat, skin and bones, half-blind. The staff told us he was 15 years old. We'd given him some chicken earlier and now he came back looking for warmth. He just sat next to me, quiet. My mom and sister eventually headed to the room, picking the last orange off the tree on their way out. I stayed with the cat for a while.
+A tiny white cat, skin and bones, half-blind. The staff told us he was 15 years old. We'd given him some chicken earlier and now he came back looking for warmth. He just sat next to me, quiet. My mom and sister eventually headed to the room, wandering through the illuminated grounds. I stayed with the cat for a while.
 
 ![Small old white cat resting by the fireplace at Bab Akoul Palmeraie](public/pics/marrakech/palmerai old cat while reading in front of fire place at night.jpg "The Palmeraie cat. Fifteen years old and very much still in charge.")
 
@@ -64,7 +64,7 @@ The couscous on our first night at Atlas was the best I've ever had. Not exagger
 
 ![Traditional Moroccan couscous at Bab Akoul Atlas](public/pics/marrakech/couscous.jpg "That couscous.")
 
-The rest of the food was more varied. Breakfast was solid every day. Dinner is a set menu, and it's worth asking in advance if you'd prefer something specific. The chicken dish was good. The mini spring rolls at Palmeraie were a nice find. Some evenings the menu didn't land for us as well as others, and the almond sable for dessert, while perfectly fine, wasn't the highlight.
+The rest of the food was more varied. Breakfast was solid every day. Dinner is a set menu, and it's worth asking in advance if you'd prefer something specific. The chicken dish was good. The mini spring rolls at Palmeraie were a nice find. Some evenings the menu didn't land for us as well as others, and the almond sable for dessert, while perfectly fine, wasn't the highlight. Still, you get to taste the typical flavors of Moroccan culture.
 
 The kitchen clearly has range (that couscous proves it), but if you're staying multiple nights, requesting dishes ahead makes a real difference. We did on day four and the meal was excellent.
 
@@ -78,7 +78,7 @@ At Atlas, the pool was ours alone. I swam three times in one day when it hit 39 
 
 ![Attempting to capture the golden hour light at Bab Akoul](public/pics/marrakech/me trying to be the next peter parker photoshrapher.jpg "Attempting to get the shot.")
 
-The last evening was the best one. We said goodbye to Soufiane and the rest of the staff, to everyone who made the place feel like more than a hotel. Paid the checks, walked back to the villa, packed our bags, and set the alarm for 4:15am.
+The last evening was the best one. We said goodbye to Mo and the rest of the staff, to everyone who made the place feel like more than a hotel. Paid the checks, walked back to the villa, packed our bags, and set the alarm for 4:15am.
 
 ![Palm trees silhouetted against a golden Marrakech sunset](public/pics/marrakech/marrakech-sunset-palms.jpg "Palm trees at dusk.")
 
@@ -88,7 +88,7 @@ A driver picked us up at five. Airport by 5:40, plane at 8:18, landed in Belgium
 
 - [Bab Akoul](https://www.bab-akoul.com/) has three locations near Marrakech. Atlas is intimate, private villas surrounded by olive groves. Palmeraie is a larger resort with more of a social atmosphere. Medina is right in the center of Marrakech, good if you want to explore the souks and still come back somewhere quiet. Medina wasn't operational yet when we visited (May 2026)
 - A driver picks you up at Marrakech airport. About 45 minutes to the properties
-- Breakfast included daily. Moroccan crepes, bread, confiture, honey, and eggs
+- Breakfast included daily. Moroccan crepes, bread, confiture, honey, eggs, and the typical mint tea whenever you want it
 - Dinner is a set menu of the day. You can request specific dishes in advance
 - Each property has at least one pool. Medina will have a heated pool
 - WiFi was limited when we stayed (lobby only at Atlas, better at Palmeraie)
