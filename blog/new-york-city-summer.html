@@ -1643,11 +1643,9 @@
       }
 
       function subscribeWithKlaviyo(form, email) {
-        return submitHostedKlaviyoForm(form).catch(function(hostedError) {
-          return submitClientKlaviyoSubscription(form, email).catch(function(clientError) {
-            if (isNetworkFailure(clientError)) throw hostedError;
-            throw clientError;
-          });
+        return submitClientKlaviyoSubscription(form, email).catch(function(error) {
+          if (isNetworkFailure(error)) return submitHostedKlaviyoForm(form);
+          throw error;
         });
       }
 
