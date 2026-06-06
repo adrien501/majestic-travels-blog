@@ -1641,7 +1641,7 @@
     <div class="newsletter-section-inner">
       <h2>Stories and itineraries, straight to your inbox</h2>
       <p>Real destinations, honest tips, delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm" action="/api/newsletter" method="post" data-klaviyo-form data-klaviyo-list-id="TaitBk">
+      <form class="newsletter-form" id="ctaNewsletterForm" action="https://manage.kmail-lists.com/subscriptions/subscribe" method="post" data-klaviyo-form data-klaviyo-public-key="VQW5sn" data-klaviyo-list-id="TaitBk">
         <input type="hidden" name="g" value="TaitBk">
         <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
@@ -1824,27 +1824,143 @@ window.toggleTheme = function() {
     filterCards();
   }
 
-  // Newsletter signup goes through a first-party Pages Function.
-  function subscribeToNewsletter(form, email) {
+  // Klaviyo newsletter forms
+  function parseKlaviyoError(data) {
+    if (data && data.errors && data.errors.length) {
+      return data.errors.map(function(error) {
+        return error.detail || error.title;
+      }).filter(Boolean).join(" ");
+    }
+    return "";
+  }
+
+  function ensureKlaviyoListInput(form, listId) {
+    var listInput = form.querySelector('input[name="g"]');
+    if (!listInput) {
+      listInput = document.createElement("input");
+      listInput.type = "hidden";
+      listInput.name = "g";
+      form.insertBefore(listInput, form.firstChild);
+    }
+    listInput.value = listId;
+    return listInput;
+  }
+
+  function submitClientKlaviyoSubscription(form, email) {
     var listInput = form.querySelector('input[name="g"]');
     var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
+    var publicKey = form.dataset.klaviyoPublicKey || "";
 
-    return fetch("/api/newsletter", {
+    if (!publicKey || !listId) {
+      return Promise.reject(new Error("Newsletter is not configured yet."));
+    }
+
+    ensureKlaviyoListInput(form, listId);
+
+    return fetch("https://a.klaviyo.com/client/subscriptions?company_id=" + encodeURIComponent(publicKey), {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "accept": "application/vnd.api+json",
+        "content-type": "application/vnd.api+json",
+        "revision": "2025-01-15"
       },
       body: JSON.stringify({
-        email: email,
-        listId: listId
+        data: {
+          type: "subscription",
+          attributes: {
+            custom_source: "Majestic Travels newsletter",
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  subscriptions: {
+                    email: {
+                      marketing: {
+                        consent: "SUBSCRIBED"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          relationships: {
+            list: {
+              data: {
+                type: "list",
+                id: listId
+              }
+            }
+          }
+        }
       })
     }).then(function(response) {
+      if (response.ok) return;
       return response.json().catch(function() {
-        return {};
+        return null;
       }).then(function(data) {
-        if (response.ok) return data;
-        throw new Error(data.error || "Newsletter signup failed. Please try again.");
+        throw new Error(parseKlaviyoError(data) || "Klaviyo rejected this signup.");
       });
+    });
+  }
+
+  function submitHostedKlaviyoForm(form) {
+    return new Promise(function(resolve, reject) {
+      var listInput = form.querySelector('input[name="g"]');
+      var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
+
+      if (!listId) {
+        reject(new Error("Newsletter is not configured yet."));
+        return;
+      }
+
+      ensureKlaviyoListInput(form, listId);
+
+      var iframe = document.createElement("iframe");
+      iframe.name = "klaviyo_signup_" + Date.now();
+      iframe.hidden = true;
+      iframe.setAttribute("title", "Newsletter signup");
+      document.body.appendChild(iframe);
+
+      var previousTarget = form.target;
+      var previousAction = form.action;
+      form.target = iframe.name;
+      form.action = "https://manage.kmail-lists.com/subscriptions/subscribe";
+
+      var finished = false;
+      var timeoutId = setTimeout(function() {
+        if (finished) return;
+        finished = true;
+        cleanup();
+        reject(new Error("Klaviyo signup did not respond."));
+      }, 5000);
+
+      function cleanup() {
+        form.target = previousTarget;
+        form.action = previousAction;
+        setTimeout(function() {
+          iframe.remove();
+        }, 1000);
+      }
+
+      function finish() {
+        if (finished) return;
+        finished = true;
+        clearTimeout(timeoutId);
+        cleanup();
+        resolve();
+      }
+
+      iframe.addEventListener("load", finish, { once: true });
+      HTMLFormElement.prototype.submit.call(form);
+    });
+  }
+
+  function subscribeWithKlaviyo(form, email) {
+    return submitClientKlaviyoSubscription(form, email).catch(function(error) {
+      console.warn("Client API error, falling back to hosted form:", error);
+      return submitHostedKlaviyoForm(form);
     });
   }
 
@@ -1863,7 +1979,7 @@ window.toggleTheme = function() {
       var prevError = form.parentNode.querySelector(".newsletter-error");
       if (prevError) prevError.remove();
 
-      subscribeToNewsletter(form, email).then(function() {
+      subscribeWithKlaviyo(form, email).then(function() {
         if (typeof window._learnq !== "undefined") {
           window._learnq.push(["identify", { "$email": email }]);
           window._learnq.push(["track", "Newsletter Signup", { source: "website" }]);
@@ -1874,7 +1990,7 @@ window.toggleTheme = function() {
         btn.disabled = false;
         var errEl = document.createElement("p");
         errEl.className = "newsletter-error";
-        errEl.textContent = err.message || "Something went wrong — try again.";
+        errEl.textContent = err.message || "Something went wrong - try again.";
         form.parentNode.insertBefore(errEl, form.nextSibling);
       });
     });
