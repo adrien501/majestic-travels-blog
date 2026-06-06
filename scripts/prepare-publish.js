@@ -74,6 +74,7 @@ function main() {
   copyDir(PUBLIC_SITE, path.join(DIST, "public", "site"));
   BRAND_PNGS.forEach((p) => copyFile(p, p));
   fs.copyFileSync(NEWSLETTER_WORKER, path.join(DIST, "_worker.js"));
+  fs.writeFileSync(path.join(DIST, ".assetsignore"), "", "utf8");
 
   // Copy destination photos (skip raw camera files like .dng)
   const picsSource = path.join(ROOT, "public", "pics");
