@@ -601,7 +601,7 @@ ${affiliateCallout}
     <div class="newsletter-section-inner">
       <h2>Get exclusive itineraries &amp; travel stories</h2>
       <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm" action="${buttondownAction(newsletter.username)}" method="post" target="_blank" data-buttondown-form data-buttondown-username="${escapeHtml(newsletter.username || DEFAULT_BUTTONDOWN_USERNAME)}">
+      <form class="newsletter-form" id="ctaNewsletterForm" action="${buttondownAction(newsletter.username)}" method="post" data-buttondown-form data-buttondown-username="${escapeHtml(newsletter.username || DEFAULT_BUTTONDOWN_USERNAME)}">
         <input type="hidden" name="embed" value="1">
         <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
