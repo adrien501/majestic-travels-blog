@@ -75,8 +75,9 @@ Cloudflare Pages settings (set once, never touch again):
 - **Branch:** `main`
 
 Newsletter settings:
-- Create a Buttondown newsletter and use the username `majestictravels`, or set `BUTTONDOWN_USERNAME` in Cloudflare Pages if you choose a different username.
-- The embedded forms post directly to Buttondown, so there are no private newsletter API keys in Cloudflare or GitHub.
+- Add `KLAVIYO_PRIVATE_API_KEY` in Cloudflare Pages environment variables. It needs `lists:write`, `profiles:write`, and `subscriptions:write` scopes.
+- Add `KLAVIYO_LIST_ID` in Cloudflare Pages environment variables. This is the Klaviyo list new subscribers should join.
+- Never put a Klaviyo private API key in static HTML or in GitHub.
 
 ---
 

@@ -1498,8 +1498,8 @@
     <div class="newsletter-section-inner">
       <h2>Get exclusive itineraries &amp; travel stories</h2>
       <p>Real destinations, honest tips — delivered to your inbox. No spam, ever.</p>
-      <form class="newsletter-form" id="ctaNewsletterForm" action="https://buttondown.com/api/emails/embed-subscribe/majestictravels" method="post" data-buttondown-form data-buttondown-username="majestictravels">
-        <input type="hidden" name="embed" value="1">
+      <form class="newsletter-form" id="ctaNewsletterForm" action="/api/newsletter" method="post" data-klaviyo-form data-klaviyo-list-id="TaitBk">
+        <input type="hidden" name="g" value="TaitBk">
         <input type="email" name="email" placeholder="your@email.com" class="newsletter-input" aria-label="Email address" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
@@ -1542,6 +1542,59 @@
       if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
     };
     (function() {
+      function subscribeToNewsletter(form, email) {
+        var listInput = form.querySelector('input[name="g"]');
+        var listId = (listInput && listInput.value) || form.dataset.klaviyoListId || "";
+
+        return fetch("/api/newsletter", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify({
+            email: email,
+            listId: listId
+          })
+        }).then(function(response) {
+          return response.json().catch(function() {
+            return {};
+          }).then(function(data) {
+            if (response.ok) return data;
+            throw new Error(data.error || "Newsletter signup failed. Please try again.");
+          });
+        });
+      }
+
+      function handleNewsletterSubmit(form) {
+        form.addEventListener("submit", function(e) {
+          e.preventDefault();
+          var input = form.querySelector("input[type='email']");
+          var btn = form.querySelector("button[type='submit']");
+          var email = input.value.trim();
+          if (!email || !input.reportValidity()) return;
+          var originalText = btn.textContent;
+          btn.textContent = "...";
+          btn.disabled = true;
+          var prevError = form.parentNode.querySelector(".newsletter-error");
+          if (prevError) prevError.remove();
+          subscribeToNewsletter(form, email).then(function() {
+            if (typeof window._learnq !== "undefined") {
+              window._learnq.push(["identify", { "$email": email }]);
+              window._learnq.push(["track", "Newsletter Signup", { source: "website" }]);
+            }
+            form.innerHTML = '<p class="newsletter-success">You\'re in! Check your inbox to confirm.</p>';
+          }).catch(function(err) {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            var errEl = document.createElement("p");
+            errEl.className = "newsletter-error";
+            errEl.textContent = err.message || "Something went wrong — try again.";
+            form.parentNode.insertBefore(errEl, form.nextSibling);
+          });
+        });
+      }
+      var ctaForm = document.getElementById("ctaNewsletterForm");
+      if (ctaForm) handleNewsletterSubmit(ctaForm);
       document.querySelectorAll("img").forEach(function(image) {
         var markBroken = function() { image.classList.add("is-broken"); };
         image.addEventListener("error", markBroken, { once: true });
