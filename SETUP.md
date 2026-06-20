@@ -79,6 +79,21 @@ Newsletter settings:
 - Add `KLAVIYO_LIST_ID` in Cloudflare Pages environment variables. This is the Klaviyo list new subscribers should join.
 - Never put a Klaviyo private API key in static HTML or in GitHub.
 
+Reader comments:
+- Create a Cloudflare D1 database for comments.
+- In Cloudflare Pages, add a D1 binding named `COMMENTS_DB` that points to that database.
+- Optional but recommended: add an environment variable named `COMMENTS_ADMIN_TOKEN` with a long private token for moderation API calls.
+- The `/api/comments` function creates its own `comments` table the first time it runs.
+- New reader notes are saved as `pending`. List pending notes for a post with `GET /api/comments?post=POST_SLUG&status=pending` and the same bearer token.
+- Approve notes by changing their `status` to `approved` in D1, or with an authenticated PATCH request:
+
+```bash
+curl -X PATCH "https://majestic-travels.com/api/comments" \
+  -H "Authorization: Bearer YOUR_COMMENTS_ADMIN_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data "{\"id\":\"COMMENT_ID\",\"status\":\"approved\"}"
+```
+
 ---
 
 ## Adding a New Blog Post

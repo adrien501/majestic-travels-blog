@@ -1335,13 +1335,36 @@
     .article-nav-card strong { color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; line-height: 1.1; }
     .article-nav-card:hover, .article-nav-card:focus-visible { border-color: var(--line-strong); box-shadow: 6px 6px 0 rgba(24, 32, 28, 0.1); transform: translateY(-2px); }
     .article-actions { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
-    .article-comments { margin-top: 58px; padding-top: 30px; border-top: 1.5px dashed var(--line-strong); display: grid; gap: 20px; }
-    .article-comments-header { max-width: 68ch; display: grid; gap: 8px; }
+    .article-comments { margin-top: 62px; border-top: 1.5px dashed var(--line-strong); padding-top: 32px; display: grid; gap: 22px; }
+    .article-comments-header { max-width: 68ch; display: grid; gap: 9px; }
     .article-comments-label { color: var(--sandstone); font-size: 0.74rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
-    .article-comments h2 { margin: 0; color: var(--ink); font-family: var(--font-display); font-size: 2.1rem; line-height: 1.05; letter-spacing: 0; }
-    .article-comments .giscus, .article-comments .giscus-frame { width: min(100%, 760px); }
+    .article-comments h2 { margin: 0; color: var(--ink); font-family: var(--font-display); font-size: 2.35rem; line-height: 1.04; letter-spacing: 0; }
+    .article-comments-header p { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.58; }
+    .article-comments-board { width: min(100%, 760px); display: grid; gap: 18px; }
+    .comment-list { display: grid; gap: 12px; }
+    .comment-empty { border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.48); color: var(--ink-soft); padding: 16px 18px; font-weight: 700; }
+    .comment-card { position: relative; border: 1.5px solid var(--line); background: rgba(255, 248, 236, 0.72); padding: 18px; box-shadow: 5px 5px 0 rgba(24, 32, 28, 0.06); }
+    .comment-card::before { content: ""; position: absolute; inset: 8px 8px auto auto; width: 42px; height: 32px; border: 1.5px dashed color-mix(in srgb, var(--sandstone) 70%, transparent); opacity: 0.5; }
+    .comment-card header { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; margin-bottom: 8px; padding-right: 52px; }
+    .comment-card strong { color: var(--ink); font-weight: 900; }
+    .comment-card time { color: var(--sandstone); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+    .comment-card p { white-space: pre-line; color: var(--ink-soft); line-height: 1.62; }
+    .comment-form { position: relative; border: 1.5px solid var(--line-strong); background: linear-gradient(135deg, rgba(255, 248, 236, 0.95), rgba(230, 203, 163, 0.3)); box-shadow: 8px 8px 0 rgba(24, 32, 28, 0.08); padding: 22px; display: grid; gap: 16px; }
+    .comment-form-stamp { justify-self: start; border: 1.5px dashed var(--sandstone); color: var(--clay); padding: 5px 8px; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(1.5deg); }
+    .comment-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .comment-form label { display: grid; gap: 7px; color: var(--ink); font-weight: 900; }
+    .comment-form label span { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .comment-form label em { color: var(--ink-soft); font-style: normal; font-weight: 700; letter-spacing: 0; text-transform: none; }
+    .comment-form input, .comment-form textarea { width: 100%; border: 1.5px solid var(--line-strong); border-radius: 2px; background: var(--white); color: var(--ink); padding: 10px 12px; font: inherit; outline: none; transition: border-color 160ms ease, box-shadow 160ms ease; }
+    .comment-form textarea { resize: vertical; min-height: 132px; }
+    .comment-form input:focus, .comment-form textarea:focus { border-color: var(--sandstone); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sandstone) 18%, transparent); }
+    .comment-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .comment-form-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    .comment-form-status { min-height: 1.4em; color: var(--ink-soft); font-weight: 800; }
+    .comment-form-status.is-error { color: var(--clay); }
+    .comment-form-status.is-success { color: var(--sage); }
     @media (max-width: 980px) { .article-hero, .article-layout { grid-template-columns: 1fr; } .article-hero h1 { font-size: 4.2rem; } .article-entry-code, .article-dossier { position: static; transform: none; } .article-dossier dl { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 660px) { .article-page { padding-top: 44px; } .article-shell { width: min(calc(100% - 28px), 1120px); } .article-hero h1 { font-size: 3.05rem; } .article-cover, .article-cover img { min-height: 285px; } .article-cover figcaption { position: static; max-width: none; background: var(--ink); } .article-dossier dl, .article-nav { grid-template-columns: 1fr; } .article-body { font-size: 1.04rem; } .article-body > p:first-child::first-letter { font-size: 3.7rem; } .article-body h2 { font-size: 2rem; } .article-body blockquote { font-size: 1.35rem; transform: none; } .article-comments { margin-top: 42px; padding-top: 24px; } .article-comments h2 { font-size: 1.72rem; } }
+    @media (max-width: 660px) { .article-page { padding-top: 44px; } .article-shell { width: min(calc(100% - 28px), 1120px); } .article-hero h1 { font-size: 3.05rem; } .article-cover, .article-cover img { min-height: 285px; } .article-cover figcaption { position: static; max-width: none; background: var(--ink); } .article-dossier dl, .article-nav { grid-template-columns: 1fr; } .article-body { font-size: 1.04rem; } .article-body > p:first-child::first-letter { font-size: 3.7rem; } .article-body h2 { font-size: 2rem; } .article-body blockquote { font-size: 1.35rem; transform: none; } .article-comments { margin-top: 42px; padding-top: 24px; } .article-comments h2 { font-size: 1.78rem; } .comment-fields { grid-template-columns: 1fr; } .comment-form { padding: 18px; box-shadow: 5px 5px 0 rgba(24, 32, 28, 0.08); } .comment-form-footer { align-items: stretch; } .comment-form-footer .button { width: 100%; justify-content: center; } }
     [data-theme="dark"] .article-entry-code { background: var(--cream-deep); box-shadow: none; }
     [data-theme="dark"] .article-entry-code strong { color: var(--ink); }
     [data-theme="dark"] .article-entry-code p { color: var(--ink-soft); }
@@ -1350,6 +1373,7 @@
     [data-theme="dark"] .article-nav-card { background: var(--cream-deep); }
     [data-theme="dark"] .article-nav-card:hover, [data-theme="dark"] .article-nav-card:focus-visible { box-shadow: 6px 6px 0 rgba(0,0,0,0.3); }
     [data-theme="dark"] .article-body blockquote { background: var(--cream-deep); box-shadow: none; }
+    [data-theme="dark"] .comment-empty, [data-theme="dark"] .comment-card, [data-theme="dark"] .comment-form { background: var(--cream-deep); box-shadow: none; }
   </style>
   <script>
   (function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#1a1917':'#2c2a26'})();
@@ -1497,49 +1521,42 @@
         <a class="button" href="../majestic-travels-blog.html#stories">Back to stories</a>
         <a class="button secondary" href="../majestic-travels-blog.html#newsletter">Get new posts</a>
       </div>
-      <section class="article-comments" aria-label="Reader comments">
+      <section class="article-comments" aria-label="Reader comments" data-comments data-post-slug="new-york-city-summer">
         <div class="article-comments-header">
-          <span class="article-comments-label">Reader notes</span>
-          <h2>Join the conversation</h2>
+          <span class="article-comments-label">Field notes</span>
+          <h2>Leave a note from the road</h2>
+          <p>Tips, questions, tiny corrections, or your own version of the trip. Notes are checked before they appear.</p>
         </div>
-        <div class="giscus"></div>
-        <script src="https://giscus.app/client.js"
-                data-repo="adrien501/majestic-travels-blog"
-                data-repo-id="R_kgDOStFS6A"
-                data-category="General"
-                data-category-id="DIC_kwDOStFS6M4C_jkw"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="top"
-                data-theme="preferred_color_scheme"
-                data-lang="fr"
-                data-loading="lazy"
-                crossorigin="anonymous"
-                async>
-        </script>
-        <script>
-          (function() {
-            function getGiscusTheme() {
-              return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-            }
-
-            window.syncGiscusTheme = function() {
-              var frame = document.querySelector("iframe.giscus-frame");
-              if (!frame || !frame.contentWindow) return;
-              frame.contentWindow.postMessage({
-                giscus: { setConfig: { theme: getGiscusTheme() } }
-              }, "https://giscus.app");
-            };
-
-            var comments = document.querySelector(".article-comments .giscus");
-            if (comments && "MutationObserver" in window) {
-              new MutationObserver(window.syncGiscusTheme).observe(comments, { childList: true, subtree: true });
-            }
-            window.addEventListener("load", window.syncGiscusTheme);
-          })();
-        </script>
+        <div class="article-comments-board">
+          <div class="comment-list" data-comment-list aria-live="polite">
+            <p class="comment-empty">Checking the guestbook...</p>
+          </div>
+          <form class="comment-form" data-comment-form>
+            <div class="comment-form-stamp" aria-hidden="true">Postcard reply</div>
+            <div class="comment-fields">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" autocomplete="name" maxlength="80" required>
+              </label>
+              <label>
+                <span>Email <em>optional</em></span>
+                <input type="email" name="email" autocomplete="email" maxlength="180">
+              </label>
+            </div>
+            <label>
+              <span>Note</span>
+              <textarea name="body" rows="5" maxlength="1200" required></textarea>
+            </label>
+            <label class="comment-honeypot" aria-hidden="true" tabindex="-1">
+              <span>Website</span>
+              <input type="text" name="website" autocomplete="off" tabindex="-1">
+            </label>
+            <div class="comment-form-footer">
+              <p class="comment-form-status" data-comment-status role="status"></p>
+              <button class="button" type="submit">Send note</button>
+            </div>
+          </form>
+        </div>
       </section>
 
     </article>
@@ -1590,9 +1607,116 @@
       localStorage.setItem('theme', next);
       var meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.content = next === 'dark' ? '#1a1917' : '#2c2a26';
-      if (window.syncGiscusTheme) window.syncGiscusTheme();
     };
     (function() {
+      // Reader comments
+      function initArticleComments() {
+        var root = document.querySelector("[data-comments]");
+        if (!root) return;
+
+        var postSlug = root.getAttribute("data-post-slug");
+        var list = root.querySelector("[data-comment-list]");
+        var form = root.querySelector("[data-comment-form]");
+        var status = root.querySelector("[data-comment-status]");
+
+        function setStatus(message, type) {
+          if (!status) return;
+          status.textContent = message || "";
+          status.classList.toggle("is-error", type === "error");
+          status.classList.toggle("is-success", type === "success");
+        }
+
+        function emptyState(message) {
+          list.innerHTML = "";
+          var empty = document.createElement("p");
+          empty.className = "comment-empty";
+          empty.textContent = message;
+          list.appendChild(empty);
+        }
+
+        function renderComments(comments) {
+          list.innerHTML = "";
+          if (!comments.length) {
+            emptyState("No field notes yet. Yours can be the first.");
+            return;
+          }
+
+          comments.forEach(function(comment) {
+            var card = document.createElement("article");
+            card.className = "comment-card";
+
+            var header = document.createElement("header");
+            var author = document.createElement("strong");
+            var time = document.createElement("time");
+            var body = document.createElement("p");
+
+            author.textContent = comment.authorName || "A fellow traveler";
+            time.dateTime = comment.createdAt || "";
+            time.textContent = comment.createdAt ? new Date(comment.createdAt).toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }) : "Recently";
+            body.textContent = comment.body || "";
+
+            header.appendChild(author);
+            header.appendChild(time);
+            card.appendChild(header);
+            card.appendChild(body);
+            list.appendChild(card);
+          });
+        }
+
+        fetch("/api/comments?post=" + encodeURIComponent(postSlug), { headers: { "accept": "application/json" } })
+          .then(function(response) {
+            if (!response.ok) throw new Error("Comments are not ready yet.");
+            return response.json();
+          })
+          .then(function(data) {
+            if (data && data.disabled) {
+              emptyState("Field notes are being unpacked. Until then, send thoughts to info@majestic-travels.com.");
+              if (form) form.hidden = true;
+              return;
+            }
+            renderComments((data && data.comments) || []);
+          })
+          .catch(function() {
+            emptyState("Field notes are available on the live site.");
+          });
+
+        if (!form) return;
+        form.addEventListener("submit", function(event) {
+          event.preventDefault();
+          setStatus("Sending...", "");
+
+          var formData = new FormData(form);
+          var payload = {
+            postSlug: postSlug,
+            name: String(formData.get("name") || ""),
+            email: String(formData.get("email") || ""),
+            body: String(formData.get("body") || ""),
+            website: String(formData.get("website") || "")
+          };
+
+          fetch("/api/comments", {
+            method: "POST",
+            headers: { "accept": "application/json", "content-type": "application/json" },
+            body: JSON.stringify(payload)
+          })
+            .then(function(response) {
+              return response.json().catch(function() { return {}; }).then(function(data) {
+                if (!response.ok) throw new Error(data.message || "Could not send this note.");
+                return data;
+              });
+            })
+            .then(function() {
+              form.reset();
+              setStatus("Thanks. Your note is waiting for a quick read before it appears.", "success");
+            })
+            .catch(function(error) {
+              setStatus(error.message || "Could not send right now. Try email instead.", "error");
+            });
+        });
+      }
+
+      initArticleComments();
+
       // Klaviyo newsletter forms
       function parseKlaviyoError(data) {
         if (data && data.errors && data.errors.length) {
