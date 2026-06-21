@@ -1,0 +1,8 @@
+name = "majestic-travels-blog"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-06-21"
+
+[[d1_databases]]
+binding = "COMMENTS_DB"
+database_name = "majestic-travels-comments"
+database_id = "e43f3278-4291-4524-a330-e67dec89de38"

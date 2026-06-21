@@ -81,7 +81,7 @@ Newsletter settings:
 
 Reader comments:
 - Create a Cloudflare D1 database for comments.
-- In Cloudflare Pages, add a D1 binding named `COMMENTS_DB` that points to that database.
+- The D1 binding is configured in `wrangler.toml` with the variable name `COMMENTS_DB`.
 - Optional but recommended: add an environment variable named `COMMENTS_ADMIN_TOKEN` with a long private token for cleanup/moderation API calls.
 - The `/api/comments` function creates its own `comments` table the first time it runs.
 - New reader notes are published immediately as `approved`.
