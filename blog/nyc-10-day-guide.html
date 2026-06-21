@@ -1689,27 +1689,33 @@
           });
         }
 
-        fetch("/api/comments?post=" + encodeURIComponent(postSlug), { headers: { "accept": "application/json" } })
-          .then(function(response) {
-            if (!response.ok) throw new Error("Comments are not ready yet.");
-            return response.json();
-          })
-          .then(function(data) {
-            if (data && data.disabled) {
-              emptyState("Field notes are being unpacked. Until then, send thoughts to info@majestic-travels.com.");
-              if (form) form.hidden = true;
-              return;
-            }
-            renderComments((data && data.comments) || []);
-          })
-          .catch(function() {
-            emptyState("Field notes are available on the live site.");
-          });
+        function loadComments() {
+          return fetch("/api/comments?post=" + encodeURIComponent(postSlug), { headers: { "accept": "application/json" } })
+            .then(function(response) {
+              if (!response.ok) throw new Error("Comments are not ready yet.");
+              return response.json();
+            })
+            .then(function(data) {
+              if (data && data.disabled) {
+                emptyState("Field notes are being unpacked. Until then, send thoughts to info@majestic-travels.com.");
+                if (form) form.hidden = true;
+                return;
+              }
+              renderComments((data && data.comments) || []);
+            })
+            .catch(function() {
+              emptyState("Field notes are available on the live site.");
+            });
+        }
+
+        loadComments();
 
         if (!form) return;
         form.addEventListener("submit", function(event) {
           event.preventDefault();
           setStatus("Sending...", "");
+          var submitButton = form.querySelector('button[type="submit"]');
+          if (submitButton) submitButton.disabled = true;
 
           var formData = new FormData(form);
           var payload = {
@@ -1733,10 +1739,14 @@
             })
             .then(function() {
               form.reset();
-              setStatus("Thanks. Your note is waiting for a quick read before it appears.", "success");
+              setStatus("Thanks. Your note is live.", "success");
+              return loadComments();
             })
             .catch(function(error) {
               setStatus(error.message || "Could not send right now. Try email instead.", "error");
+            })
+            .then(function() {
+              if (submitButton) submitButton.disabled = false;
             });
         });
       }

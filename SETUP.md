@@ -82,16 +82,16 @@ Newsletter settings:
 Reader comments:
 - Create a Cloudflare D1 database for comments.
 - In Cloudflare Pages, add a D1 binding named `COMMENTS_DB` that points to that database.
-- Optional but recommended: add an environment variable named `COMMENTS_ADMIN_TOKEN` with a long private token for moderation API calls.
+- Optional but recommended: add an environment variable named `COMMENTS_ADMIN_TOKEN` with a long private token for cleanup/moderation API calls.
 - The `/api/comments` function creates its own `comments` table the first time it runs.
-- New reader notes are saved as `pending`. List pending notes for a post with `GET /api/comments?post=POST_SLUG&status=pending` and the same bearer token.
-- Approve notes by changing their `status` to `approved` in D1, or with an authenticated PATCH request:
+- New reader notes are published immediately as `approved`.
+- Remove inappropriate notes by changing their `status` to `deleted` or `spam` in D1, or with an authenticated PATCH request:
 
 ```bash
 curl -X PATCH "https://majestic-travels.com/api/comments" \
   -H "Authorization: Bearer YOUR_COMMENTS_ADMIN_TOKEN" \
   -H "Content-Type: application/json" \
-  --data "{\"id\":\"COMMENT_ID\",\"status\":\"approved\"}"
+  --data "{\"id\":\"COMMENT_ID\",\"status\":\"deleted\"}"
 ```
 
 ---

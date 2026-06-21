@@ -43,7 +43,7 @@ async function ensureSchema(db) {
       author_name TEXT NOT NULL,
       author_email TEXT,
       body TEXT NOT NULL,
-      status TEXT NOT NULL DEFAULT 'pending',
+      status TEXT NOT NULL DEFAULT 'approved',
       created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
       updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
     )
@@ -85,7 +85,7 @@ export async function onRequestGet({ request, env }) {
   await ensureSchema(db);
 
   if (isAdmin(request, env)) {
-    const status = cleanSingleLine(url.searchParams.get("status") || "pending", 20);
+    const status = cleanSingleLine(url.searchParams.get("status") || "approved", 20);
     if (!COMMENT_STATUSES.has(status)) {
       return json({ message: "Invalid comment status." }, 400);
     }
@@ -154,12 +154,24 @@ export async function onRequestPost({ request, env }) {
 
   await ensureSchema(db);
 
-  await db.prepare(`
-    INSERT INTO comments (id, post_slug, author_name, author_email, body, status)
-    VALUES (?, ?, ?, ?, ?, 'pending')
-  `).bind(crypto.randomUUID(), postSlug, name, email || null, body).run();
+  const id = crypto.randomUUID();
+  const createdAt = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
 
-  return json({ ok: true, queued: true }, 202);
+  await db.prepare(`
+    INSERT INTO comments (id, post_slug, author_name, author_email, body, status, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, 'approved', ?, ?)
+  `).bind(id, postSlug, name, email || null, body, createdAt, createdAt).run();
+
+  return json({
+    ok: true,
+    published: true,
+    comment: {
+      id,
+      authorName: name,
+      body,
+      createdAt
+    }
+  }, 201);
 }
 
 export async function onRequestPatch({ request, env }) {
