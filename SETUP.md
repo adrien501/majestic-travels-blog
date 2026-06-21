@@ -10,7 +10,7 @@ How this site was built, how it's deployed, and how to keep it running.
 |---|---|---|
 | Source files | Your computer (`Majestic Travels/` folder) | Free |
 | Version control | GitHub (`adrien501/majestic-travels-blog`) | Free |
-| Build + hosting | Cloudflare Pages | Free (unlimited bandwidth) |
+| Build + hosting | Cloudflare Workers with static assets | Free tier |
 | Domain | majestic-travels.com (Namecheap) | ~$12/year |
 | SSL | Automatic via Cloudflare | Free |
 
@@ -62,16 +62,17 @@ You write a post
       ▼
 git push → GitHub (adrien501/majestic-travels-blog)
       │
-      ▼  Cloudflare Pages detects the push
+      ▼  Cloudflare detects the push
       │  Runs: npm run prepare:publish
-      │  Output: dist/
+      │  Deploys worker.mjs + dist/ static assets
       ▼
 majestic-travels.com goes live (~60 seconds)
 ```
 
-Cloudflare Pages settings (set once, never touch again):
+Cloudflare build settings (set once, never touch again):
 - **Build command:** `npm run prepare:publish`
-- **Output directory:** `dist`
+- **Deploy command:** `npx wrangler deploy`
+- **Static assets directory:** configured in `wrangler.toml` as `dist`
 - **Branch:** `main`
 
 Newsletter settings:
@@ -83,10 +84,10 @@ Reader comments:
 - Create a Cloudflare D1 database for comments.
 - The D1 binding is configured in `wrangler.toml` with the variable name `COMMENTS_DB`.
 - Optional but recommended: add an environment variable named `COMMENTS_ADMIN_TOKEN` with a long private token for cleanup/moderation API calls.
-- The `/api/comments` function creates its own `comments` table the first time it runs.
+- The `/api/comments` Worker route creates its own `comments` table the first time it runs.
 - New reader notes are published immediately as `approved`.
-- If the page says field notes cannot connect, open `/api/comments?post=nyc-december-itinerary` on the same domain. A JSON response means the Function exists; a 404/HTML page means the Pages Function is not deployed on that domain. Check that Cloudflare is deploying from GitHub, not Direct Upload, and that the `functions/` folder is at the project root.
-- If the API says comments are not configured, add the `COMMENTS_DB` D1 binding to the same Cloudflare Pages environment you are viewing, then redeploy.
+- If the page says field notes cannot connect, open `/api/comments?post=nyc-december-itinerary` on the same domain. A JSON response means the API exists; a 404/HTML page means the Worker route is not deployed on that domain. Check that Cloudflare is deploying from GitHub and running `npx wrangler deploy`.
+- If the API says comments are not configured, confirm the `COMMENTS_DB` D1 binding in `wrangler.toml` points to the right database, then redeploy.
 - Remove inappropriate notes by changing their `status` to `deleted` or `spam` in D1, or with an authenticated PATCH request:
 
 ```bash
