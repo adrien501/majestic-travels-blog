@@ -85,6 +85,8 @@ Reader comments:
 - Optional but recommended: add an environment variable named `COMMENTS_ADMIN_TOKEN` with a long private token for cleanup/moderation API calls.
 - The `/api/comments` function creates its own `comments` table the first time it runs.
 - New reader notes are published immediately as `approved`.
+- If the page says field notes cannot connect, open `/api/comments?post=nyc-december-itinerary` on the same domain. A JSON response means the Function exists; a 404/HTML page means the Pages Function is not deployed on that domain. Check that Cloudflare is deploying from GitHub, not Direct Upload, and that the `functions/` folder is at the project root.
+- If the API says comments are not configured, add the `COMMENTS_DB` D1 binding to the same Cloudflare Pages environment you are viewing, then redeploy.
 - Remove inappropriate notes by changing their `status` to `deleted` or `spam` in D1, or with an authenticated PATCH request:
 
 ```bash

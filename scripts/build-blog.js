@@ -771,6 +771,11 @@ ${commentsEmbed}
           });
         }
 
+        function disableCommentForm(message) {
+          emptyState(message);
+          if (form) form.hidden = true;
+        }
+
         function loadComments() {
           return fetch("/api/comments?post=" + encodeURIComponent(postSlug), { headers: { "accept": "application/json" } })
             .then(function(response) {
@@ -779,14 +784,13 @@ ${commentsEmbed}
             })
             .then(function(data) {
               if (data && data.disabled) {
-                emptyState("Field notes are being unpacked. Until then, send thoughts to info@majestic-travels.com.");
-                if (form) form.hidden = true;
+                disableCommentForm("Field notes need the Cloudflare COMMENTS_DB binding before they can accept notes.");
                 return;
               }
               renderComments((data && data.comments) || []);
             })
             .catch(function() {
-              emptyState("Field notes are available on the live site.");
+              disableCommentForm("Field notes could not connect yet. Check that the Cloudflare Pages Function is deployed and the COMMENTS_DB binding is set.");
             });
         }
 
