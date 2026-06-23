@@ -1344,28 +1344,37 @@
     .article-comments-board { width: min(100%, 760px); display: grid; gap: 18px; }
     .comment-list { display: grid; gap: 12px; }
     .comment-empty { border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.48); color: var(--ink-soft); padding: 16px 18px; font-weight: 700; }
-    .comment-card { position: relative; border: 1.5px solid var(--line); background: rgba(255, 248, 236, 0.72); padding: 18px; box-shadow: 5px 5px 0 rgba(24, 32, 28, 0.06); }
-    .comment-card::before { content: ""; position: absolute; inset: 8px 8px auto auto; width: 42px; height: 32px; border: 1.5px dashed color-mix(in srgb, var(--sandstone) 70%, transparent); opacity: 0.5; }
-    .comment-card header { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; margin-bottom: 8px; padding-right: 52px; }
+    .comment-card { position: relative; border: 1.5px solid var(--line); background: rgba(255, 248, 236, 0.72); padding: 18px; display: grid; gap: 9px; box-shadow: 5px 5px 0 rgba(24, 32, 28, 0.06); }
+    .comment-card.is-reply { margin-left: clamp(18px, 7vw, 72px); border-left: 3px solid color-mix(in srgb, var(--clay) 72%, transparent); background: rgba(255, 248, 236, 0.56); }
+    .comment-card header { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; padding-right: 118px; }
     .comment-card strong { color: var(--ink); font-weight: 900; }
     .comment-card time { color: var(--sandstone); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
     .comment-card p { white-space: pre-line; color: var(--ink-soft); line-height: 1.62; }
+    .comment-location-stamp { position: absolute; top: 9px; right: 9px; max-width: 105px; border: 1.5px dashed var(--sandstone); color: var(--clay); background: color-mix(in srgb, var(--paper) 78%, transparent); padding: 5px 7px; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.08em; line-height: 1.2; text-align: center; text-transform: uppercase; transform: rotate(1.4deg); overflow-wrap: anywhere; }
+    .comment-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px; }
+    .comment-text-button { appearance: none; border: 0; background: transparent; color: var(--clay); padding: 0; font: inherit; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; cursor: pointer; }
+    .comment-text-button:hover, .comment-text-button:focus-visible { color: var(--ink); }
+    .comment-text-button.is-delete { color: var(--sandstone); }
     .comment-form { position: relative; border: 1.5px solid var(--line-strong); background: linear-gradient(135deg, rgba(255, 248, 236, 0.95), rgba(230, 203, 163, 0.3)); box-shadow: 8px 8px 0 rgba(24, 32, 28, 0.08); padding: 22px; display: grid; gap: 16px; }
     .comment-form-stamp { justify-self: start; border: 1.5px dashed var(--sandstone); color: var(--clay); padding: 5px 8px; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; transform: rotate(1.5deg); }
-    .comment-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .comment-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.82fr); gap: 14px; }
     .comment-form label { display: grid; gap: 7px; color: var(--ink); font-weight: 900; }
     .comment-form label span { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .comment-form label em { color: var(--ink-soft); font-style: normal; font-weight: 700; letter-spacing: 0; text-transform: none; }
     .comment-form input, .comment-form textarea { width: 100%; border: 1.5px solid var(--line-strong); border-radius: 2px; background: var(--white); color: var(--ink); padding: 10px 12px; font: inherit; outline: none; transition: border-color 160ms ease, box-shadow 160ms ease; }
     .comment-form textarea { resize: vertical; min-height: 132px; }
     .comment-form input:focus, .comment-form textarea:focus { border-color: var(--sandstone); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sandstone) 18%, transparent); }
+    .comment-reply-context { border: 1.5px dashed var(--line-strong); background: rgba(255, 248, 236, 0.58); color: var(--ink-soft); padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 800; }
+    .comment-reply-context[hidden] { display: none; }
+    .comment-reply-context strong { color: var(--ink); }
+    .comment-reply-context button { appearance: none; border: 0; background: transparent; color: var(--clay); padding: 0; font: inherit; font-weight: 900; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; cursor: pointer; }
     .comment-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
     .comment-form-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
     .comment-form-status { min-height: 1.4em; color: var(--ink-soft); font-weight: 800; }
     .comment-form-status.is-error { color: var(--clay); }
     .comment-form-status.is-success { color: var(--sage); }
     @media (max-width: 980px) { .article-hero, .article-layout { grid-template-columns: 1fr; } .article-hero h1 { font-size: 4.2rem; } .article-entry-code, .article-dossier { position: static; transform: none; } .article-dossier dl { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 660px) { .article-page { padding-top: 44px; } .article-shell { width: min(calc(100% - 28px), 1120px); } .article-hero h1 { font-size: 3.05rem; } .article-cover, .article-cover img { min-height: 285px; } .article-cover figcaption { position: static; max-width: none; background: var(--ink); } .article-dossier dl, .article-nav { grid-template-columns: 1fr; } .article-body { font-size: 1.04rem; } .article-body > p:first-child::first-letter { font-size: 3.7rem; } .article-body h2 { font-size: 2rem; } .article-body blockquote { font-size: 1.35rem; transform: none; } .article-comments { margin-top: 42px; padding-top: 24px; } .article-comments h2 { font-size: 1.78rem; } .comment-fields { grid-template-columns: 1fr; } .comment-form { padding: 18px; box-shadow: 5px 5px 0 rgba(24, 32, 28, 0.08); } .comment-form-footer { align-items: stretch; } .comment-form-footer .button { width: 100%; justify-content: center; } }
+    @media (max-width: 660px) { .article-page { padding-top: 44px; } .article-shell { width: min(calc(100% - 28px), 1120px); } .article-hero h1 { font-size: 3.05rem; } .article-cover, .article-cover img { min-height: 285px; } .article-cover figcaption { position: static; max-width: none; background: var(--ink); } .article-dossier dl, .article-nav { grid-template-columns: 1fr; } .article-body { font-size: 1.04rem; } .article-body > p:first-child::first-letter { font-size: 3.7rem; } .article-body h2 { font-size: 2rem; } .article-body blockquote { font-size: 1.35rem; transform: none; } .article-comments { margin-top: 42px; padding-top: 24px; } .article-comments h2 { font-size: 1.78rem; } .comment-card header { padding-right: 0; } .comment-card.is-reply { margin-left: 14px; } .comment-location-stamp { position: static; justify-self: start; max-width: 100%; order: -1; transform: none; } .comment-fields { grid-template-columns: 1fr; } .comment-form { padding: 18px; box-shadow: 5px 5px 0 rgba(24, 32, 28, 0.08); } .comment-reply-context { align-items: flex-start; flex-direction: column; } .comment-form-footer { align-items: stretch; } .comment-form-footer .button { width: 100%; justify-content: center; } }
     [data-theme="dark"] .article-entry-code { background: var(--cream-deep); box-shadow: none; }
     [data-theme="dark"] .article-entry-code strong { color: var(--ink); }
     [data-theme="dark"] .article-entry-code p { color: var(--ink-soft); }
@@ -1374,7 +1383,7 @@
     [data-theme="dark"] .article-nav-card { background: var(--cream-deep); }
     [data-theme="dark"] .article-nav-card:hover, [data-theme="dark"] .article-nav-card:focus-visible { box-shadow: 6px 6px 0 rgba(0,0,0,0.3); }
     [data-theme="dark"] .article-body blockquote { background: var(--cream-deep); box-shadow: none; }
-    [data-theme="dark"] .comment-empty, [data-theme="dark"] .comment-card, [data-theme="dark"] .comment-form { background: var(--cream-deep); box-shadow: none; }
+    [data-theme="dark"] .comment-empty, [data-theme="dark"] .comment-card, [data-theme="dark"] .comment-form, [data-theme="dark"] .comment-location-stamp, [data-theme="dark"] .comment-reply-context { background: var(--cream-deep); box-shadow: none; }
   </style>
   <script>
   (function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#1a1917':'#2c2a26'})();
@@ -1551,7 +1560,7 @@
         <div class="article-comments-header">
           <span class="article-comments-label">Field notes</span>
           <h2>Leave a note from the road</h2>
-          <p>Tips, questions, tiny corrections, or your own version of the trip. Notes are checked before they appear.</p>
+          <p>Tips, questions, tiny corrections, or your own version of the trip. Notes go live right away, and replies keep the conversation together.</p>
         </div>
         <div class="article-comments-board">
           <div class="comment-list" data-comment-list aria-live="polite">
@@ -1568,6 +1577,15 @@
                 <span>Email <em>optional</em></span>
                 <input type="email" name="email" autocomplete="email" maxlength="180">
               </label>
+              <label>
+                <span>Writing from <em>optional</em></span>
+                <input type="text" name="location" autocomplete="country-name" maxlength="80">
+              </label>
+            </div>
+            <input type="hidden" name="parentId" value="">
+            <div class="comment-reply-context" data-reply-context hidden>
+              <span>Replying to <strong data-reply-name></strong></span>
+              <button type="button" data-reply-cancel>Cancel</button>
             </div>
             <label>
               <span>Note</span>
@@ -1644,12 +1662,54 @@
         var list = root.querySelector("[data-comment-list]");
         var form = root.querySelector("[data-comment-form]");
         var status = root.querySelector("[data-comment-status]");
+        var replyContext = root.querySelector("[data-reply-context]");
+        var replyName = root.querySelector("[data-reply-name]");
+        var replyCancel = root.querySelector("[data-reply-cancel]");
+        var parentInput = form ? form.querySelector('input[name="parentId"]') : null;
+        var bodyInput = form ? form.querySelector('textarea[name="body"]') : null;
+        var deleteStorageKey = "majestic-comments-delete-keys";
 
         function setStatus(message, type) {
           if (!status) return;
           status.textContent = message || "";
           status.classList.toggle("is-error", type === "error");
           status.classList.toggle("is-success", type === "success");
+        }
+
+        function readDeleteKeys() {
+          try {
+            var raw = localStorage.getItem(deleteStorageKey);
+            var parsed = raw ? JSON.parse(raw) : {};
+            return parsed && typeof parsed === "object" ? parsed : {};
+          } catch (error) {
+            return {};
+          }
+        }
+
+        function writeDeleteKeys(keys) {
+          try {
+            localStorage.setItem(deleteStorageKey, JSON.stringify(keys));
+          } catch (error) {
+            return;
+          }
+        }
+
+        function rememberDeleteToken(comment) {
+          if (!comment || !comment.id || !comment.deleteToken) return;
+          var keys = readDeleteKeys();
+          keys[comment.id] = comment.deleteToken;
+          writeDeleteKeys(keys);
+        }
+
+        function forgetDeleteToken(commentId) {
+          var keys = readDeleteKeys();
+          delete keys[commentId];
+          writeDeleteKeys(keys);
+        }
+
+        function createdTime(comment) {
+          var time = comment && comment.createdAt ? new Date(comment.createdAt).getTime() : 0;
+          return isNaN(time) ? 0 : time;
         }
 
         function emptyState(message) {
@@ -1660,6 +1720,124 @@
           list.appendChild(empty);
         }
 
+        function clearReplyTarget(quiet) {
+          if (parentInput) parentInput.value = "";
+          if (replyName) replyName.textContent = "";
+          if (replyContext) replyContext.hidden = true;
+          if (!quiet) setStatus("", "");
+        }
+
+        function setReplyTarget(comment) {
+          if (!form || !comment || !comment.id || comment.deletedByAuthor) return;
+          if (parentInput) parentInput.value = comment.id;
+          if (replyName) replyName.textContent = comment.authorName || "a fellow traveler";
+          if (replyContext) replyContext.hidden = false;
+          setStatus("Writing a reply to " + (comment.authorName || "a fellow traveler") + ".", "");
+
+          if (form.scrollIntoView) {
+            form.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          if (bodyInput) bodyInput.focus();
+        }
+
+        function actionButton(label, extraClass, onClick) {
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "comment-text-button" + (extraClass ? " " + extraClass : "");
+          button.textContent = label;
+          button.addEventListener("click", onClick);
+          return button;
+        }
+
+        function deleteComment(comment) {
+          var keys = readDeleteKeys();
+          var deleteToken = keys[comment.id];
+
+          if (!deleteToken) {
+            setStatus("Only the browser that posted that note can delete it.", "error");
+            return;
+          }
+
+          if (!window.confirm("Delete this " + (comment.parentId ? "reply" : "note") + "?")) {
+            return;
+          }
+
+          setStatus("Deleting...", "");
+
+          fetch("/api/comments", {
+            method: "DELETE",
+            headers: { "accept": "application/json", "content-type": "application/json" },
+            body: JSON.stringify({
+              postSlug: postSlug,
+              id: comment.id,
+              deleteToken: deleteToken
+            })
+          })
+            .then(function(response) {
+              return response.json().catch(function() { return {}; }).then(function(data) {
+                if (!response.ok) throw new Error(data.message || "Could not delete that note.");
+                return data;
+              });
+            })
+            .then(function(data) {
+              forgetDeleteToken(comment.id);
+              setStatus(data && data.redacted ? "Your words were removed, and the replies stayed readable." : "Your note was deleted.", "success");
+              return loadComments();
+            })
+            .catch(function(error) {
+              setStatus(error.message || "Could not delete right now.", "error");
+            });
+        }
+
+        function renderComment(comment, isReply) {
+          var deleteKeys = readDeleteKeys();
+          var card = document.createElement("article");
+          card.className = "comment-card" + (isReply ? " is-reply" : "");
+
+          if (comment.authorLocation) {
+            var stamp = document.createElement("span");
+            stamp.className = "comment-location-stamp";
+            stamp.textContent = "From " + comment.authorLocation;
+            card.appendChild(stamp);
+          }
+
+          var header = document.createElement("header");
+          var author = document.createElement("strong");
+          var time = document.createElement("time");
+          var body = document.createElement("p");
+
+          author.textContent = comment.authorName || "A fellow traveler";
+          time.dateTime = comment.createdAt || "";
+          time.textContent = comment.createdAt ? new Date(comment.createdAt).toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }) : "Recently";
+          body.textContent = comment.body || "";
+
+          header.appendChild(author);
+          header.appendChild(time);
+          card.appendChild(header);
+          card.appendChild(body);
+
+          var actions = document.createElement("div");
+          actions.className = "comment-actions";
+
+          if (!isReply && !comment.deletedByAuthor) {
+            actions.appendChild(actionButton("Reply", "", function() {
+              setReplyTarget(comment);
+            }));
+          }
+
+          if (!comment.deletedByAuthor && deleteKeys[comment.id]) {
+            actions.appendChild(actionButton("Delete", "is-delete", function() {
+              deleteComment(comment);
+            }));
+          }
+
+          if (actions.childNodes.length) {
+            card.appendChild(actions);
+          }
+
+          return card;
+        }
+
         function renderComments(comments) {
           list.innerHTML = "";
           if (!comments.length) {
@@ -1667,25 +1845,40 @@
             return;
           }
 
+          var byId = {};
+          var topLevel = [];
+          var replies = {};
+
           comments.forEach(function(comment) {
-            var card = document.createElement("article");
-            card.className = "comment-card";
+            if (comment && comment.id) byId[comment.id] = comment;
+          });
 
-            var header = document.createElement("header");
-            var author = document.createElement("strong");
-            var time = document.createElement("time");
-            var body = document.createElement("p");
+          comments.forEach(function(comment) {
+            if (!comment || !comment.id) return;
+            if (comment.parentId) {
+              if (!byId[comment.parentId]) return;
+              if (!replies[comment.parentId]) replies[comment.parentId] = [];
+              replies[comment.parentId].push(comment);
+              return;
+            }
+            topLevel.push(comment);
+          });
 
-            author.textContent = comment.authorName || "A fellow traveler";
-            time.dateTime = comment.createdAt || "";
-            time.textContent = comment.createdAt ? new Date(comment.createdAt).toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }) : "Recently";
-            body.textContent = comment.body || "";
+          topLevel.sort(function(a, b) {
+            return createdTime(b) - createdTime(a);
+          });
 
-            header.appendChild(author);
-            header.appendChild(time);
-            card.appendChild(header);
-            card.appendChild(body);
-            list.appendChild(card);
+          Object.keys(replies).forEach(function(parentId) {
+            replies[parentId].sort(function(a, b) {
+              return createdTime(a) - createdTime(b);
+            });
+          });
+
+          topLevel.forEach(function(comment) {
+            list.appendChild(renderComment(comment, false));
+            (replies[comment.id] || []).forEach(function(reply) {
+              list.appendChild(renderComment(reply, true));
+            });
           });
         }
 
@@ -1708,13 +1901,20 @@
               renderComments((data && data.comments) || []);
             })
             .catch(function() {
-              disableCommentForm("Field notes could not connect yet. Check that the Cloudflare Pages Function is deployed and the COMMENTS_DB binding is set.");
+              disableCommentForm("Field notes could not connect yet. Check that the comments Worker route is deployed and the COMMENTS_DB binding is set.");
             });
         }
 
         loadComments();
 
         if (!form) return;
+        if (replyCancel) {
+          replyCancel.addEventListener("click", function() {
+            clearReplyTarget();
+            if (bodyInput) bodyInput.focus();
+          });
+        }
+
         form.addEventListener("submit", function(event) {
           event.preventDefault();
           setStatus("Sending...", "");
@@ -1722,10 +1922,13 @@
           if (submitButton) submitButton.disabled = true;
 
           var formData = new FormData(form);
+          var parentId = String(formData.get("parentId") || "");
           var payload = {
             postSlug: postSlug,
+            parentId: parentId,
             name: String(formData.get("name") || ""),
             email: String(formData.get("email") || ""),
+            location: String(formData.get("location") || ""),
             body: String(formData.get("body") || ""),
             website: String(formData.get("website") || "")
           };
@@ -1741,9 +1944,11 @@
                 return data;
               });
             })
-            .then(function() {
+            .then(function(data) {
+              rememberDeleteToken(data && data.comment);
               form.reset();
-              setStatus("Thanks. Your note is live.", "success");
+              clearReplyTarget(true);
+              setStatus(parentId ? "Thanks. Your reply is live." : "Thanks. Your note is live.", "success");
               return loadComments();
             })
             .catch(function(error) {

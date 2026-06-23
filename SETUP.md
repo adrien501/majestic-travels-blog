@@ -86,6 +86,9 @@ Reader comments:
 - Optional but recommended: add an environment variable named `COMMENTS_ADMIN_TOKEN` with a long private token for cleanup/moderation API calls.
 - The `/api/comments` Worker route creates its own `comments` table the first time it runs.
 - New reader notes are published immediately as `approved`.
+- Readers can reply to top-level notes. Replies are public immediately too.
+- Readers can optionally add a "writing from" location, which appears as a small travel stamp. The site does not guess or store country from IP.
+- A private delete key is returned to the browser when a note is posted. That browser can delete its own note later; otherwise, use the admin cleanup flow.
 - If the page says field notes cannot connect, open `/api/comments?post=nyc-december-itinerary` on the same domain. A JSON response means the API exists; a 404/HTML page means the Worker route is not deployed on that domain. Check that Cloudflare is deploying from GitHub and running `npx wrangler deploy`.
 - If the API says comments are not configured, confirm the `COMMENTS_DB` D1 binding in `wrangler.toml` points to the right database, then redeploy.
 - Remove inappropriate notes by changing their `status` to `deleted` or `spam` in D1, or with an authenticated PATCH request:

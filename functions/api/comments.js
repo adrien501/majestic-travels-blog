@@ -35,23 +35,59 @@ function isValidEmail(value) {
   return !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function isValidCommentId(value) {
+  return /^[a-z0-9-]{20,80}$/i.test(value);
+}
+
+async function hashDeleteToken(token) {
+  const bytes = new TextEncoder().encode(token);
+  const hash = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(hash))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+async function tryMigrate(db, statement) {
+  try {
+    await db.prepare(statement).run();
+  } catch (error) {
+    if (!/duplicate column name/i.test(String(error && error.message ? error.message : error))) {
+      throw error;
+    }
+  }
+}
+
 async function ensureSchema(db) {
   await db.prepare(`
     CREATE TABLE IF NOT EXISTS comments (
       id TEXT PRIMARY KEY,
       post_slug TEXT NOT NULL,
+      parent_id TEXT,
       author_name TEXT NOT NULL,
       author_email TEXT,
+      author_location TEXT,
       body TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'approved',
+      delete_token_hash TEXT,
+      deleted_by_author INTEGER NOT NULL DEFAULT 0,
       created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),
       updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
     )
   `).run();
 
+  await tryMigrate(db, "ALTER TABLE comments ADD COLUMN parent_id TEXT");
+  await tryMigrate(db, "ALTER TABLE comments ADD COLUMN author_location TEXT");
+  await tryMigrate(db, "ALTER TABLE comments ADD COLUMN delete_token_hash TEXT");
+  await tryMigrate(db, "ALTER TABLE comments ADD COLUMN deleted_by_author INTEGER NOT NULL DEFAULT 0");
+
   await db.prepare(`
     CREATE INDEX IF NOT EXISTS idx_comments_public
     ON comments (post_slug, status, created_at)
+  `).run();
+
+  await db.prepare(`
+    CREATE INDEX IF NOT EXISTS idx_comments_thread
+    ON comments (post_slug, parent_id, status, created_at)
   `).run();
 }
 
@@ -91,8 +127,10 @@ export async function onRequestGet({ request, env }) {
     }
 
     const adminResult = await db.prepare(`
-      SELECT id, post_slug AS postSlug, author_name AS authorName, author_email AS authorEmail,
-             body, status, created_at AS createdAt, updated_at AS updatedAt
+      SELECT id, post_slug AS postSlug, parent_id AS parentId,
+             author_name AS authorName, author_email AS authorEmail, author_location AS authorLocation,
+             body, status, deleted_by_author AS deletedByAuthor,
+             created_at AS createdAt, updated_at AS updatedAt
       FROM comments
       WHERE post_slug = ? AND status = ?
       ORDER BY datetime(created_at) DESC
@@ -103,11 +141,12 @@ export async function onRequestGet({ request, env }) {
   }
 
   const result = await db.prepare(`
-    SELECT id, author_name AS authorName, body, created_at AS createdAt
+    SELECT id, parent_id AS parentId, author_name AS authorName, author_location AS authorLocation,
+           body, deleted_by_author AS deletedByAuthor, created_at AS createdAt
     FROM comments
     WHERE post_slug = ? AND status = 'approved'
-    ORDER BY datetime(created_at) DESC
-    LIMIT 50
+    ORDER BY datetime(created_at) ASC
+    LIMIT 100
   `).bind(postSlug).all();
 
   return json({ comments: result.results || [] });
@@ -132,12 +171,18 @@ export async function onRequestPost({ request, env }) {
   }
 
   const postSlug = cleanSingleLine(payload.postSlug || payload.post || "", 120);
+  const parentId = cleanSingleLine(payload.parentId || payload.parent || "", 80);
   const name = cleanSingleLine(payload.name || "", 80);
   const email = cleanSingleLine(payload.email || "", 180);
+  const location = cleanSingleLine(payload.location || payload.authorLocation || "", 80);
   const body = cleanBody(payload.body || "", 1200);
 
   if (!isValidPostSlug(postSlug)) {
     return json({ message: "Missing or invalid post." }, 400);
+  }
+
+  if (parentId && !isValidCommentId(parentId)) {
+    return json({ message: "That reply target is not valid." }, 400);
   }
 
   if (name.length < 2) {
@@ -154,22 +199,48 @@ export async function onRequestPost({ request, env }) {
 
   await ensureSchema(db);
 
+  if (parentId) {
+    const parent = await db.prepare(`
+      SELECT id, parent_id AS parentId
+      FROM comments
+      WHERE id = ? AND post_slug = ? AND status = 'approved'
+      LIMIT 1
+    `).bind(parentId, postSlug).first();
+
+    if (!parent) {
+      return json({ message: "That note is no longer available to reply to." }, 400);
+    }
+
+    if (parent.parentId) {
+      return json({ message: "Replies can only go one level deep." }, 400);
+    }
+  }
+
   const id = crypto.randomUUID();
+  const deleteToken = `${crypto.randomUUID()}-${crypto.randomUUID()}`;
+  const deleteTokenHash = await hashDeleteToken(deleteToken);
   const createdAt = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
 
   await db.prepare(`
-    INSERT INTO comments (id, post_slug, author_name, author_email, body, status, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, 'approved', ?, ?)
-  `).bind(id, postSlug, name, email || null, body, createdAt, createdAt).run();
+    INSERT INTO comments (
+      id, post_slug, parent_id, author_name, author_email, author_location,
+      body, status, delete_token_hash, created_at, updated_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, 'approved', ?, ?, ?)
+  `).bind(id, postSlug, parentId || null, name, email || null, location || null, body, deleteTokenHash, createdAt, createdAt).run();
 
   return json({
     ok: true,
     published: true,
     comment: {
       id,
+      parentId: parentId || null,
       authorName: name,
+      authorLocation: location || null,
       body,
-      createdAt
+      createdAt,
+      deleteToken,
+      deletedByAuthor: false
     }
   }, 201);
 }
@@ -201,4 +272,86 @@ export async function onRequestPatch({ request, env }) {
   `).bind(status, id).run();
 
   return json({ ok: true });
+}
+
+export async function onRequestDelete({ request, env }) {
+  const db = getDb(env);
+  if (!db) return json({ message: "Comments database is not configured yet." }, 503);
+
+  let payload;
+  try {
+    payload = await request.json();
+  } catch (error) {
+    return json({ message: "Could not read delete request." }, 400);
+  }
+
+  const id = cleanSingleLine(payload.id || "", 80);
+  const postSlug = cleanSingleLine(payload.postSlug || payload.post || "", 120);
+  if (!isValidCommentId(id) || !isValidPostSlug(postSlug)) {
+    return json({ message: "Send a valid note id and post." }, 400);
+  }
+
+  await ensureSchema(db);
+
+  let comment;
+  if (isAdmin(request, env)) {
+    comment = await db.prepare(`
+      SELECT id, parent_id AS parentId
+      FROM comments
+      WHERE id = ? AND post_slug = ? AND status = 'approved'
+      LIMIT 1
+    `).bind(id, postSlug).first();
+  } else {
+    const deleteToken = cleanSingleLine(payload.deleteToken || "", 200);
+    if (deleteToken.length < 40) {
+      return json({ message: "This browser cannot delete that note." }, 401);
+    }
+
+    const deleteTokenHash = await hashDeleteToken(deleteToken);
+    comment = await db.prepare(`
+      SELECT id, parent_id AS parentId
+      FROM comments
+      WHERE id = ? AND post_slug = ? AND status = 'approved' AND delete_token_hash = ?
+      LIMIT 1
+    `).bind(id, postSlug, deleteTokenHash).first();
+  }
+
+  if (!comment) {
+    return json({ message: "That note could not be deleted from this browser." }, 404);
+  }
+
+  const replyCount = await db.prepare(`
+    SELECT COUNT(*) AS count
+    FROM comments
+    WHERE parent_id = ? AND post_slug = ? AND status = 'approved'
+  `).bind(id, postSlug).first();
+
+  const hasReplies = Number(replyCount && replyCount.count ? replyCount.count : 0) > 0;
+
+  if (hasReplies) {
+    await db.prepare(`
+      UPDATE comments
+      SET author_name = 'A traveler',
+          author_email = NULL,
+          author_location = NULL,
+          body = 'This note was deleted by its author.',
+          delete_token_hash = NULL,
+          deleted_by_author = 1,
+          updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now')
+      WHERE id = ? AND post_slug = ?
+    `).bind(id, postSlug).run();
+  } else {
+    await db.prepare(`
+      UPDATE comments
+      SET status = 'deleted',
+          author_email = NULL,
+          author_location = NULL,
+          delete_token_hash = NULL,
+          deleted_by_author = 1,
+          updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now')
+      WHERE id = ? AND post_slug = ?
+    `).bind(id, postSlug).run();
+  }
+
+  return json({ ok: true, redacted: hasReplies });
 }

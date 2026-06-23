@@ -1,4 +1,4 @@
-import { onRequestGet, onRequestPatch, onRequestPost } from "./functions/api/comments.js";
+import { onRequestDelete, onRequestGet, onRequestPatch, onRequestPost } from "./functions/api/comments.js";
 
 const JSON_HEADERS = {
   "content-type": "application/json; charset=utf-8",
@@ -10,7 +10,7 @@ function methodNotAllowed() {
     status: 405,
     headers: {
       ...JSON_HEADERS,
-      allow: "GET, POST, PATCH"
+      allow: "GET, POST, PATCH, DELETE"
     }
   });
 }
@@ -25,6 +25,7 @@ export default {
       if (request.method === "GET") return onRequestGet(context);
       if (request.method === "POST") return onRequestPost(context);
       if (request.method === "PATCH") return onRequestPatch(context);
+      if (request.method === "DELETE") return onRequestDelete(context);
 
       return methodNotAllowed();
     }
