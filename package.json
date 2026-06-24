@@ -5,6 +5,11 @@
     "new:post": "node scripts/new-post.js",
     "check:blog": "node scripts/check-blog.js",
     "writer": "node scripts/writer-server.js",
-    "prepare:publish": "node scripts/build-blog.js && node scripts/check-blog.js && node scripts/prepare-publish.js"
+    "prepare:publish": "node scripts/build-blog.js && node scripts/check-blog.js && node scripts/prepare-publish.js",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.103.0"
   }
 }
